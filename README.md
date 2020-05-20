@@ -1,6 +1,6 @@
 Group Members:
 * Winnie Chan z3f5 (wwyc)
-* Illean Zhang (illeanz)
+* Illean Zhang n5b1b (illeanz)
 * Aaron Ngu (aaronNgu)
 * Spandana Baruah (Spandana-Baruah)
 
