@@ -1,13 +1,51 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Roboto';
+  padding: 30px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.reviewList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.reviewItem {
+  display: flex;
+  justify-content: left;
+  flex-direction: row;
+  background-color: #C2B0B0;
+  padding: 30px;
+}
+
+.ratingSummary {
+  padding: 10px;
+  background-color: #BE5151;
+}
+
+.rating {
+  color: #eddada;
+  text-align: center;
+}
+
+.thumbButtons {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.thumbButtons button {
+  background-color: #eea29a;
+  font-size: 12px;
+}
+
+.thumbButtons button:hover {
+  background-color: #e65a4c;
+  font-size: 12px;
+}
+
+.review {
+  margin-left: 30px;
+  padding: 10px 30px;
+  background-color: #FB9696;
+  width: 100%;
 }
