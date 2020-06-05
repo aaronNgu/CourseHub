@@ -1,14 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import CourseItem from './CourseItem';
+import ReviewItemList from "./components/ReviewItemList";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <CourseItem />
-    </div>
+      <ReviewItemList/>
   );
-}
+};
 
 export default App;
