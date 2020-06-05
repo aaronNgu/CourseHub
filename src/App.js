@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
 import ReviewItemList from "./components/ReviewItemList";
+import CourseItem from './components/CourseItem';
 
 const App = () => {
   return (
-      <ReviewItemList/>
+    <div className="App">
+      <ReviewItemList />
+      <CourseItem />
+    </div>
   );
 };
 

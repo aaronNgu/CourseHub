@@ -49,3 +49,27 @@ body {
   background-color: #FB9696;
   width: 100%;
 }
+
+
+/* CourseItem */
+.courseitem {
+  display: flex;
+  flex-direction: column;
+  border: solid;
+  width: 30%;
+  padding: 10px;
+}
+
+.courseitem_top {
+  display: flex
+}
+
+.courseitem_bottom {
+  display: flex
+}
+
+.courseitem_review {
+  border: solid;
+  margin-left: 10px;
+  padding: 5px
+}
