@@ -50,6 +50,12 @@ body {
   width: 100%;
 }
 
+/* CourseItem */
+.courseOverview{
+  padding: 50px;
+  background-color: #C2B0B0;
+
+}
 
 /* CourseItem */
 .courseitem {
