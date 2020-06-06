@@ -4,7 +4,7 @@ import ReviewItemList from "./components/ReviewItemList";
 import CourseItem from './components/CourseItem';
 import Button from './components/Button';
 import Header from './components/Header';
-import CourseOverview from './components/CourseOverview';
+import CourseOverview from './components/courseOverview';
 
 const App = () => {
   return (
