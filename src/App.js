@@ -11,7 +11,6 @@ const App = () => {
     <div className="App">
       <Header />
       <Button />
-      <ReviewItemList />
       <CourseOverview />
       <CourseItem />
       <ReviewItemList />
