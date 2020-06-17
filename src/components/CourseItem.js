@@ -1,10 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { increment } from '../actions';
 
 class CourseItem extends React.Component {
     render() {
+        //component can now see courseList - check console to see objet
+        console.log('inside course item component')
+        console.log(this.props.courseList)
         return (
             <div className="courseitem" >
-
                 <div className="courseitem_top">
                     <h3>CPSC 110</h3>
                     &nbsp; &nbsp;
@@ -22,4 +26,8 @@ class CourseItem extends React.Component {
     }
 }
 
-export default CourseItem;
+const mapStateToProps = (state) => {
+return { courseList: state.courseList };
+}
+
+export default connect(mapStateToProps, { increment })(CourseItem);
