@@ -9,6 +9,7 @@ class CourseItem extends React.Component {
         console.log(this.props.courseList)
         return (
             <div className="courseitem" >
+            
                 <div className="courseitem_top">
                     <h3>CPSC 110</h3>
                     &nbsp; &nbsp;
