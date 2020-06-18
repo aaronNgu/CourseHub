@@ -10,13 +10,13 @@ We are looking to build a website where students are able to view and/or provide
 
 
 Project Task Requirements
-Minimal Requirements: 
-* Front end page to view list of courses 
+Minimal Requirements:
+* Front end page to view list of courses
 * Back end that takes user input and stores data
 * Database to store course reviews added by users
 
 Standard Requirements:
-* Front end page for each individual course 
+* Front end page for each individual course
 * Add ratings/summary for each course
 * Search function using keywords
 * Filter for courses(i.e. four stars and above)
@@ -33,3 +33,7 @@ Front end page to view list of course:
 * Add button to add reviews
 * List view of courses and it’s reviews
 * Dummy Data for courses
+
+Relevant Links
+*  Trello:  https://trello.com/b/rjTfDo1R/coursehub
+*  Figma:  https://www.figma.com/file/UXh5AIRYjv4AdfHV2p88wG/CourseHub---version-2
