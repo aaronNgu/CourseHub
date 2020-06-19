@@ -1,17 +1,17 @@
 import React from 'react';
 import CourseItem from './CourseItem';
 import { connect } from 'react-redux';
+import { deleteMessage } from '../actions';
 
 class CourseItemList extends React.Component {
 
-    handleCancel = () => {
-        // TODO: cancel course
-        console.log('on handleCancel');
+    handleCancel = (course) => {
+        this.props.deleteMessage(course);
     }
 
-    handleEdit = () => {
+    handleEdit = (course) => {
         // TODO: edit course
-        console.log('on handleEdit');
+        console.log('on handleEdit from course ' + course);
     }
 
     render() {
@@ -37,4 +37,4 @@ const mapStateToProps = (state) => {
     return { courseList: state.courseList };
 }
 
-export default connect(mapStateToProps)(CourseItemList); 
+export default connect(mapStateToProps, { deleteMessage })(CourseItemList); 
