@@ -43,10 +43,10 @@ function CourseItem(props) {
 
         <Box className='courseItemVerticalSides courseItemVerticalMiddle'>
             <Typography variant='body2'>{props.date || '2/19/2020'}</Typography>
-            <Box className='courseItemIcon'>
-                <EditIcon onClick={props.onEdit}/>
+            <Box className='courseItemIconContainer'>
+                <EditIcon className='courseItemIcon' onClick={props.onEdit}/>
                 &nbsp;&nbsp;
-                <DeleteIcon onClick={props.onCancel}/>
+                <DeleteIcon className='courseItemIcon' onClick={props.onCancel}/>
             </Box>
         </Box>
 

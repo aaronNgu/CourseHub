@@ -74,11 +74,15 @@ body {
   align-items: flex-start;
 }
 
-.courseItemIcon {
+.courseItemIconContainer {
   display: flex;
   height: 70%;
   align-items: flex-end;
   justify-content: space-between;
+}
+
+.courseItemIcon:hover {
+  color: #A17070;
 }
 
 
