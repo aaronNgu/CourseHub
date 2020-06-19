@@ -58,26 +58,20 @@ body {
 }
 
 /* CourseItem */
-.courseitem {
+.courseItemHorizontal {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.courseItemVerticalSides {
   display: flex;
   flex-direction: column;
-  border: solid;
-  width: 30%;
-  padding: 10px;
+  margin: 5px 20px;
 }
 
-.courseitem_top {
-  display: flex
-}
-
-.courseitem_bottom {
-  display: flex
-}
-
-.courseitem_review {
-  border: solid;
-  margin-left: 10px;
-  padding: 5px
+.courseItemVerticalMiddle {
+  align-items: flex-start;
 }
 
 /* Button and Header component styling */
