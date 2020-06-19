@@ -20,6 +20,12 @@ const counterReducer = (count = 0, action) => {
 }
 
 const courseReducer = (courseList = default_data, action) => {
+  if (action.type === 'DELETE_MESSAGE') {
+    let copy = Object.assign({}, courseList);
+    delete copy[action.payload]; 
+    return copy;
+
+  }
 	return courseList;
 };
 
