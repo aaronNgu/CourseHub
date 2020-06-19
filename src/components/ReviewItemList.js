@@ -1,5 +1,7 @@
 import React from 'react';
 import ReviewItem from "./ReviewItem";
+import { connect } from 'react-redux';
+import { increment } from '../actions';
 
 // hardcoded for now
 const reviewItems = [
@@ -11,6 +13,9 @@ const reviewItems = [
 class ReviewItemList extends React.Component {
 
     render() {
+      //component can now see courseList - check console to see objet
+      console.log('inside review item list component')
+      console.log(this.props.courseList)
         return (
             <div>
                 <div>
@@ -26,4 +31,8 @@ class ReviewItemList extends React.Component {
     }
 }
 
-export default ReviewItemList;
+const mapStateToProps = (state) => {
+return { courseList: state.courseList };
+}
+
+export default connect(mapStateToProps, { increment })(ReviewItemList);
