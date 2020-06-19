@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import ReviewItemList from "./components/ReviewItemList";
-import CourseItem from './components/CourseItem';
 import Button from './components/Button';
 import Header from './components/Header';
 import CourseOverview from './components/courseOverview';
@@ -12,9 +11,8 @@ const App = () => {
     <div className="App">
       <Header />
       <Button />
-      <CourseItemList />
       <CourseOverview />
-      <CourseItem />
+      <CourseItemList />
       <ReviewItemList />
     </div>
   );
