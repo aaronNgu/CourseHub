@@ -5,3 +5,10 @@ export const increment = (amount) => {
         payload: amount
     };
 }
+
+export const deleteMessage = (courseNumber) => {
+    return {
+        type: 'DELETE_MESSAGE',
+        payload: courseNumber
+    };
+}
