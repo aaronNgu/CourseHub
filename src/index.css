@@ -74,6 +74,19 @@ body {
   align-items: flex-start;
 }
 
+.courseItemIcon {
+  display: flex;
+  height: 70%;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+
+/* CourseItemList*/
+.courseItemListItem {
+  margin: 50px 50px;
+}
+
 /* Button and Header component styling */
 .topnav {
   background-color: #fbc687;
