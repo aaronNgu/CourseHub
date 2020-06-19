@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
 import ReviewItemList from "./components/ReviewItemList";
-import CourseItem from './components/CourseItem';
 import Button from './components/Button';
 import Header from './components/Header';
 import CourseOverview from './components/courseOverview';
+import CourseItemList from './components/CourseItemList';
 
 const App = () => {
   return (
@@ -12,7 +12,7 @@ const App = () => {
       <Header />
       <Button />
       <CourseOverview />
-      <CourseItem />
+      <CourseItemList />
       <ReviewItemList />
     </div>
   );
