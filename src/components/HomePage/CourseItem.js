@@ -3,6 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Paper, Box } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import LooksOneIcon from '@material-ui/icons/LooksOne';
+import LooksTwoIcon from '@material-ui/icons/LooksTwo';
+import Looks3Icon from '@material-ui/icons/Looks3';
+import Looks4Icon from '@material-ui/icons/Looks4';
+import Looks5Icon from '@material-ui/icons/Looks5';
 import "./HomePage.css"
 
 const useStyles = makeStyles({
@@ -37,7 +42,7 @@ function CourseItem(props) {
 
             <Box className='courseItemVerticalSides courseItemVerticalMiddle'>
                 <Typography variant='h5'>{props.courseNumber || 'CPSC110'} </Typography>
-                <Typography variant='body2'>{props.review || 'It was an awsome course!'}</Typography>
+                <Typography variant='body2'>{props.review || 'It was an awesome course!'}</Typography>
             </Box>
 
         </Box>
@@ -45,6 +50,16 @@ function CourseItem(props) {
         <Box className='courseItemVerticalSides courseItemVerticalMiddle'>
             <Typography variant='body2'>{props.date || '2/19/2020'}</Typography>
             <Box className='courseItemIconContainer'>
+                <LooksOneIcon className='courseItemIcon' onClick={() => props.onRatingOne(props.courseNumber)}/>
+                &nbsp;&nbsp;
+                <LooksTwoIcon className='courseItemIcon' onClick={() => props.onRatingTwo(props.courseNumber)}/>
+                &nbsp;&nbsp;
+                <Looks3Icon className='courseItemIcon' onClick={() => props.onRatingThree(props.courseNumber)}/>
+                &nbsp;&nbsp;
+                <Looks4Icon className='courseItemIcon' onClick={() => props.onRatingFour(props.courseNumber)}/>
+                &nbsp;&nbsp;
+                <Looks5Icon className='courseItemIcon' onClick={() => props.onRatingFive(props.courseNumber)}/>
+                &nbsp;&nbsp;
                 <EditIcon className='courseItemIcon' onClick={() => props.onEdit(props.courseNumber)}/>
                 &nbsp;&nbsp;
                 <DeleteIcon className='courseItemIcon' onClick={() => props.onCancel(props.courseNumber)}/>
