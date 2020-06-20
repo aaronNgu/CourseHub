@@ -1,0 +1,90 @@
+.body {
+    margin: auto;
+}
+
+/* Header and Button*/
+.reviewListHeader {
+    background-color: #A17070;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.reviewListHeader p {
+    padding-left: 25px;
+}
+
+.button {
+    padding-top: 8px;
+    padding-right: 15px;
+    float: right;
+}
+/* ReviewItem */
+.reviewItemHorizontal {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.reviewItemVerticalSides {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 20px;
+}
+
+.reviewItemVerticalMiddle {
+    align-items: flex-start;
+}
+
+.reviewItemIconContainer {
+    display: flex;
+    height: 70%;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.text {
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+.date {
+    padding-right: 20px;
+    padding-top: 15px;
+}
+
+.reviewItemIcon:hover {
+    color: #A17070;
+}
+
+/* CourseOverview */
+.courseOverview {
+    padding: 10px;
+}
+
+.courseOverviewHeader {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+}
+
+.courseOverviewHorizontal {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+
+.courseOverviewVerticalLeft {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 20px;
+    justify-content: center;
+}
+
+.courseOverviewVerticalRight {
+    margin: 5px 20px;
+    padding-left: 7px;
+    align-items: flex-start;
+}

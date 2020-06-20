@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Paper, Box } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import "./HomePage.css"
 
 const useStyles = makeStyles({
     rating: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles({
         backgroundColor: '#E5A0A0',
     },
     main: {
-        width: '800px',
+        width: '75%',
         backgroundColor: '#FFECEC',
         ['@media (max-width:900px)']: {
             width: '100%',
