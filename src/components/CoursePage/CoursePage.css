@@ -1,49 +1,61 @@
+.body {
+    margin: auto;
+}
+
+/* Header and Button*/
+.reviewListHeader {
+    background-color: #A17070;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.reviewListHeader p {
+    padding-left: 25px;
+}
+
+.button {
+    padding-top: 8px;
+    padding-right: 15px;
+    float: right;
+}
 /* ReviewItem */
-.reviewList {
+.reviewItemHorizontal {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.reviewItemVerticalSides {
     display: flex;
     flex-direction: column;
+    margin: 5px 20px;
+}
+
+.reviewItemVerticalMiddle {
+    align-items: flex-start;
+}
+
+.reviewItemIconContainer {
+    display: flex;
+    height: 70%;
+    align-items: flex-end;
     justify-content: space-between;
 }
 
-.reviewItem {
-    display: flex;
-    justify-content: left;
-    flex-direction: row;
-    background-color: #C2B0B0;
-    padding: 30px;
+.text {
+    padding-top: 15px;
+    padding-left: 15px;
 }
 
-.ratingSummary {
-    padding: 10px;
-    background-color: #BE5151;
+.date {
+    padding-right: 20px;
+    padding-top: 15px;
 }
 
-.rating {
-    color: #eddada;
-    text-align: center;
-}
-
-.thumbButtons {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-}
-
-.thumbButtons button {
-    background-color: #eea29a;
-    font-size: 12px;
-}
-
-.thumbButtons button:hover {
-    background-color: #e65a4c;
-    font-size: 12px;
-}
-
-.review {
-    margin-left: 30px;
-    padding: 10px 30px;
-    background-color: #FB9696;
-    width: 100%;
+.reviewItemIcon:hover {
+    color: #A17070;
 }
 
 /* CourseOverview */
@@ -73,5 +85,6 @@
 
 .courseOverviewVerticalRight {
     margin: 5px 20px;
+    padding-left: 7px;
     align-items: flex-start;
 }

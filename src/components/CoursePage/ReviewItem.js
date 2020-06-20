@@ -1,26 +1,49 @@
 import React from 'react';
 import "./CoursePage.css"
+import {makeStyles} from "@material-ui/core/styles";
+import {Box, Paper, Typography} from "@material-ui/core";
 
-class ReviewItem extends React.Component {
-
-    render() {
-        return (
-            <div className="reviewItem">
-                <div className="ratingSummary">
-                    <div>
-                        <h3 className="rating">Rating: {this.props.rating}/5</h3>
-                    </div>
-                    <div className="thumbButtons">
-                        <button><i class="material-icons">thumb_up</i></button>
-                        <button><i class="material-icons">thumb_down</i></button>
-                    </div>
-                </div>
-                <div className="review">
-                    <p className="reviewText">{this.props.text}</p>
-                </div>
-            </div>
-        );
+const useStyles = makeStyles({
+    rating: {
+        padding: '0px 22px',
+        marginBottom: '5px',
+        backgroundColor: '#E5A0A0',
+    },
+    main: {
+        width: '80%',
+        backgroundColor: '#FFECEC',
+        ['@media (max-width:900px)']: {
+            width: '100%',
+        },
+        margin: '20px 0px',
     }
+})
+
+function ReviewItem(props) {
+    const classes = useStyles();
+
+    return <Box className={`reviewItemHorizontal ${classes.main}`}>
+
+        <Box className='reviewItemHorizontal'>
+
+            <Box className='reviewItemVerticalSides'>
+                <Typography variant='h6'>Rating</Typography>
+                <Paper className={classes.rating}>
+                    <Typography variant='h3'>{props.rating || 5}</Typography>
+                </Paper>
+            </Box>
+
+            <Box className='text'>
+                <Typography variant='body2'>{props.text}</Typography>
+            </Box>
+
+        </Box>
+
+        <Box className='date'>
+            <Typography variant='body2'>{props.date || '2/19/2020'}</Typography>
+        </Box>
+
+    </Box>;
 }
 
 export default ReviewItem;

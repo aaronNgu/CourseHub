@@ -1,7 +1,8 @@
 import React from 'react';
 import ReviewItem from "./ReviewItem";
-import { connect } from 'react-redux';
-import { increment } from '../../actions';
+import {connect} from 'react-redux';
+import {increment} from '../../actions';
+import Button from "@material-ui/core/Button";
 
 // hardcoded for now
 const reviewItems = [
@@ -13,17 +14,20 @@ const reviewItems = [
 class ReviewItemList extends React.Component {
 
     render() {
-      //component can now see courseList - check console to see objet
-      console.log('inside review item list component')
-      console.log(this.props.courseList)
-        return (
-            <div>
-                <div>
-                    <h3>Reviews:</h3>
+        //component can now see courseList - check console to see objet
+        console.log('inside review item list component')
+        console.log(this.props.courseList)
+        return (<div>
+                <div className="reviewListHeader">
+                    <p>Reviews</p>
+                    <div className="button">
+                        <Button variant="outlined">Sort</Button>
+                    </div>
                 </div>
                 <div id="reviewList">
                     {reviewItems.map((item) => {
-                        return (<ReviewItem key={item.id} date={item.date} rating={item.rating} text={item.text} id={item.id}/>);
+                        return (<ReviewItem key={item.id} date={item.date} rating={item.rating} text={item.text}
+                                            id={item.id}/>);
                     })}
                 </div>
             </div>
@@ -32,7 +36,7 @@ class ReviewItemList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-return { courseList: state.courseList };
+    return {courseList: state.courseList};
 }
 
-export default connect(mapStateToProps, { increment })(ReviewItemList);
+export default connect(mapStateToProps, {increment})(ReviewItemList);
