@@ -1,7 +1,7 @@
 import React from 'react';
 import CourseItem from './CourseItem';
 import { connect } from 'react-redux';
-import { deleteMessage } from '../actions';
+import { deleteMessage } from '../../actions';
 
 class CourseItemList extends React.Component {
 

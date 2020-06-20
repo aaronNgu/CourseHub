@@ -1,0 +1,32 @@
+/* CourseItem */
+.courseItemHorizontal {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.courseItemVerticalSides {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 20px;
+}
+
+.courseItemVerticalMiddle {
+    align-items: flex-start;
+}
+
+.courseItemIconContainer {
+    display: flex;
+    height: 70%;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.courseItemIcon:hover {
+    color: #A17070;
+}
+
+/* CourseItemList*/
+.courseItemListItem {
+    margin: 50px 50px;
+}

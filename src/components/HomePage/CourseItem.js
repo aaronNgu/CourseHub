@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Paper, Box } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import "./HomePage.css"
 
 const useStyles = makeStyles({
     rating: {

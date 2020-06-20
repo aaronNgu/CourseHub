@@ -1,7 +1,7 @@
 import React from 'react';
 import ReviewItem from "./ReviewItem";
 import { connect } from 'react-redux';
-import { increment } from '../actions';
+import { increment } from '../../actions';
 
 // hardcoded for now
 const reviewItems = [

@@ -1,0 +1,77 @@
+/* ReviewItem */
+.reviewList {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.reviewItem {
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    background-color: #C2B0B0;
+    padding: 30px;
+}
+
+.ratingSummary {
+    padding: 10px;
+    background-color: #BE5151;
+}
+
+.rating {
+    color: #eddada;
+    text-align: center;
+}
+
+.thumbButtons {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.thumbButtons button {
+    background-color: #eea29a;
+    font-size: 12px;
+}
+
+.thumbButtons button:hover {
+    background-color: #e65a4c;
+    font-size: 12px;
+}
+
+.review {
+    margin-left: 30px;
+    padding: 10px 30px;
+    background-color: #FB9696;
+    width: 100%;
+}
+
+/* CourseOverview */
+.courseOverview {
+    padding: 10px;
+}
+
+.courseOverviewHeader {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+}
+
+.courseOverviewHorizontal {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+
+.courseOverviewVerticalLeft {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 20px;
+    justify-content: center;
+}
+
+.courseOverviewVerticalRight {
+    margin: 5px 20px;
+    align-items: flex-start;
+}

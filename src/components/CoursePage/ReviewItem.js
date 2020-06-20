@@ -1,4 +1,5 @@
 import React from 'react';
+import "./CoursePage.css"
 
 class ReviewItem extends React.Component {
 
