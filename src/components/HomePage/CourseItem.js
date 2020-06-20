@@ -12,7 +12,7 @@ const useStyles = makeStyles({
         backgroundColor: '#E5A0A0',
     },
     main: {
-        width: '800px',
+        width: '75%',
         backgroundColor: '#FFECEC',
         ['@media (max-width:900px)']: {
             width: '100%',
