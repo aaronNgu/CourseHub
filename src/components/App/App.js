@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../Header/Header';
 import HomePage from "../HomePage/HomePage";
 import CoursePage from "../CoursePage/CoursePage";
-import ContactPage from "../Contact Us/ContactUs";
+import ContactPage from "../ContactUs/ContactUs";
 import AboutPage from "../AboutPage/AboutPage";
 import {
     BrowserRouter as Router,
