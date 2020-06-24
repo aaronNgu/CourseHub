@@ -3,10 +3,12 @@
     background-color: #A17070;
     overflow: hidden;
     list-style-type: none;
-    padding-left: 25px;
     text-align: left;
-    text-decoration: none;
     margin-top: 0px;
+    padding: 8px 0px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .link {
@@ -16,8 +18,6 @@
 
 .navBar li {
     border-radius: 10px;
-    float: left;
-    display: block;
     text-align: center;
     padding: 5px 10px;
     font-size: 13px;
@@ -30,12 +30,11 @@
 }
 
 .right {
-    padding-top: 10px;
-    padding-right: 15px;
-    float: right;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .home {
     font-size: 24px;
-    padding-top: 10px;
 }
