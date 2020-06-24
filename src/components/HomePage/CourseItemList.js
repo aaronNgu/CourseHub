@@ -42,7 +42,7 @@ class CourseItemList extends React.Component {
 
     render() {
         return (<div className="reviewedCourses">
-            <div className="courseListHeader">
+            <div className="courseListHeader content">
                 <p>Reviewed Courses</p>
                 <div className="button">
                     <Button variant="outlined">Filter</Button>

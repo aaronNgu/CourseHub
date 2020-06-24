@@ -1,4 +1,19 @@
+.content {
+    width: 950px;
+}
+
+@media screen and (max-width: 950px) {
+    .content{
+        width: 90%; 
+    }
+}
+
 /* CourseItem */
+.courseItemMain {
+    background-color:#FFECEC;
+    margin: 20px 0px;
+}
+
 .courseItemHorizontal {
     display: flex;
     justify-content: space-between;
@@ -41,8 +56,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 75%;
-  }
+}
+
 
 .courseListHeader p {
     padding-left: 25px;
