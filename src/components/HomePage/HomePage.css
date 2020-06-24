@@ -15,17 +15,6 @@
     align-items: flex-start;
 }
 
-.courseItemIconContainer {
-    display: flex;
-    height: 70%;
-    align-items: flex-end;
-    justify-content: space-between;
-}
-
-.courseItemIcon:hover {
-    color: #A17070;
-}
-
 /* CourseItemList*/
 .courseItemListItem {
     margin: 50px 50px;
