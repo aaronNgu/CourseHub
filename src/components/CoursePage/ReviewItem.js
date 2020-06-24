@@ -9,20 +9,12 @@ const useStyles = makeStyles({
         marginBottom: '5px',
         backgroundColor: '#E5A0A0',
     },
-    main: {
-        width: '80%',
-        backgroundColor: '#FFECEC',
-        ['@media (max-width:900px)']: {
-            width: '100%',
-        },
-        margin: '20px 0px',
-    }
 })
 
 function ReviewItem(props) {
     const classes = useStyles();
 
-    return <Box className={`reviewItemHorizontal ${classes.main}`}>
+    return <Box className='reviewItemHorizontal reviewItemMain content'>
 
         <Box className='reviewItemHorizontal'>
 

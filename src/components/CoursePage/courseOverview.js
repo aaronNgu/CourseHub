@@ -16,20 +16,12 @@ const useStyles = makeStyles({
         textTransform: 'none',
         color: '#FFFFFF'
     },
-    main: {
-        width: '80%',
-        backgroundColor: '#FFFFFF',
-        ['@media (max-width:900px)']: {
-            width: '100%',
-        },
-        margin: '20px 0px',
-    }
 })
 
 function CourseOverview() {
     const classes = useStyles();
     // TODO: add onclick -> rating input page
-    return <Box className={`courseOverview ${classes.main}`}>
+    return <Box className='courseOverview content'>
 
         <Box className='courseOverviewHeader'>
             <Typography variant='h5'>{'CPSC110'} </Typography>
