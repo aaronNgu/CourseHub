@@ -1,5 +1,17 @@
-.body {
-    margin: auto;
+.CoursePage {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.content {
+    width: 950px;
+}
+
+@media screen and (max-width: 950px) {
+    .content{
+        width: 90%; 
+    }
 }
 
 /* Header and Button*/
@@ -8,7 +20,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 80%;
 }
 
 .reviewListHeader p {
@@ -21,6 +32,11 @@
     float: right;
 }
 /* ReviewItem */
+.reviewItemMain {
+    background-color: #FFECEC;
+    margin: 20px 0px;
+}
+
 .reviewItemHorizontal {
     display: flex;
     justify-content: space-between;

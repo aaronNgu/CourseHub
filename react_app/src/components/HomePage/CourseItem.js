@@ -16,20 +16,12 @@ const useStyles = makeStyles({
         marginBottom: '5px',
         backgroundColor: '#E5A0A0',
     },
-    main: {
-        width: '75%',
-        backgroundColor: '#FFECEC',
-        ['@media (max-width:900px)']: {
-            width: '100%',
-        },
-        margin: '20px 0px',
-    }
 })
 
 function CourseItem(props) {
     const classes = useStyles();
 
-    return <Box className={`courseItemHorizontal ${classes.main}`}>
+    return <Box className='courseItemHorizontal courseItemMain content'>
 
         <Box className='courseItemHorizontal'>
 
