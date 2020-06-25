@@ -1,5 +1,7 @@
-.body {
-    margin: auto;
+.CoursePage {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .content {

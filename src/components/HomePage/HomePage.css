@@ -1,3 +1,8 @@
+.HomePage {
+    display: flex;
+    justify-content: center;
+}
+
 .content {
     width: 950px;
 }
@@ -57,7 +62,6 @@
     flex-direction: row;
     justify-content: space-between;
 }
-
 
 .courseListHeader p {
     padding-left: 25px;
