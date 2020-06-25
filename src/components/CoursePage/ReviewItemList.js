@@ -18,7 +18,7 @@ class ReviewItemList extends React.Component {
         console.log('inside review item list component')
         console.log(this.props.courseList)
         return (<div>
-                <div className="reviewListHeader">
+                <div className="reviewListHeader content">
                     <p>Reviews</p>
                     <div className="button">
                         <Button variant="outlined">Sort</Button>
