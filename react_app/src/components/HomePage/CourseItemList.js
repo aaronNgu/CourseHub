@@ -8,7 +8,6 @@ import Button from "@material-ui/core/Button";
 class CourseItemList extends React.Component {
 
   componentDidMount() {
-    console.log('inside mount')
           this.props.dispatch(fetchCourses());
       }
 
