@@ -82,3 +82,8 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(CourseItemList);
+
+// Not sure if we still need this
+// export default connect(mapStateToProps, {deleteMessage, deleteAllMessages,
+//   editMessage, editRating1, editRating2, editRating3, editRating4, editRating5})
+//   (CourseItemList);

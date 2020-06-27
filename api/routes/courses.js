@@ -33,18 +33,6 @@ router.get('/:courseId', function (req, res, next) {
     .catch(err => console.log(err))
 });
 
-// router.post('/', function(req, res, next) {
-//   const newCourse = new Course({
-//     _id: req.body._id,
-//     overall_rating: req.body.overall_rating,
-//       description: req.body.description
-//   })
-//   newCourse.save().then(result => {
-//     console.log(result);
-//   })
-//   .catch(err => console.log(err));
-// });
-
 router.post('/', function(req, res, next) {
   const newCourse = new Course({
       _id: req.body._id,
@@ -57,8 +45,6 @@ description: req.body.description
   .catch(err => console.log(err));
 });
 
-
-
 router.delete('/:courseId', function(req, res, next) {
   const courseId = req.params.courseId
   Course.deleteOne({'_id': courseId}, function(err) {
@@ -68,8 +54,6 @@ router.delete('/:courseId', function(req, res, next) {
                 res.send('deleted course with id :  ' + courseId);
             }})
 });
-
-
 
 
 module.exports = router;
