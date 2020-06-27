@@ -3,7 +3,7 @@ var router = express.Router();
 const mongoose = require('mongoose')
 const Review = require('../models/review')
 
-/* GET users listing. */
+/* GET Reviews listing. */
 router.get('/', function (req, res, next) {
   res.setHeader('Content-Type', 'application/json');
   Review.find()
@@ -22,9 +22,8 @@ router.get('/', function (req, res, next) {
 
 router.get('/:reviewId', function (req, res, next) {
   res.setHeader('Content-Type', 'application/json');
-  console.log('inside get reviewId')
-  const id = req.params.userId
-  REviews.findById(id)
+  const id = req.params.reviewId
+  Review.findById(id)
     .exec()
     .then(doc => {
       console.log(doc);
@@ -35,13 +34,28 @@ router.get('/:reviewId', function (req, res, next) {
 
 router.post('/', function(req, res, next) {
   const newReview = new Review({
-      content: req.body.content,
-      _id: req.body._id
+      _id: req.body._id,
+      User_id: req.body.User_id,
+      Course_id: req.body.Course_id,
+      Rating: req.body.Rating,
+      Date: req.body.Date,
+      Comments:req.body.Comments
   })
   newReview.save().then(result => {
     console.log(result);
   })
   .catch(err => console.log(err));
 });
+
+router.delete('/:reviewId', function(req, res, next) {
+  const reviewId = req.params.reviewId
+  Review.deleteOne({'_id': reviewId}, function(err) {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send('deleted review with id :  ' + reviewId);
+            }})
+});
+
 
 module.exports = router;

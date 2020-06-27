@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
 
-const messageSchema = mongoose.Schema({
+const courseSchema = mongoose.Schema({
   _id: String,
   overall_rating: String,
+  description: String
 })
 
-module.exports = mongoose.model('Course', messageSchema, 'Courses')
+module.exports = mongoose.model('Course', courseSchema, 'Courses')

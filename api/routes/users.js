@@ -35,13 +35,23 @@ router.get('/:userId', function (req, res, next) {
 
 router.post('/', function(req, res, next) {
   const newUser = new User({
-      content: req.body.content,
+      FirstName: req.body.FirstName,
       _id: req.body._id
   })
   newUser.save().then(result => {
     console.log(result);
   })
   .catch(err => console.log(err));
+});
+
+router.delete('/:userId', function(req, res, next) {
+  const userId = req.params.userId
+  User.deleteOne({'_id': userId}, function(err) {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send('deleted user with id :  ' + userId);
+            }})
 });
 
 module.exports = router;

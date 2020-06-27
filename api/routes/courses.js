@@ -3,7 +3,7 @@ var router = express.Router();
 const mongoose = require('mongoose')
 const Course = require('../models/course')
 
-/* GET users listing. */
+/* GET Courses listing. */
 router.get('/', function (req, res, next) {
   res.setHeader('Content-Type', 'application/json');
   Course.find()
@@ -23,8 +23,8 @@ router.get('/', function (req, res, next) {
 router.get('/:courseId', function (req, res, next) {
   res.setHeader('Content-Type', 'application/json');
   console.log('inside get courseId')
-  const id = req.params.userId
-  User.findById(id)
+  const id = req.params.courseId
+  Course.findById(id)
     .exec()
     .then(doc => {
       console.log(doc);
@@ -33,15 +33,43 @@ router.get('/:courseId', function (req, res, next) {
     .catch(err => console.log(err))
 });
 
+// router.post('/', function(req, res, next) {
+//   const newCourse = new Course({
+//     _id: req.body._id,
+//     overall_rating: req.body.overall_rating,
+//       description: req.body.description
+//   })
+//   newCourse.save().then(result => {
+//     console.log(result);
+//   })
+//   .catch(err => console.log(err));
+// });
+
 router.post('/', function(req, res, next) {
   const newCourse = new Course({
-      content: req.body.content,
-      _id: req.body._id
+      _id: req.body._id,
+overall_rating: req.body.overall_rating,
+description: req.body.description
   })
   newCourse.save().then(result => {
     console.log(result);
   })
   .catch(err => console.log(err));
 });
+
+
+
+router.delete('/:courseId', function(req, res, next) {
+  const courseId = req.params.courseId
+  Course.deleteOne({'_id': courseId}, function(err) {
+            if (err) {
+                console.log(err)
+            } else {
+                res.send('deleted course with id :  ' + courseId);
+            }})
+});
+
+
+
 
 module.exports = router;
