@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose')
-const User = require('../models/user')
+const Review = require('../models/review')
 
-/* GET users listing. */
+/* GET Reviews listing. */
 router.get('/', function (req, res, next) {
   res.setHeader('Content-Type', 'application/json');
-  User.find()
-      .populate('User')
+  Review.find()
+      .populate('Review')
         .exec()
         .then(docs =>{
           console.log(docs);
@@ -20,11 +20,10 @@ router.get('/', function (req, res, next) {
         })
 });
 
-router.get('/:userId', function (req, res, next) {
+router.get('/:reviewId', function (req, res, next) {
   res.setHeader('Content-Type', 'application/json');
-  console.log('inside get userId')
-  const id = req.params.userId
-  User.findById(id)
+  const id = req.params.reviewId
+  Review.findById(id)
     .exec()
     .then(doc => {
       console.log(doc);
@@ -34,24 +33,29 @@ router.get('/:userId', function (req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  const newUser = new User({
-      FirstName: req.body.FirstName,
-      _id: req.body._id
+  const newReview = new Review({
+      _id: req.body._id,
+      User_id: req.body.User_id,
+      Course_id: req.body.Course_id,
+      Rating: req.body.Rating,
+      Date: req.body.Date,
+      Comments:req.body.Comments
   })
-  newUser.save().then(result => {
+  newReview.save().then(result => {
     console.log(result);
   })
   .catch(err => console.log(err));
 });
 
-router.delete('/:userId', function(req, res, next) {
-  const userId = req.params.userId
-  User.deleteOne({'_id': userId}, function(err) {
+router.delete('/:reviewId', function(req, res, next) {
+  const reviewId = req.params.reviewId
+  Review.deleteOne({'_id': reviewId}, function(err) {
             if (err) {
                 console.log(err)
             } else {
-                res.send('deleted user with id :  ' + userId);
+                res.send('deleted review with id :  ' + reviewId);
             }})
 });
+
 
 module.exports = router;

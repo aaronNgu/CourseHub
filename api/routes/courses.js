@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose')
-const User = require('../models/user')
+const Course = require('../models/course')
 
-/* GET users listing. */
+/* GET Courses listing. */
 router.get('/', function (req, res, next) {
   res.setHeader('Content-Type', 'application/json');
-  User.find()
-      .populate('User')
+  Course.find()
+      .populate('Course')
         .exec()
         .then(docs =>{
           console.log(docs);
@@ -20,11 +20,11 @@ router.get('/', function (req, res, next) {
         })
 });
 
-router.get('/:userId', function (req, res, next) {
+router.get('/:courseId', function (req, res, next) {
   res.setHeader('Content-Type', 'application/json');
-  console.log('inside get userId')
-  const id = req.params.userId
-  User.findById(id)
+  console.log('inside get courseId')
+  const id = req.params.courseId
+  Course.findById(id)
     .exec()
     .then(doc => {
       console.log(doc);
@@ -34,24 +34,26 @@ router.get('/:userId', function (req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  const newUser = new User({
-      FirstName: req.body.FirstName,
-      _id: req.body._id
+  const newCourse = new Course({
+      _id: req.body._id,
+overall_rating: req.body.overall_rating,
+description: req.body.description
   })
-  newUser.save().then(result => {
+  newCourse.save().then(result => {
     console.log(result);
   })
   .catch(err => console.log(err));
 });
 
-router.delete('/:userId', function(req, res, next) {
-  const userId = req.params.userId
-  User.deleteOne({'_id': userId}, function(err) {
+router.delete('/:courseId', function(req, res, next) {
+  const courseId = req.params.courseId
+  Course.deleteOne({'_id': courseId}, function(err) {
             if (err) {
                 console.log(err)
             } else {
-                res.send('deleted user with id :  ' + userId);
+                res.send('deleted course with id :  ' + courseId);
             }})
 });
+
 
 module.exports = router;

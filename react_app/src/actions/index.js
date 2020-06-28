@@ -1,3 +1,5 @@
+import store from "../reducers/index";
+
 // example of an action
 export const increment = (amount) => {
     return {
@@ -57,3 +59,22 @@ export const editRating5 = (courseNumber) => {
         payload: courseNumber
     };
 }
+
+export const fetched_courses = courses => {
+  return {
+    type: "FETCHED_COURSES",
+    data: courses
+  };
+};
+
+export const fetchCourses = () => {
+  return function(dispatch, getState) {
+    return fetch(`http://localhost:9000/courses`)
+      .then(
+				data => data.json())
+      .then(data => {
+					dispatch(fetched_courses(data))}
+      )
+      .catch(err => console.log(err));
+  };
+};

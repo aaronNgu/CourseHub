@@ -1,19 +1,7 @@
-import { combineReducers } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
-let default_data = {
-    CPSC110: {
-      summary : {rating: 5,  description: "Basic Computation"},
-      reviews: {1: {user_id: 0, comment: 'this is a good course'}}
-    },
-    ENGL112: {
-      summary : {rating: 4,  description: "English Literature"},
-      reviews: {1: {user_id: 1, comment: 'I really enjoyed the course'}}
-    },
-    CPSC213: {
-      summary : {rating: 3,  description: "Introduction to Computer Systems"},
-      reviews: {1: {user_id: 2, comment: 'This course was confusing!'}}
-    }
-}
+let default_data = {}
 
 // example of a reducer to mutate the count variable/state
 const counterReducer = (count = 0, action) => {
@@ -59,10 +47,19 @@ const courseReducer = (courseList = default_data, action) => {
     copy[action.payload].summary.rating = 5;
     return copy;
   }
+    if (action.type === 'FETCHED_COURSES') {
+      return Object.assign({}, courseList,
+        action.data
+      );
+    }
   return courseList;
 };
 
-export default combineReducers({
+const allReducers =  combineReducers({
     count: counterReducer,
     courseList: courseReducer
 });
+
+const store = createStore(allReducers, applyMiddleware(thunk))
+
+export default store;
