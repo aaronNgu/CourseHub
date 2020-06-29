@@ -16,7 +16,6 @@ const courseReducer = (courseList = default_data, action) => {
     let copy = Object.assign({}, courseList);
     delete copy[action.payload];
     return copy;
-
   }
   if (action.type === 'DELETE_ALL_MESSAGES') {
     courseList = {};
@@ -48,6 +47,11 @@ const courseReducer = (courseList = default_data, action) => {
     return copy;
   }
     if (action.type === 'FETCHED_COURSES') {
+      return Object.assign({}, courseList,
+        action.data
+      );
+    }
+    if (action.type === 'ADDED_COURSE') {
       return Object.assign({}, courseList,
         action.data
       );
