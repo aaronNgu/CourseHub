@@ -9,7 +9,7 @@
 
 @media screen and (max-width: 950px) {
     .content{
-        width: 90%;
+        width: 90%; 
     }
 }
 
@@ -61,3 +61,7 @@
     padding-right: 15px;
     float: right;
 }
+
+
+
+
