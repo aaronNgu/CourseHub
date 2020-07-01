@@ -1,4 +1,4 @@
-import store from "../reducers/index";
+// import store from "../reducers/index";
 
 // example of an action
 export const increment = (amount) => {
@@ -76,5 +76,33 @@ export const fetchCourses = () => {
 					dispatch(fetched_courses(data))}
       )
       .catch(err => console.log(err));
+  };
+};
+
+export const added_Courses = (name, desc) => {
+	return {
+		type: 'ADDED_COURSE',
+		payload: {desc: desc, _id:name}
+	};
+};
+
+export const addCourse = (name, desc) => {
+  return function(dispatch, getState) {
+    return fetch(`http://localhost:9000/courses`, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				description: desc,
+				_id: name,
+        overall_rating: '*'
+			})
+		})
+		      .then((responseJson) => {
+            dispatch(added_Courses(name, desc))
+		        return responseJson.success;
+		      })
+		      .catch((error) => {
+		        console.error(error);
+		      });
   };
 };
