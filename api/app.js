@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -10,18 +11,15 @@ var usersRouter = require('./routes/users');
 var coursesRouter = require('./routes/courses');
 var reviewsRouter = require('./routes/reviews');
 
+const session = require('express-session');
+const passport = require('passport');
+const passportLocalMongoose = require('passport-local-mongoose');
+
+let Example = require('./models/user');
+const Course = require('./models/course');
+
 var app = express();
 app.use(cors());
-
-//connect to mongo db
-const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://m001-student:m001-mongodb-basics@sandbox-7vuqw.mongodb.net/courseHub?retryWrites=true&w=majority')
-  .then( () => {
-    console.log('Connection to the Atlas Cluster is successful!')
-  })
-  .catch( (err) => console.error(err));
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -53,5 +51,30 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+//connect to mongo db
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://m001-student:m001-mongodb-basics@sandbox-7vuqw.mongodb.net/courseHub?retryWrites=true&w=majority')
+  .then( () => {
+    console.log('Connection to the Atlas Cluster is successful!')
+  })
+  .catch( (err) => console.error(err));
+mongoose.set("useCreateIndex", true);
+  Example.plugin();
+  passport.use(Example.createStrategy());
+  // Course.courseSchema.plugin(passportLocalMongoose);
+  // passport.use(Course.createStrategy());
+
+  passport.serializeUser(User.serializeUser());
+  passport.deserializeUser(User.deserializeUser());
 
 module.exports = app;
