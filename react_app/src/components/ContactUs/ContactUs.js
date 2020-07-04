@@ -19,7 +19,7 @@ function ContactPage(props) {
     const classes = useStyles();
 
     return <div className="contactPage">
-        <h1>Contact Us!</h1>
+        <h2>Contact Us!</h2>
         <div className="contactForm">
             <TextField
                 required
