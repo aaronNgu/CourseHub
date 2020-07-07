@@ -5,10 +5,10 @@ let default_data = {}
 
 // example of a reducer to mutate the count variable/state
 const counterReducer = (count = 0, action) => {
-    if (action.type === 'INCREMENT_COUNTER') {
-        return count + action.payload;
-    }
-    return count;
+  if (action.type === 'INCREMENT_COUNTER') {
+    return count + action.payload;
+  }
+  return count;
 }
 
 const courseReducer = (courseList = default_data, action) => {
@@ -46,22 +46,22 @@ const courseReducer = (courseList = default_data, action) => {
     copy[action.payload].summary.rating = 5;
     return copy;
   }
-    if (action.type === 'FETCHED_COURSES') {
-      return Object.assign({}, courseList,
-        action.data
-      );
-    }
-    if (action.type === 'ADDED_COURSE') {
-      return Object.assign({}, courseList,
-        action.data
-      );
-    }
+  if (action.type === 'FETCHED_COURSES') {
+    return Object.assign({}, courseList,
+      action.data
+    );
+  }
+  if (action.type === 'ADDED_COURSE') {
+    return Object.assign({}, courseList,
+      action.data
+    );
+  }
   return courseList;
 };
 
-const allReducers =  combineReducers({
-    count: counterReducer,
-    courseList: courseReducer
+const allReducers = combineReducers({
+  count: counterReducer,
+  courseList: courseReducer
 });
 
 const store = createStore(allReducers, applyMiddleware(thunk))

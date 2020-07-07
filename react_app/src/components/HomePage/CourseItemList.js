@@ -2,8 +2,7 @@ import React from 'react';
 import CourseItem from './CourseItem';
 import AddCourseFormDialog from './AddCourseFormDialog';
 import {connect} from 'react-redux';
-import {deleteMessage, deleteAllMessages, editMessage, editRating1, editRating2,
-   editRating3, editRating4, editRating5, fetchCourses} from '../../actions';
+import {fetchCourses} from '../../actions';
 import Button from "@material-ui/core/Button";
 
 class CourseItemList extends React.Component {
