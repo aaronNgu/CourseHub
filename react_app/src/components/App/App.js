@@ -4,6 +4,7 @@ import HomePage from "../HomePage/HomePage";
 import CoursePage from "../CoursePage/CoursePage";
 import ContactPage from "../ContactUs/ContactUs";
 import AboutPage from "../AboutPage/AboutPage";
+import LoginPage from "../LoginPage/LoginPage";
 import {
     BrowserRouter as Router,
     Switch,
@@ -32,6 +33,9 @@ const App = () => {
                     </Route>
                     <Route path="/about">
                         <AboutPage/>
+                    </Route>
+                    <Route path="/login">
+                        <LoginPage/>
                     </Route>
                 </Switch>
             </div>
