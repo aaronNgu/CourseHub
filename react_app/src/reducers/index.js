@@ -6,14 +6,6 @@ const ratingFilter = ['1', '2', '3', '4', '5', '*'];
 
 let default_data = {}
 
-// example of a reducer to mutate the count variable/state
-const counterReducer = (count = 0, action) => {
-  if (action.type === 'INCREMENT_COUNTER') {
-    return count + action.payload;
-  }
-  return count;
-}
-
 const courseReducer = (courseList = default_data, action) => {
 
     if (action.type === 'DELETE_MESSAGE') {
