@@ -4,9 +4,13 @@ import LoginPageBox from './LoginPageBox';
 
 class LoginPage extends React.Component {
 
+    handleLogin = () => {
+        console.log('handling login');
+    }
+
     render() {
         return (<div className="LoginPageMain">
-            <LoginPageBox/>
+            <LoginPageBox handleLogin={this.handleLogin} />
         </div>)
     }
 }
