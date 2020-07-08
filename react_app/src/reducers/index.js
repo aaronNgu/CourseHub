@@ -52,8 +52,7 @@ const courseReducer = (courseList = default_data, action) => {
 };
 
 const allReducers = combineReducers({
-  count: counterReducer,
-  courseList: courseReducer
+  courseList: courseReducer,
 });
 
 const store = createStore(allReducers, applyMiddleware(thunk))
