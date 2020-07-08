@@ -1,9 +1,7 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-let default_data = {}
-
-const courseReducer = (courseList = default_data, action) => {
+const courseReducer = (courseList = {}, action) => {
   if (action.type === 'DELETE_MESSAGE') {
     let copy = Object.assign({}, courseList);
     delete copy[action.payload];
