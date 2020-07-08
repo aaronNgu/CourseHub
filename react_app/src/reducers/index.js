@@ -63,7 +63,6 @@ const filterReducer = (filters = {yearLvFilter: yearLvFilter, ratingFilter: rati
 }
 
 const allReducers = combineReducers({
-    count: counterReducer,
     courseList: courseReducer,
     filters: filterReducer
 });
