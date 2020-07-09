@@ -1,8 +1,9 @@
 import React from 'react';
 import "./CoursePage.css"
 import { makeStyles } from '@material-ui/core/styles';
-import {Typography, Paper, Box, Button} from '@material-ui/core';
+import { Typography, Box, Button } from '@material-ui/core';
 import Icon from "@material-ui/core/Icon";
+import Rating from './Rating';
 
 const useStyles = makeStyles({
     rating: {
@@ -27,17 +28,15 @@ function CourseOverview() {
             <Typography variant='h5'>{'CPSC110'} </Typography>
             <Typography variant='h5'>{'Computations, Programs, and Programming'}</Typography>
             <Button variant="contained"
-                    className={classes.button}
-                    endIcon={<Icon>star</Icon>}>{'Rate This Course'}</Button>
+                className={classes.button}
+                endIcon={<Icon>star</Icon>}>{'Rate This Course'}</Button>
         </Box>
 
         <Box className='courseOverviewHorizontal'>
             <Box className='courseOverviewVerticalLeft'>
                 <Typography variant='h6'
-                            style={{whiteSpace: 'pre-line'}}>{'Overall \n Rating'}</Typography>
-                <Paper className={classes.rating}>
-                    <Typography variant='h3'>{5}</Typography>
-                </Paper>
+                    style={{ whiteSpace: 'pre-line' }}>{'Overall \n Rating'}</Typography>
+                <Rating rating='5' />
             </Box>
 
             <Box className='courseOverviewVerticalRight'>
