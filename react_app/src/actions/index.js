@@ -126,3 +126,10 @@ export const update_filters = (yearLvFilter, ratingFilter) => {
         payload: {yearLvFilter, ratingFilter}
     };
 };
+
+export const authenticated = (payload) => {
+    return {
+        type: 'AUTH',
+        payload: payload,
+    }
+}
