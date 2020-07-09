@@ -6,11 +6,6 @@ import Icon from "@material-ui/core/Icon";
 import Rating from './Rating';
 
 const useStyles = makeStyles({
-    rating: {
-        padding: '0px 22px',
-        marginBottom: '5px',
-        backgroundColor: '#E5A0A0',
-    },
     button: {
         backgroundColor: '#A17070',
         fontSize: 'small',
