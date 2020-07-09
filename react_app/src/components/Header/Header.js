@@ -12,6 +12,11 @@ class Header extends React.Component {
 
     handleLogOut = () => {
         // TODO: get request to /auth/logout
+        // TODO: make request to check status of authentication
+    }
+
+    handleLogOut = () => {
+        // TODO: replace with http request
         let payload = {
             isAuthenticated: false,
             user: null,
