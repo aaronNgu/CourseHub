@@ -8,13 +8,14 @@ let default_data = {}
 
 // example of a reducer to mutate the count variable/state
 const counterReducer = (count = 0, action) => {
-    if (action.type === 'INCREMENT_COUNTER') {
-        return count + action.payload;
-    }
-    return count;
+  if (action.type === 'INCREMENT_COUNTER') {
+    return count + action.payload;
+  }
+  return count;
 }
 
 const courseReducer = (courseList = default_data, action) => {
+
     if (action.type === 'DELETE_MESSAGE') {
         let copy = Object.assign({}, courseList);
         delete copy[action.payload];
