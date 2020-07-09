@@ -1,0 +1,23 @@
+.contactPage {
+    padding-left: 27%;
+    padding-right: 27%;
+    padding-top: 20px;
+}
+
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.subject  {
+    align-self: flex-start;
+}
+
+#sendButton  {
+    align-self: flex-start;
+}
+
+
+
+
