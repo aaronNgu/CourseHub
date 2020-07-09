@@ -7,11 +7,11 @@ import {authenticated} from '../../actions';
 class Header extends React.Component {
 
     componentDidMount() {
-        // TODO: make request to check status of authentication
+        // TODO: get request to /auth/checkstatus
     }
 
     handleLogOut = () => {
-        // TODO: replace with http request
+        // TODO: get request to /auth/logout
         let payload = {
             isAuthenticated: false,
             user: null,
