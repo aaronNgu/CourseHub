@@ -1,30 +1,17 @@
 import React from 'react';
 import "./CoursePage.css"
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Box, Button } from '@material-ui/core';
-import Icon from "@material-ui/core/Icon";
+import { Typography, Box} from '@material-ui/core';
 import Rating from './Rating';
-
-const useStyles = makeStyles({
-    button: {
-        backgroundColor: '#A17070',
-        fontSize: 'small',
-        textTransform: 'none',
-        color: '#FFFFFF'
-    },
-})
+import RateCourseButton from './RateCourseButton';
 
 function CourseOverview() {
-    const classes = useStyles();
     // TODO: add onclick -> rating input page
     return <Box className='courseOverview content'>
 
         <Box className='courseOverviewHeader'>
             <Typography variant='h5'>{'CPSC110'} </Typography>
             <Typography variant='h5'>{'Computations, Programs, and Programming'}</Typography>
-            <Button variant="contained"
-                className={classes.button}
-                endIcon={<Icon>star</Icon>}>{'Rate This Course'}</Button>
+            <RateCourseButton/>
         </Box>
 
         <Box className='courseOverviewHorizontal'>
