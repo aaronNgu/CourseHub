@@ -1,5 +1,6 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import authReducer from './authReducer';
 
 const courseReducer = (courseList = {}, action) => {
   if (action.type === 'DELETE_MESSAGE') {
@@ -51,6 +52,7 @@ const courseReducer = (courseList = {}, action) => {
 
 const allReducers = combineReducers({
   courseList: courseReducer,
+  auth: authReducer,
 });
 
 const store = createStore(allReducers, applyMiddleware(thunk))

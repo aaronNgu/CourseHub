@@ -97,3 +97,10 @@ export const addCourse = (name, desc) => {
 		      });
   };
 };
+
+export const authenticated = (payload) => {
+    return {
+        type: 'AUTH',
+        payload: payload,
+    }
+}
