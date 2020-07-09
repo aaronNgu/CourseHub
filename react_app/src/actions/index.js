@@ -3,7 +3,7 @@
 // example of an action
 export const increment = (amount) => {
     return {
-        type:  'INCREMENT_COUNTER',
+        type: 'INCREMENT_COUNTER',
         payload: amount
     };
 }
@@ -61,48 +61,56 @@ export const editRating5 = (courseNumber) => {
 }
 
 export const fetched_courses = courses => {
-  return {
-    type: "FETCHED_COURSES",
-    data: courses
-  };
+    return {
+        type: "FETCHED_COURSES",
+        data: courses
+    };
 };
 
 export const fetchCourses = () => {
-  return function(dispatch, getState) {
-    return fetch(`http://localhost:9000/courses`)
-      .then(
-				data => data.json())
-      .then(data => {
-					dispatch(fetched_courses(data))}
-      )
-      .catch(err => console.log(err));
-  };
+    return function (dispatch, getState) {
+        return fetch(`http://localhost:9000/courses`)
+            .then(
+                data => data.json())
+            .then(data => {
+                    dispatch(fetched_courses(data))
+                }
+            )
+            .catch(err => console.log(err));
+    };
 };
 
 export const added_Courses = (name, desc) => {
-	return {
-		type: 'ADDED_COURSE',
-		payload: {desc: desc, _id:name}
-	};
+    return {
+        type: 'ADDED_COURSE',
+        payload: {desc: desc, _id: name}
+    };
 };
 
 export const addCourse = (name, desc) => {
-  return function(dispatch, getState) {
-    return fetch(`http://localhost:9000/courses`, {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				description: desc,
-				_id: name,
-        overall_rating: '*'
-			})
-		})
-		      .then((responseJson) => {
-            dispatch(added_Courses(name, desc))
-		        return responseJson.success;
-		      })
-		      .catch((error) => {
-		        console.error(error);
-		      });
-  };
+    return function (dispatch, getState) {
+        return fetch(`http://localhost:9000/courses`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                description: desc,
+                _id: name,
+                overall_rating: '*'
+            })
+        })
+            .then((responseJson) => {
+                dispatch(added_Courses(name, desc))
+                return responseJson.success;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+};
+
+export const update_filters = (yearLvFilter, ratingFilter) => {
+    return {
+        type: "UPDATE_FILTERS",
+        payload: {yearLvFilter, ratingFilter}
+    };
 };
