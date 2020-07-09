@@ -64,14 +64,9 @@ const filterReducer = (filters = {yearLvFilter: yearLvFilter, ratingFilter: rati
 }
 
 const allReducers = combineReducers({
-<<<<<<< HEAD
-    count: counterReducer,
     courseList: courseReducer,
-    filters: filterReducer
-=======
-  courseList: courseReducer,
-  auth: authReducer,
->>>>>>> added authentication to redux and action
+    filters: filterReducer,
+    auth: authReducer,
 });
 
 const store = createStore(allReducers, applyMiddleware(thunk))
