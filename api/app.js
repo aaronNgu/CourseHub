@@ -6,6 +6,8 @@ var logger = require('morgan');
 var cors = require('cors');
 require('dotenv').config();
 require('./FacebookSetup');
+const passport = require('passport');
+const cookieSession = require('cookie-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -29,6 +31,13 @@ mongoose.connect('mongodb+srv://' + config.DB_USER  + ':' + config.DB_PW + '@san
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(cookieParser());
+app.use(cookieSession({
+  name: 'session', 
+  keys: ['somesecret'],
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(cors({credentials: true,}));
 app.use(logger('dev'));
 app.use(express.json());
