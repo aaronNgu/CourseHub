@@ -1,7 +1,7 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import authReducer from './authReducer';
-import addReviewBox from './addReviewBoxReducer';
+import {addReviewBox} from './addReviewBoxReducer';
 
 const yearLvFilter = ['100', '200', '300', '400', '500', '600'];
 const ratingFilter = ['1', '2', '3', '4', '5', '*'];
