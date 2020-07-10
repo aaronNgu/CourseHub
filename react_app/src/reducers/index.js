@@ -1,7 +1,7 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import authReducer from './authReducer';
-import {addReviewBox, addReviewRating} from './addReviewBoxReducer';
+import {addReviewBox, addReviewRating, addReviewReview} from './addReviewBoxReducer';
 
 const yearLvFilter = ['100', '200', '300', '400', '500', '600'];
 const ratingFilter = ['1', '2', '3', '4', '5', '*'];
@@ -69,7 +69,8 @@ const allReducers = combineReducers({
     filters: filterReducer,
     auth: authReducer,
     toggleAddReviewBox: addReviewBox,
-    addReviewRating: addReviewRating
+    addReviewRating: addReviewRating,
+    addReviewReview: addReviewReview,
 });
 
 const store = createStore(allReducers, applyMiddleware(thunk))

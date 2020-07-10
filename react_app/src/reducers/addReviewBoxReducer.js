@@ -11,3 +11,10 @@ export const addReviewRating = (state = null, action) => {
     }
     return state;
 }
+
+export const addReviewReview = (state = '', action) => {
+    if (action.type === 'CHANGE_REVIEW') {
+        return action.payload ? action.payload : state;
+    }
+    return state;
+}

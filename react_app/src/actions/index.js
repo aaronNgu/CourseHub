@@ -126,3 +126,10 @@ export const addReviewRating = (payload) => {
         payload: payload,
     }
 }
+
+export const addReviewReview = (payload) => {
+    return {
+        type: 'CHANGE_REVIEW',
+        payload: payload,
+    }
+}
