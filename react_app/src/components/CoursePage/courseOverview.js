@@ -4,14 +4,14 @@ import { Typography, Box } from '@material-ui/core';
 import Rating from './Rating';
 import RateCourseButton from './RateCourseButton';
 import {connect} from 'react-redux';
+import {toggleAddReviewBox} from '../../actions';
 
 class CourseOverview extends React.Component {
     
     handleRateCourse = () => {
         const auth = this.props.auth.isAuthenticated;
-        console.log(auth);
         if (auth) {
-            console.log('open rate my course dialog');
+            this.props.dispatch(toggleAddReviewBox(true));
         } else {
             window.location.replace('/login');
         }
