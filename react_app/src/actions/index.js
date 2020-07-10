@@ -60,7 +60,7 @@ export const fetched_courses = courses => {
 
 export const fetchCourses = () => {
     return function (dispatch, getState) {
-        return fetch(`http://localhost:9000/courses`)
+        return fetch(`/courses`)
             .then(
                 data => data.json())
             .then(data => {
@@ -80,7 +80,7 @@ export const added_Courses = (name, desc) => {
 
 export const addCourse = (name, desc) => {
     return function (dispatch, getState) {
-        return fetch(`http://localhost:9000/courses`, {
+        return fetch(`/courses`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
