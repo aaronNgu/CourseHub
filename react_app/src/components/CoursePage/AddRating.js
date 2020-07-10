@@ -2,6 +2,8 @@ import React from 'react';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core';
+import {connect} from 'react-redux';
+import {addReviewRating} from '../../actions';
 
 const labels = {
     100: "Select a rating",
@@ -20,20 +22,23 @@ const useStyles = makeStyles({
     }
 });
 
-const AddRating = () => {
-    const [value, setValue] = React.useState(null);
+const AddRating = ({rating, addReviewRating}) => {
     const [hover, setHover] = React.useState(-1);
     const classes = useStyles();
 
     return  (<div className={classes.root}>
             <Rating 
             name="hover-feedback"
-            value={value}
+            value={rating}
             precision={1}
-            onChange={(event, newValue) => {setValue(newValue);}}
+            onChange={(event, newValue) => {addReviewRating(newValue)}}
             onChangeActive={(event, newHover) => {setHover(newHover);}}/>
-                {<Box ml={2}>{labels[value === null ? 100 : (hover !== -1 ? hover: value)] }</Box>}
+                {<Box ml={2}>{labels[rating === null ? 100 : (hover !== -1 ? hover: rating)] }</Box>}
             </div>);
 }
 
-export default AddRating;
+const mapStateToProps = (state) => {
+    return {rating: state.addReviewRating};
+}
+
+export default connect(mapStateToProps,{addReviewRating})(AddRating);

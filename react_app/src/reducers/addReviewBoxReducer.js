@@ -5,3 +5,9 @@ export const addReviewBox = (state = false, action) => {
     return state;
 }
 
+export const addReviewRating = (state = null, action) => {
+    if (action.type === 'CHANGE_RATING') {
+        return action.payload;
+    }
+    return state;
+}

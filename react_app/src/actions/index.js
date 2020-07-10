@@ -119,3 +119,10 @@ export const toggleAddReviewBox = (payload) => {
         payload: payload,
     }
 }
+
+export const addReviewRating = (payload) => {
+    return {
+        type: 'CHANGE_RATING',
+        payload: payload,
+    }
+}
