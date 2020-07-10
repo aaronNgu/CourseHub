@@ -112,3 +112,10 @@ export const authenticated = (payload) => {
         payload: payload,
     }
 }
+
+export const toggleAddReviewBox = (payload) => {
+    return {
+        type: 'TOGGLE',
+        payload: payload,
+    }
+}
