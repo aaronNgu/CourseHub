@@ -4,6 +4,7 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core';
 
 const labels = {
+    100: "Select a rating",
     1: "Don't do it to yourself.",
     2: 'Maybe not.',
     3: 'Pretty good.',
@@ -20,7 +21,7 @@ const useStyles = makeStyles({
 });
 
 const AddRating = () => {
-    const [value, setValue] = React.useState(2);
+    const [value, setValue] = React.useState(null);
     const [hover, setHover] = React.useState(-1);
     const classes = useStyles();
 
@@ -31,7 +32,7 @@ const AddRating = () => {
             precision={1}
             onChange={(event, newValue) => {setValue(newValue);}}
             onChangeActive={(event, newHover) => {setHover(newHover);}}/>
-                {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover: value]}</Box>}
+                {<Box ml={2}>{labels[value === null ? 100 : (hover !== -1 ? hover: value)] }</Box>}
             </div>);
 }
 
