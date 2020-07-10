@@ -17,13 +17,14 @@ const useStyles = makeStyles({
     }
 });
 
-const AddReview = ({toggle, toggleAddReviewBox}) => {
+const AddReview = ({review, rating, toggle, toggleAddReviewBox}) => {
 
     const classes = useStyles();
 
     const handlePostReview = () => {
 
-        // TODO: how to get values from text box and rating
+        console.log(review);
+        console.log(rating);
         console.log('handlign post review');
     }
 
@@ -44,7 +45,7 @@ const AddReview = ({toggle, toggleAddReviewBox}) => {
 }
 
 const mapStateToProps = (state) => {
-    return {toggle: state.toggleAddReviewBox}
+    return {toggle: state.toggleAddReviewBox, review: state.addReviewReview, rating: state.addReviewRating}
 }
 
 export default connect(mapStateToProps, {toggleAddReviewBox})(AddReview);
