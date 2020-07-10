@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles({
     root: {
         width: '400px',
-        margin: '15px 0px',
+        marginTop: '15px',
     }
 });
 
@@ -18,12 +18,13 @@ const TextBox = () => {
                 className={classes.root}
                 placeholder={placeholderReview}
                 multiline
-                rows={50}
+                rows={10}
                 rowsMax={4}
+                color='secondary'
                 inputProps={{
                     style: {
-                        height: '200px'
-                    }
+                        height: '200px',
+                    }                
                 }}/>
 }
 
