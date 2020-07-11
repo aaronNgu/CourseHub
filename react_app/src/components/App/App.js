@@ -6,7 +6,7 @@ import ContactPage from "../ContactUs/ContactUs";
 import AboutPage from "../AboutPage/AboutPage";
 import LoginPage from "../LoginPage/LoginPage";
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Switch,
     Route,
     Redirect
