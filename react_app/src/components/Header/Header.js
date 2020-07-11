@@ -8,14 +8,6 @@ class Header extends React.Component {
 
     componentDidMount() {
         // TODO: get request to /auth/checkstatus
-<<<<<<< HEAD
-    }
-
-    handleLogOut = () => {
-        // TODO: get request to /auth/logout
-        // TODO: make request to check status of authentication
-=======
->>>>>>> more specific instruction in Header.js
     }
 
     handleLogOut = () => {
