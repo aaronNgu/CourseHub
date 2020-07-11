@@ -1,12 +1,3 @@
-// import store from "../reducers/index";
-
-// example of an action
-export const increment = (amount) => {
-    return {
-        type: 'INCREMENT_COUNTER',
-        payload: amount
-    };
-}
 
 export const deleteMessage = (courseNumber) => {
     return {
@@ -135,3 +126,10 @@ export const update_filters = (yearLvFilter, ratingFilter) => {
         payload: {yearLvFilter, ratingFilter}
     };
 };
+
+export const authenticated = (payload) => {
+    return {
+        type: 'AUTH',
+        payload: payload,
+    }
+}

@@ -1,10 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import "./Header.css"
+import {connect} from 'react-redux';
+import {authenticated} from '../../actions';
 
 class Header extends React.Component {
 
+    componentDidMount() {
+        // TODO: get request to /auth/checkstatus
+    }
+
+    handleLogOut = () => {
+        // TODO: get request to /auth/logout
+        let payload = {
+            isAuthenticated: false,
+            user: null,
+        };
+        this.props.dispatch(authenticated(payload));
+    }
+
     render() {
+
+        const auth = this.props.auth;
+
         return (
             <header>
                 <ul className="navBar">
@@ -24,11 +42,27 @@ class Header extends React.Component {
                                 About
                             </Link>
                         </li>
-                        <li>
-                            <Link to='/login' className="link right">
-                                Login
-                            </Link>
-                        </li>
+                        {
+                            auth.isAuthenticated ? 
+                                <li>
+                                    <Link onClick={this.handleLogOut} to='#' className="link right">
+                                        Sign out 
+                                    </Link>
+                                </li>:
+                                <li>
+                                    <Link to='/login' className="link right">
+                                        Login
+                                    </Link>
+                                </li>                      
+                        }
+                        {   auth.isAuthenticated ?
+                                null:
+                                <li>
+                                    <Link to='#' className="link right">
+                                        Sign Up
+                                    </Link>
+                                </li>
+                        }
                         <li>
                             <Link to="/contact" className="link right">
                                 Contact
@@ -39,6 +73,11 @@ class Header extends React.Component {
             </header>
         );
     }
+
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+    return {auth: state.auth};
+}
+
+export default connect(mapStateToProps)(Header);
