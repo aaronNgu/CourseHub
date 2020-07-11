@@ -28,7 +28,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, "react_app", "build"     )))      //updated route
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -58,6 +57,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+<<<<<<< HEAD
 <<<<<<< HEAD:app.js
 app.get('*', (req1,res1) =>{
     res.sendFile(path.resolve(__dirname, "react_app", "build", "index.html"));
@@ -67,5 +67,10 @@ app.get("*", (request1, response1) => {
     res.sendFile(path.join(__dirname, "react_app", "build", "index.html"));
 });
 >>>>>>> Changed folder dir:api/app.js
+=======
+app.get('*', (req1,res1) =>{
+    res.sendFile(path.resolve(__dirname, "react_app", "build", "index.html"));
+})
+>>>>>>> Updated Hash Route
 
 module.exports = app;
