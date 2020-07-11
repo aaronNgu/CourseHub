@@ -15,7 +15,7 @@ const counterReducer = (count = 0, action) => {
 }
 
 const courseReducer = (courseList = default_data, action) => {
-
+    //TODO: remove irrelevant reducers
     if (action.type === 'DELETE_MESSAGE') {
         let copy = Object.assign({}, courseList);
         delete copy[action.payload];
@@ -59,6 +59,9 @@ const courseReducer = (courseList = default_data, action) => {
         return Object.assign({}, courseList,
             action.data
         );
+    }
+    if (action.type === 'DELETE_COURSE') {
+        return Object.values(courseList).filter((course) => course._id !== action.payload);
     }
     return courseList;
 };

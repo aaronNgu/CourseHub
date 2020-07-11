@@ -1,42 +1,72 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Paper, Box } from '@material-ui/core';
+import { Typography, Paper, Box, IconButton } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 import "./HomePage.css"
+import { deleteCourse } from "../../actions";
+import {connect} from 'react-redux'
 
-const useStyles = makeStyles({
-    rating: {
-        padding: '0px 22px',
-        marginBottom: '5px',
-        backgroundColor: '#E5A0A0',
-    },
-})
+class CourseItem extends React.Component {
 
-function CourseItem(props) {
-    const classes = useStyles();
+    constructor(props) {
+        super(props);
+        this.state = {
+            courseNumber: this.props.courseNumber
+        };
+    }
 
-    return <Box className='courseItemHorizontal courseItemMain content'>
+    handleRemove() {
+        let result = window.confirm("Are you sure you want to delete this course?");
+        if (result) {
+            console.log("Course: " + this.state.courseNumber + " is being deleted.");
+            this.props.deleteCourse(this.state.courseNumber);
+        }
+    }
 
-        <Box className='courseItemHorizontal'>
+    render() {
+        return <Box className='courseItemHorizontal courseItemMain content'>
 
-            <Box className='courseItemVerticalSides'>
-                <Typography variant='h6'>&nbsp;Rating</Typography>
-                <Paper className={classes.rating}>
-                    <Typography variant='h3'>{props.rating || 5}</Typography>
-                </Paper>
+            <Box className='courseItemHorizontal'>
+
+                <Box className='courseItemVerticalSides'>
+                    <Typography variant='h6'>&nbsp;Rating</Typography>
+                    <Paper >
+                        <Typography variant='h3'
+                                    style={{padding: '0px 22px',
+                                            border: '5px',
+                                            backgroundColor: '#E5A0A0'}}
+                        >{this.props.rating || 5}</Typography>
+                    </Paper>
+                </Box>
+
+                <Box className='courseItemVerticalSides courseItemVerticalMiddle'
+                     style={{paddingTop: '5px'}}
+                >
+                    <Typography variant='h5'>{this.props.courseNumber || 'CPSC110'} </Typography>
+                    <Typography variant='body2'>{this.props.review || 'It was an awesome course!'}</Typography>
+                </Box>
+
             </Box>
-
-            <Box className='courseItemVerticalSides courseItemVerticalMiddle'>
-                <Typography variant='h5'>{props.courseNumber || 'CPSC110'} </Typography>
-                <Typography variant='body2'>{props.review || 'It was an awesome course!'}</Typography>
+            <div className='courseItemVerticalSides'>
+            <Box className='courseItemVerticalSides courseItemVerticalMiddle'
+                 style={{paddingTop: '5px'}}
+            >
+                <Typography variant='body2'>{this.props.date || '2/19/2020'}</Typography>
             </Box>
+            <div>
+                <IconButton aria-label="delete"
+                            className='courseItemVerticalSides courseItemVerticalMiddle'
+                            onClick={this.handleRemove.bind(this)}
+                >
+                    <DeleteIcon fontSize="small" />
+                </IconButton>
+            </div>
+            </div>
 
-        </Box>
-
-        <Box className='courseItemVerticalSides courseItemVerticalMiddle'>
-            <Typography variant='body2'>{props.date || '2/19/2020'}</Typography>
-        </Box>
-
-    </Box>;
+        </Box>;
+    }
 }
 
-export default CourseItem;
+export default connect(
+    null,
+    { deleteCourse }
+)(CourseItem)
