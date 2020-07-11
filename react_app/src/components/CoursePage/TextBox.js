@@ -12,7 +12,7 @@ const useStyles = makeStyles({
 });
 
 const TextBox = ({review, addReviewReview}) => {
-    const placeholderReview = "It was pretty fun course. No midterms. Awesome prof. However I wish there was less homewor."
+    const placeholderReview = "It was pretty fun course. No midterms. Awesome prof. However I wish there was less homework."
     const classes = useStyles();
 
     return <TextField 
