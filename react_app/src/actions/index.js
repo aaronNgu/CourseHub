@@ -99,6 +99,27 @@ export const addCourse = (name, desc) => {
     };
 };
 
+export const deleteCourse = courseId => {
+    return function (dispatch, getState) {
+        console.log("Action: " + courseId);
+        return fetch(`http://localhost:9000/courses`, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({'courseId': courseId})
+    }).then((res) => {
+            console.log(res);
+            dispatch({
+                type: 'DELETE_COURSE',
+                payload: courseId
+            })
+            return res.status;
+        })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+};
+
 export const update_filters = (yearLvFilter, ratingFilter) => {
     return {
         type: "UPDATE_FILTERS",
