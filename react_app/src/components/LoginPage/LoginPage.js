@@ -16,7 +16,7 @@ class LoginPage extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/auth/login/success", {
+    fetch("http://localhost:9000/auth/login/success", {
       method: "GET",
       credentials: "include",
       headers: {
@@ -48,7 +48,7 @@ class LoginPage extends React.Component {
     handleLogin = () => {
         console.log('handling login');
         passport.authenticate( 'google', {failureFlash:true} );
-        window.open("http://localhost:3000/auth/google", "_self");
+        window.open("http://localhost:9000/auth/google", "_self");
     }
 
     render() {
