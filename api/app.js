@@ -7,7 +7,7 @@ var logger = require('morgan');
 var cors = require('cors');
 require('dotenv').config();
 var router = express.Router();
-var port = 9000;
+var port = 3000;
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -16,7 +16,6 @@ var reviewsRouter = require('./routes/reviews');
 var authRouter = require('./routes/auth-routes');
 
 const cookieSession = require("cookie-session");
-const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
 const googleSetup = require("./google-setup");
@@ -27,7 +26,7 @@ var app = express();
 app.use(
   cookieSession({
     name: "session",
-    keys: "thisappisawesome",
+    keys: ["thisappisawesome"],
     maxAge: 24 * 60 * 60 * 100
   })
 );
@@ -83,7 +82,7 @@ app.set('view engine', 'jade');
 // set up cors to allow us to accept requests from our client
 app.use(
   cors({
-    origin: "http://localhost:9000", // allow to server to accept request from different origin
+    origin: "http://localhost:3000", // allow to server to accept request from different origin
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true // allow session cookie from browser to pass through
   })

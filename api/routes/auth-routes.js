@@ -26,7 +26,7 @@ const authCheck = (req, res, next) => {
 };
 
 router.get("/checkStatus", authCheck, (req, res) => {
-    passport.authenticate('google', { scope: ["profile"] }),
+    // passport.authenticate('google', { scope: ["profile"] }),
     res.status(200).json({
     isAuthenticated: true,
     message: "user successfully authenticated",
