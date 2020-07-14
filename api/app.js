@@ -66,13 +66,14 @@ mongoose.connect('mongodb+srv://' + config.DB_USER  + ':' + config.DB_PW + '@san
  });
 
  passport.deserializeUser((id, done) => {
-   myUser.findById(id)
-     .then(user => {
-       done(null, user);
-     })
-     .catch(e => {
-       done(new Error("Failed to deserialize user"));
-     });
+   // myUser.findById(id)
+   //   .then(user => {
+   //     done(null, user);
+   //   })
+   //   .catch(e => {
+   //     done(new Error("Failed to deserialize user"));
+   //   });
+   done(null, user.id);
  });
 
 // view engine setup
