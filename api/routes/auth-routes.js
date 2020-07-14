@@ -14,10 +14,7 @@ router.get('/redirect',
 
 router.get('/logout', function(req, res) {
     req.logout();
-    res.json({
-        isAuthenticated: false, 
-        message: "successfully logged out"
-    })
+    res.redirect(HOMEPAGE_URL)
 });
     
 const authCheck = (req, res, next) => {
