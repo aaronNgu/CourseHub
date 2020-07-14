@@ -57,20 +57,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD:app.js
-app.get('*', (req1,res1) =>{
+app.get('*', (req5,res1) =>{
     res.sendFile(path.resolve(__dirname, "react_app", "build", "index.html"));
 })
-=======
-app.get("*", (request1, response1) => {
-    res.sendFile(path.join(__dirname, "react_app", "build", "index.html"));
-});
->>>>>>> Changed folder dir:api/app.js
-=======
-app.get('*', (req1,res1) =>{
-    res.sendFile(path.resolve(__dirname, "react_app", "build", "index.html"));
-})
->>>>>>> Updated Hash Route
 
 module.exports = app;
