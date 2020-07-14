@@ -7,9 +7,9 @@ const CLIENT_BASE_URL = 'http://localhost:3000';
 const HOMEPAGE_URL = CLIENT_BASE_URL + '/homepage';
 const LOGIN_URL = CLIENT_BASE_URL + '/login';
 
-router.get('/', passport.authenticate('facebook', {scope: ['email']}));
+router.get('/facebook', passport.authenticate('facebook', {scope: ['email']}));
 
-router.get('/redirect', 
+router.get('/facebook/redirect', 
     passport.authenticate('facebook', {successRedirect: HOMEPAGE_URL, failureRedirect: LOGIN_URL}));
 
 router.get('/logout', function(req, res) {
