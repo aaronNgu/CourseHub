@@ -1,5 +1,5 @@
 High Level Description:
-This website allows students to view and/or provide reviews for courses.  There is an option to request for adding a course if it doesn’t already exist and students can only add reviews (with ratings and comments) after logging in.
+CourseHub allows students to view and/or provide reviews for courses.  There is an option to request for adding a course if it doesn’t already exist and students can only add reviews (with ratings and comments) after logging in.
 
 Group Members:
 * Winnie Chan z3f5 (wwyc)
