@@ -7,19 +7,11 @@ import {authenticated} from '../../actions';
 class LoginPage extends React.Component {
 
     handleFacebookLogin = () => {
-        window.open('http://localhost:9000/auth/facebook/','_self');
+        window.open('http://localhost:9000/auth/facebook','_self');
     }
 
     handleGoogleLogin = () => {
-        // TODO: replace with LINK(window.open(link)) to /auth/google/login
         window.open('http://localhost:9000/auth/google', '_self');
-        /*
-        let payload = {
-            isAuthenticated: !this.props.auth.isAuthenticated,
-            user: null
-        }
-        this.props.dispatch(authenticated(payload));
-        */
     }
 
     render() {
