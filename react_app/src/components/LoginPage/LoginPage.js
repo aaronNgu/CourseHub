@@ -12,11 +12,14 @@ class LoginPage extends React.Component {
 
     handleGoogleLogin = () => {
         // TODO: replace with LINK(window.open(link)) to /auth/google/login
+        window.open('http://localhost:9000/auth/google', '_self');
+        /*
         let payload = {
             isAuthenticated: !this.props.auth.isAuthenticated,
             user: null
         }
         this.props.dispatch(authenticated(payload));
+        */
     }
 
     render() {
