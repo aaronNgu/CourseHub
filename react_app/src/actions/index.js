@@ -115,7 +115,7 @@ export const authenticated = (payload) => {
 
 export const checkStatus = () => {
     return function(dispatch , getState) {
-        return fetch(`http://localhost:9000/auth/facebook/checkStatus`, {credentials: 'include'})
+        return fetch(`http://localhost:9000/auth/checkStatus`, {credentials: 'include'})
         .then(response => response.json())
         .then(data => {
             dispatch(authenticated(data));
@@ -132,7 +132,7 @@ export const checkStatus = () => {
 
 export const logout = () => {
     return function (dispatch, getState) {
-        return fetch(`http://localhost:9000/auth/facebook/logout`, {credentials: 'include'})
+        return fetch(`http://localhost:9000/auth/logout`, {credentials: 'include'})
         .then(response => response.json())
         .then(data => {
             dispatch(authenticated(data));
