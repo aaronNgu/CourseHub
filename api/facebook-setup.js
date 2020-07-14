@@ -11,11 +11,3 @@ passport.use(new FacebookStrategy({
 	clientSecret: process.env.FB_SECRET,
 	callbackURL: '/auth/facebook/redirect',
 }, fbcallback));
-
-passport.serializeUser(function (user, cb) {
-	cb(null, user)
-});
-
-passport.deserializeUser(function (user, cb) {
-	cb(null, user)
-});

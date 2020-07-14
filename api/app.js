@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 require('dotenv').config();
-require('./FacebookSetup');
+require('./facebook-setup');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 
