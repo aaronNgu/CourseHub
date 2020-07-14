@@ -2,7 +2,6 @@ import React from 'react';
 import './LoginPage.css';
 import LoginPageBox from './LoginPageBox';
 import {connect} from 'react-redux';
-import {authenticated} from '../../actions';
 
 class LoginPage extends React.Component {
 
