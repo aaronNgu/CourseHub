@@ -2,23 +2,13 @@ const router = require("express").Router();
 const passport = require("passport");
 const CLIENT_HOME_PAGE_URL = "http://localhost:3000/homepage";
 
-// when login is successful, retrieve user info
-router.get("/login/success", (req, res) => {
-  if (req.user) {
-    res.json({
-      isAuthenticated: true,
-      message: "user has successfully authenticated",
-      user: req.user,
-      cookies: req.cookies
-    });
-  }
-});
 
 const authCheck = (req, res, next) => {
   if (!req.user) {
-    res.status(401).json({
+    res.status(200).json({
       isAuthenticated: false,
-      message: "user has not been authenticated"
+      message: "user has not been authenticated",
+      user: null
     });
   } else {
     next();
@@ -30,16 +20,7 @@ router.get("/checkStatus", authCheck, (req, res) => {
     res.status(200).json({
     isAuthenticated: true,
     message: "user successfully authenticated",
-    user: req.user,
-    cookies: req.cookies
-  });
-});
-
-// when login failed, send failed msg
-router.get("/login/failed", (req, res) => {
-  res.status(401).json({
-    success: false,
-    message: "user failed to authenticate."
+    user: req.user
   });
 });
 
@@ -57,7 +38,7 @@ router.get(
   "/google/redirect",
   passport.authenticate("google", {
     successRedirect: CLIENT_HOME_PAGE_URL,
-    failureRedirect: "/auth/login/failed"
+    failureRedirect: CLIENT_HOME_PAGE_URL
   })
 );
 
