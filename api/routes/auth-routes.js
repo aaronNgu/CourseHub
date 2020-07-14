@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const passport = require("passport");
-const CLIENT_HOME_PAGE_URL = "http://localhost:9000/homepage";
+const CLIENT_HOME_PAGE_URL = "http://localhost:3000/homepage";
 
 // when login is successful, retrieve user info
 router.get("/login/success", (req, res) => {

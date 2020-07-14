@@ -8,7 +8,7 @@ passport.use(new GoogleStrategy({
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
   },
 async (token, tokenSecret, profile, done) => {
-      return done(null, currentUser);
+      return done(null, profile);
     }
   )
 );

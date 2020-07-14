@@ -62,10 +62,10 @@ mongoose.connect('mongodb+srv://' + config.DB_USER  + ':' + config.DB_PW + '@san
  passport.use(myUser.createStrategy());
 
  passport.serializeUser((user, done) => {
-   done(null, user.id);
+   done(null, user);
  });
 
- passport.deserializeUser((id, done) => {
+ passport.deserializeUser((user, done) => {
    // myUser.findById(id)
    //   .then(user => {
    //     done(null, user);
@@ -73,7 +73,7 @@ mongoose.connect('mongodb+srv://' + config.DB_USER  + ':' + config.DB_PW + '@san
    //   .catch(e => {
    //     done(new Error("Failed to deserialize user"));
    //   });
-   done(null, user.id);
+   done(null, user);
  });
 
 // view engine setup
