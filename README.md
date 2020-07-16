@@ -1,3 +1,6 @@
+High Level Description:
+CourseHub allows students to view and/or provide reviews for courses.  There is an option to request for adding a course if it doesn’t already exist and students can only add reviews (with ratings and comments) after logging in.
+
 Group Members:
 * Winnie Chan z3f5 (wwyc)
 * Illean Zhang n5b1b (illeanz)
@@ -37,3 +40,6 @@ Front end page to view list of course:
 Relevant Links
 *  Trello:  https://trello.com/b/rjTfDo1R/coursehub
 *  Figma:  https://www.figma.com/file/UXh5AIRYjv4AdfHV2p88wG/CourseHub---version-2
+
+Citations:
+* For Login OAuth Setup: This tutorial was used https://medium.com/free-code-camp/how-to-set-up-twitter-oauth-using-passport-js-and-reactjs-9ffa6f49ef0 to set up the google and facebook login oauth functionalities
