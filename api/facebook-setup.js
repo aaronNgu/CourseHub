@@ -2,8 +2,8 @@ const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
 require('dotenv').config();
 
-const fbcallback = (accessToken, refreshToken, profile, cb) => {
-	return cb(null, profile);
+const fbcallback = (token, tokenSecret, profile, done) => {
+	return done(null, profile);
 };
 
 passport.use(new FacebookStrategy({
