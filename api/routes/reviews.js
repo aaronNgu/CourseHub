@@ -20,6 +20,18 @@ router.get('/', function (req, res, next) {
         })
 });
 
+router.get('/:reviewId', function (req, res, next) {
+  res.setHeader('Content-Type', 'application/json');
+  const id = req.params.reviewId
+  Review.findById(id)
+    .exec()
+    .then(doc => {
+      console.log(doc);
+      res.status(200).json(doc);
+    })
+    .catch(err => console.log(err))
+});
+
 router.get('/course', function (req, res, next) {
   res.setHeader('Content-Type', 'application/json');
   Review.find({Course_id:req.query.Id})
