@@ -2,12 +2,9 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var bodyParser = require("body-parser");
 var logger = require('morgan');
 var cors = require('cors');
 require('dotenv').config();
-var router = express.Router();
-var port = 9000;
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -17,9 +14,7 @@ var authRouter = require('./routes/auth-routes');
 
 const cookieSession = require("cookie-session");
 const passport = require('passport');
-const passportLocalMongoose = require('passport-local-mongoose');
-const googleSetup = require("./google-setup");
-const findOrCreate = require('mongoose-findorcreate');
+require("./google-setup");
 
 // CITATION: used https://medium.com/free-code-camp/how-to-set-up-twitter-oauth-using-passport-js-and-reactjs-9ffa6f49ef0
 // tutorial for login oauth setup\
@@ -43,34 +38,19 @@ app.use(passport.session());
 //connect to mongo db
 const mongoose = require('mongoose');
 const config = process.env;
-mongoose.connect('mongodb+srv://' + config.DB_USER  + ':' + config.DB_PW + '@sandbox-7vuqw.mongodb.net/' + config.DB_DBNAME + '?retryWrites=true&w=majority', { useNewUrlParser: true })
-  .then( () => {
+mongoose.connect('mongodb+srv://' + config.DB_USER + ':' + config.DB_PW + '@sandbox-7vuqw.mongodb.net/' + config.DB_DBNAME + '?retryWrites=true&w=majority', { useNewUrlParser: true })
+  .then(() => {
     console.log('Connection to the Atlas Cluster is successful!')
   })
-  .catch( (err) => console.error(err));
+  .catch((err) => console.error(err));
 
-  //to resolve deprecation warning
- mongoose.set("useCreateIndex", true);
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
 
- const myUserSchema = new mongoose.Schema({
-   name: String,
-   id: String
- })
-
- myUserSchema.plugin(passportLocalMongoose);
- myUserSchema.plugin(findOrCreate);
-
- const myUser = new mongoose.model("myUser", myUserSchema);
-
- passport.use(myUser.createStrategy());
-
- passport.serializeUser((user, done) => {
-   done(null, user);
- });
-
- passport.deserializeUser((user, done) => {
-   done(null, user);
- });
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -90,10 +70,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -116,8 +92,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// connect react to nodejs express server
-// app.listen(port, () => console.log(`Server is running on port ${port}!`));
 
 module.exports = app;
