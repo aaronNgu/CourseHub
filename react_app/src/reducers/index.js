@@ -39,10 +39,20 @@ const filterReducer = (filters = {yearLvFilter: yearLvFilter, ratingFilter: rati
     return filters;
 }
 
+const reviewReducer = (reviewList = {}, action) => {
+    if (action.type === 'FETCHED_REVIEWS') {
+  return Object.assign({}, reviewList,
+    action.data
+  );
+}
+    return reviewList;
+};
+
 const allReducers = combineReducers({
     courseList: courseReducer,
     filters: filterReducer,
     auth: authReducer,
+    reviewList: reviewReducer
 });
 
 const store = createStore(allReducers, applyMiddleware(thunk))
