@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import FacebookLoginButton from './FacebookLoginButton';
 import GoogleLoginButton from './GoogleLoginButton';
 import { makeStyles } from '@material-ui/core/styles';
-import PropTypes from "prop-types";
-
 
 const useStyles = makeStyles({
     root: {
@@ -15,10 +13,6 @@ const useStyles = makeStyles({
 
 const LoginPageBox = (props) => {
     const classes = useStyles();
-    const propTypes = {
-      authenticated: PropTypes.bool.isRequired
-    };
-    const { authenticated } = props;
     return (
         <div className="LoginPageContainer">
             <Typography className={classes.root} variant='h5'>Log in to rate a course</Typography>
@@ -29,7 +23,5 @@ const LoginPageBox = (props) => {
             </Typography>
         </div>);
 }
-
-
 
 export default LoginPageBox;
