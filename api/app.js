@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cors = require('cors');
 require('dotenv').config();
 require('./facebook-setup');
+require("./google-setup");
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 
@@ -15,9 +16,6 @@ var coursesRouter = require('./routes/courses');
 var reviewsRouter = require('./routes/reviews');
 var authRouter = require('./routes/auth-routes');
 
-const cookieSession = require("cookie-session");
-const passport = require('passport');
-require("./google-setup");
 
 // CITATION: used https://medium.com/free-code-camp/how-to-set-up-twitter-oauth-using-passport-js-and-reactjs-9ffa6f49ef0
 // tutorial for login oauth setup
