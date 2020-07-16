@@ -8,8 +8,7 @@ class LoginPage extends React.Component {
     }
 
     render() {
-        return (
-          return (<div className="LoginPageMain">
+        return (<div className="LoginPageMain">
             <LoginPageBox handleLogin={this.handleLogin} />
         </div>)
     }
