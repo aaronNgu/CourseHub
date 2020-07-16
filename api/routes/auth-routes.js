@@ -27,7 +27,10 @@ router.get("/checkStatus", authCheck, (req, res) => {
 // When logout, redirect to client
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect(CLIENT_BASE_URL + '/homepage');
+  res.status(200).json({
+    isAuthenticated: false, 
+    user: null,
+  });
 });
 
 // auth with google
