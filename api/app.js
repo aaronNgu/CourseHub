@@ -21,6 +21,9 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const googleSetup = require("./google-setup");
 const findOrCreate = require('mongoose-findorcreate');
 
+// CITATION: used https://medium.com/free-code-camp/how-to-set-up-twitter-oauth-using-passport-js-and-reactjs-9ffa6f49ef0
+// tutorial for login oauth setup\
+
 var app = express();
 
 app.use(
@@ -66,13 +69,6 @@ mongoose.connect('mongodb+srv://' + config.DB_USER  + ':' + config.DB_PW + '@san
  });
 
  passport.deserializeUser((user, done) => {
-   // myUser.findById(id)
-   //   .then(user => {
-   //     done(null, user);
-   //   })
-   //   .catch(e => {
-   //     done(new Error("Failed to deserialize user"));
-   //   });
    done(null, user);
  });
 
