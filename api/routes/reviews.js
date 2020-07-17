@@ -32,9 +32,9 @@ router.get('/:reviewId', function (req, res, next) {
     .catch(err => console.log(err))
 });
 
-router.get('/course', function (req, res, next) {
+router.get('/course/:courseId', function (req, res, next) {
   res.setHeader('Content-Type', 'application/json');
-  Review.find({Course_id:req.query.Id})
+  Review.find({Course_id:req.params.courseId})
   .exec()
   .then(docs =>{
     console.log(docs);

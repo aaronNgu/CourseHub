@@ -136,7 +136,7 @@ export const authenticated = (payload) => {
 
 export const fetchReviews = (courseId) => {
   return function(dispatch, getState) {
-    return fetch(`http://localhost:9000/reviews/course?Id=`+courseId)
+    return fetch(`http://localhost:9000/reviews/course/`+courseId)
       .then(
 				data => data.json())
       .then(data => {

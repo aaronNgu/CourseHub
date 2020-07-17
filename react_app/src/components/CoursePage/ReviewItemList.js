@@ -23,7 +23,6 @@ class ReviewItemList extends React.Component {
                 </div>
                 <div id="reviewList">
                 {Object.values(this.props.reviewList)
-                  .filter(review => review.Course_id === couresId)
                   .map((item) => {
                     return <ReviewItem key={item.id}
                                        date={item.Date.substring(0,10)}
