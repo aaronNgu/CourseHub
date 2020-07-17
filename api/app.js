@@ -44,13 +44,13 @@ mongoose.connect('mongodb+srv://' + config.DB_USER + ':' + config.DB_PW + '@sand
   })
   .catch((err) => console.error(err));
 
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-passport.deserializeUser((user, done) => {
-  done(null, user);
-});
+// passport.serializeUser((user, done) => {
+//   done(null, user);
+// });
+//
+// passport.deserializeUser((user, done) => {
+//   done(null, user);
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
