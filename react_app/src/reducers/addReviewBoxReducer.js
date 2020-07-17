@@ -14,7 +14,7 @@ export const addReviewRating = (state = null, action) => {
 
 export const addReviewReview = (state = '', action) => {
     if (action.type === 'CHANGE_REVIEW') {
-        return action.payload ? action.payload : state;
+        return action.payload;
     }
     return state;
 }
