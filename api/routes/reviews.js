@@ -33,18 +33,27 @@ router.get('/:reviewId', function (req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  const newReview = new Review({
-      _id: req.body._id,
-      User_id: req.body.User_id,
-      Course_id: req.body.Course_id,
-      Rating: req.body.Rating,
-      Date: req.body.Date,
-      Comments:req.body.Comments
-  })
-  newReview.save().then(result => {
-    console.log(result);
-  })
-  .catch(err => console.log(err));
+  if(req.user){
+    const newReview = new Review({
+        _id: mongoose.Types.ObjectId(),
+        User_id: req.body.User_id,
+        Course_id: req.body.Course_id,
+        Rating: req.body.Rating,
+        Comments:req.body.Comments
+    });
+
+    newReview.save()
+    .then(result => {res.status(200).json(result);})
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        message: 'Server error. Unable to add review'
+      })
+    });
+
+  } else {
+    res.status(401).json({message: 'Unauthorized user'});
+  }
 });
 
 router.delete('/:reviewId', function(req, res, next) {
