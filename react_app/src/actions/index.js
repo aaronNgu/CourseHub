@@ -133,3 +133,24 @@ export const authenticated = (payload) => {
         payload: payload,
     }
 }
+
+export const toggleAddReviewBox = (payload) => {
+    return {
+        type: 'TOGGLE',
+        payload: payload,
+    }
+}
+
+export const addReviewRating = (payload) => {
+    return {
+        type: 'CHANGE_RATING',
+        payload: payload,
+    }
+}
+
+export const addReviewReview = (payload) => {
+    return {
+        type: 'CHANGE_REVIEW',
+        payload: payload,
+    }
+}
