@@ -152,6 +152,8 @@ export const addReviewReview = (payload) => {
     return {
         type: 'CHANGE_REVIEW',
         payload: payload,
+    }
+}
 
 export const checkStatus = () => {
     return function(dispatch , getState) {
