@@ -4,7 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+const passport = require('passport');
+const cookieSession = require('cookie-session');
 require('dotenv').config();
+require('./facebook-setup');
+require('./google-setup');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -12,38 +16,22 @@ var coursesRouter = require('./routes/courses');
 var reviewsRouter = require('./routes/reviews');
 var authRouter = require('./routes/auth-routes');
 
-const cookieSession = require("cookie-session");
-const passport = require('passport');
-require("./google-setup");
+const config = process.env;
 
 // CITATION: used https://medium.com/free-code-camp/how-to-set-up-twitter-oauth-using-passport-js-and-reactjs-9ffa6f49ef0
 // tutorial for login oauth setup
 
 var app = express();
 
-app.use(
-  cookieSession({
-    name: "session",
-    keys: ["thisappisawesome"],
-    maxAge: 24 * 60 * 60 * 100
-  })
-);
-
-// parse cookies
-app.use(cookieParser());
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 //connect to mongo db
 const mongoose = require('mongoose');
-const config = process.env;
 mongoose.connect('mongodb+srv://' + config.DB_USER + ':' + config.DB_PW + '@sandbox-7vuqw.mongodb.net/' + config.DB_DBNAME + '?retryWrites=true&w=majority', { useNewUrlParser: true })
   .then(() => {
     console.log('Connection to the Atlas Cluster is successful!')
   })
   .catch((err) => console.error(err));
 
+// putting user profile into cookie
 passport.serializeUser((user, done) => {
   done(null, user);
 });
@@ -56,34 +44,36 @@ passport.deserializeUser((user, done) => {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// set up cors to allow us to accept requests from our client
 app.use(
-  cors({
-    origin: "http://localhost:3000", // allow to server to accept request from different origin
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true // allow session cookie from browser to pass through
+  cookieSession({
+    name: "session",
+    keys: ["thisappisawesome"],
+    maxAge: 24 * 60 * 60 * 100
   })
 );
-
+app.use(cors({origin: config.CLIENT_BASE_URL, credentials: true}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/courses', coursesRouter);
 app.use('/reviews', reviewsRouter);
-app.use("/auth", authRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
