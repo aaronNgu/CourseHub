@@ -152,7 +152,7 @@ export const addReviewReview = (payload) => {
     return {
         type: 'CHANGE_REVIEW',
         payload: payload,
-      
+
 export const checkStatus = () => {
     return function(dispatch , getState) {
         return fetch(`http://localhost:9000/auth/checkStatus`, {credentials: 'include'})
