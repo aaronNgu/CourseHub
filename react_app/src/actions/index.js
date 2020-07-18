@@ -134,6 +134,25 @@ export const authenticated = (payload) => {
     }
 }
 
+export const toggleAddReviewBox = (payload) => {
+    return {
+        type: 'TOGGLE',
+        payload: payload,
+    }
+}
+
+export const addReviewRating = (payload) => {
+    return {
+        type: 'CHANGE_RATING',
+        payload: payload,
+    }
+}
+
+export const addReviewReview = (payload) => {
+    return {
+        type: 'CHANGE_REVIEW',
+        payload: payload,
+
 export const checkStatus = () => {
     return function(dispatch , getState) {
         return fetch(`http://localhost:9000/auth/checkStatus`, {credentials: 'include'})
