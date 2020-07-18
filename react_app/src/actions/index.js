@@ -152,5 +152,37 @@ export const addReviewReview = (payload) => {
     return {
         type: 'CHANGE_REVIEW',
         payload: payload,
+      
+export const checkStatus = () => {
+    return function(dispatch , getState) {
+        return fetch(`http://localhost:9000/auth/checkStatus`, {credentials: 'include'})
+        .then(response => response.json())
+        .then(data => {
+            dispatch(authenticated(data));
+        })
+        .catch(err => {
+            let payload = {
+                isAuthenticated: false,
+                user: null,
+            }
+            dispatch(authenticated(payload));
+        })
+    }
+}
+
+export const logout = () => {
+    return function (dispatch, getState) {
+        return fetch(`http://localhost:9000/auth/logout`, {credentials: 'include'})
+        .then(response => response.json())
+        .then(data => {
+            dispatch(authenticated(data));
+        })
+        .catch(err => {
+            let payload = {
+                isAuthenticated: true,
+                user: null,
+            }
+            dispatch(authenticated(payload));
+        })
     }
 }
