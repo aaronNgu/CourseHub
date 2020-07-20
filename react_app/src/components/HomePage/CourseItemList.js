@@ -17,7 +17,7 @@ class CourseItemList extends React.Component {
             searchString: '',
             showFilters: false,
             yearLvFilter: ['100', '200', '300', '400', '500', '600'],
-            ratingFilter: ['1', '2', '3', '4', '5', '*']
+            ratingFilter: ['1', '2', '3', '4', '5', '-']
         };
         this.onFiltersUpdate = this.onFiltersUpdate.bind(this);
     }
@@ -68,7 +68,7 @@ class CourseItemList extends React.Component {
                     Object.values(this.props.courseList)
                         .filter(course => course._id.toString().toLowerCase().includes(this.state.searchString.toLowerCase()))
                         .filter(course => this.state.yearLvFilter.includes((course._id.toString().slice(4, 5) + '00'))
-                            && this.state.ratingFilter.includes(course.overall_rating.toString()))
+                            && this.state.ratingFilter.includes(course.overall_rating))
                         .map((course, index) => {
                             return <CourseItem
                                 key={index}

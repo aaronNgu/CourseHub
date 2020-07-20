@@ -4,7 +4,7 @@ import authReducer from './authReducer';
 import {addReviewBox, addReviewRating, addReviewReview} from './addReviewBoxReducer';
 
 const yearLvFilter = ['100', '200', '300', '400', '500', '600'];
-const ratingFilter = ['1', '2', '3', '4', '5', '*'];
+const ratingFilter = ['1', '2', '3', '4', '5', '-'];
 
 const courseReducer = (courseList = {}, action) => {
     if (action.type === 'DELETE_MESSAGE') {

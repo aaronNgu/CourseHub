@@ -5,7 +5,7 @@ import "./HomePage.css"
 import {update_filters} from '../../actions';
 
 const yearLvList = ['100', '200', '300', '400', '500', '600'];
-const ratingList = ['1', '2', '3', '4', '5', '*'];
+const ratingList = ['1', '2', '3', '4', '5', '-'];
 
 class Filters extends React.Component {
 
