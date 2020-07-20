@@ -32,6 +32,21 @@ router.get('/:reviewId', function (req, res, next) {
     .catch(err => console.log(err))
 });
 
+router.get('/course/:courseId', function (req, res, next) {
+  res.setHeader('Content-Type', 'application/json');
+  Review.find({Course_id:req.params.courseId})
+  .exec()
+  .then(docs =>{
+    console.log(docs);
+    res.status(200).json(docs);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json({
+    error: err});
+  });
+});
+
 router.post('/', function(req, res, next) {
   const newReview = new Review({
       _id: req.body._id,
