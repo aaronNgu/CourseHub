@@ -2,21 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "./Header.css"
 import {connect} from 'react-redux';
-import {authenticated} from '../../actions';
+import {checkStatus, logout} from '../../actions';
 
 class Header extends React.Component {
 
     componentDidMount() {
-        // TODO: get request to /auth/checkstatus
+        this.props.dispatch(checkStatus());
     }
 
     handleLogOut = () => {
-        // TODO: get request to /auth/logout
-        let payload = {
-            isAuthenticated: false,
-            user: null,
-        };
-        this.props.dispatch(authenticated(payload));
+        this.props.dispatch(logout());
     }
 
     render() {
