@@ -4,7 +4,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import "./HomePage.css"
 import { deleteCourse } from "../../actions";
 import {connect} from 'react-redux'
-
+import { Link } from 'react-router-dom'
 class CourseItem extends React.Component {
 
     constructor(props) {
@@ -41,7 +41,10 @@ class CourseItem extends React.Component {
                 <Box className='courseItemVerticalSides courseItemVerticalMiddle'
                      style={{paddingTop: '5px'}}
                 >
-                    <Typography variant='h5'>{this.props.courseNumber || 'CPSC110'} </Typography>
+                    <Link to={'/courses/' + this.props.courseNumber.toString()}
+                            style={{textDecoration: 'none', color: 'black'}}>
+                        <Typography variant='h5'>{this.props.courseNumber || 'CPSC110'} </Typography>
+                    </Link>
                     <Typography variant='body2'>{this.props.review || 'It was an awesome course!'}</Typography>
                 </Box>
 

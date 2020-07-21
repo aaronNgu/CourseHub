@@ -48,6 +48,14 @@ const reviewReducer = (reviewList = {}, action) => {
     return reviewList;
 };
 
+const courseInfoReducer = (courseInfo={}, action) => {
+    if (action.type === 'FETCHED_COURSE_INFO') {
+        return Object.assign({}, courseInfo, action.data);
+    }
+    console.log(courseInfo);
+    return courseInfo;
+}
+
 const allReducers = combineReducers({
     courseList: courseReducer,
     filters: filterReducer,
@@ -55,7 +63,8 @@ const allReducers = combineReducers({
     toggleAddReviewBox: addReviewBox,
     addReviewRating: addReviewRating,
     addReviewReview: addReviewReview,
-    reviewList: reviewReducer
+    reviewList: reviewReducer,
+    courseInfo: courseInfoReducer
 });
 
 const store = createStore(allReducers, applyMiddleware(thunk))

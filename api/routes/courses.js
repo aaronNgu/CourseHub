@@ -3,6 +3,20 @@ var router = express.Router();
 const mongoose = require('mongoose')
 const Course = require('../models/course')
 
+
+router.get('/:courseId', function (req, res, next) {
+    res.setHeader('Content-Type', 'application/json');
+    console.log('inside get courseId')
+    const id = req.params.courseId;
+    Course.findById(id)
+        .exec()
+        .then(doc => {
+            console.log(doc);
+            res.status(200).json(doc);
+        })
+        .catch(err => console.log(err))
+});
+
 /* GET Courses listing. */
 router.get('/', function (req, res, next) {
     res.setHeader('Content-Type', 'application/json');
@@ -19,19 +33,6 @@ router.get('/', function (req, res, next) {
                 error: err
             });
         })
-});
-
-router.get('/:courseId', function (req, res, next) {
-    res.setHeader('Content-Type', 'application/json');
-    console.log('inside get courseId')
-    const id = req.params.courseId
-    Course.findById(id)
-        .exec()
-        .then(doc => {
-            console.log(doc);
-            res.status(200).json(doc);
-        })
-        .catch(err => console.log(err))
 });
 
 router.post('/', function (req, res, next) {
