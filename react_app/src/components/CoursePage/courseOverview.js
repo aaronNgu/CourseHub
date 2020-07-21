@@ -1,6 +1,6 @@
 import React from 'react';
 import "./CoursePage.css"
-import { Typography, Box } from '@material-ui/core';
+import {Box, Typography} from '@material-ui/core';
 import Rating from './Rating';
 import RateCourseButton from './RateCourseButton';
 import {connect} from 'react-redux';
@@ -37,8 +37,8 @@ class CourseOverview extends React.Component {
             <Box className='courseOverviewHorizontal'>
                 <Box className='courseOverviewVerticalLeft'>
                     <Typography variant='h6'
-                        style={{ whiteSpace: 'pre-line' }}>{'Overall \n Rating'}</Typography>
-                    <Rating rating={this.props.courseInfo.overall_rating} />
+                                style={{whiteSpace: 'pre-line'}}>{'Overall \n Rating'}</Typography>
+                    <Rating rating={this.props.courseInfo.overall_rating}/>
                 </Box>
 
                 <Box className='courseOverviewVerticalRight'>
