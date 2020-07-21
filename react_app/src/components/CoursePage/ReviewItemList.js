@@ -24,7 +24,7 @@ class ReviewItemList extends React.Component {
                 <div id="reviewList">
                 {Object.values(this.props.reviewList)
                   .map((item) => {
-                    return <ReviewItem key={item.id}
+                    return <ReviewItem key={item._id}
                                        date={item.Date.substring(0,10)}
                                        rating={item.Rating}
                                        text={item.Comments}
