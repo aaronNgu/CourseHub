@@ -28,7 +28,7 @@ class CourseItemList extends React.Component {
 
     componentDidMount() {
         this.props.dispatch(fetchCourses());
-          window.location.reload()
+        window.location.reload()
     };
 
     toggleFilter() {
