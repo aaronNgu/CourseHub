@@ -102,7 +102,7 @@ export const addCourse = (name, desc) => {
 export const deleteCourse = courseId => {
     return function (dispatch, getState) {
         console.log("Action: " + courseId);
-        return fetch(`/courses`, {
+        return fetch(`/courses/`+courseId, {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({'courseId': courseId})
