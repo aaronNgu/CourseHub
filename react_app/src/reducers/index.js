@@ -41,14 +41,14 @@ const filterReducer = (filters = {yearLvFilter: yearLvFilter, ratingFilter: rati
 
 const reviewReducer = (reviewList = {}, action) => {
     if (action.type === 'FETCHED_REVIEWS') {
-  return Object.assign({}, reviewList,
-    action.data
-  );
-}
+        return Object.assign({}, reviewList,
+            action.data
+        );
+    }
     return reviewList;
 };
 
-const courseInfoReducer = (courseInfo={}, action) => {
+const courseInfoReducer = (courseInfo = {}, action) => {
     if (action.type === 'FETCHED_COURSE_INFO') {
         return Object.assign({}, courseInfo, action.data);
     }
