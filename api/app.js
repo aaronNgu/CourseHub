@@ -37,8 +37,8 @@ passport.serializeUser((user, done) => {
 });
 
 // deserialize the cookieUserId to user in the database
-passport.deserializeUser((id, done) => {
-  User.findById(id)
+passport.deserializeUser((user, done) => {
+  User.findById(user._id)
     .then(user => {
       done(null, user);
     })
