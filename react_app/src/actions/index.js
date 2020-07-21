@@ -86,7 +86,7 @@ export const addCourse = (name, desc) => {
             body: JSON.stringify({
                 description: desc,
                 _id: name,
-                overall_rating: '*'
+                overall_rating: '-'
             })
         })
             .then((responseJson) => {
@@ -188,3 +188,21 @@ export const logout = () => {
         })
     }
 }
+export const fetchReviews = (courseId) => {
+  return function(dispatch, getState) {
+    return fetch(`http://localhost:9000/reviews/course/`+courseId)
+      .then(
+				data => data.json())
+      .then(data => {
+					dispatch(fetched_reviews(data))}
+      )
+      .catch(err => console.log(err));
+  };
+};
+
+export const fetched_reviews = reviews => {
+  return {
+    type: "FETCHED_REVIEWS",
+    data: reviews
+  };
+};

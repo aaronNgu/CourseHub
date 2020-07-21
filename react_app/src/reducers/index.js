@@ -4,7 +4,7 @@ import authReducer from './authReducer';
 import {addReviewBox, addReviewRating, addReviewReview} from './addReviewBoxReducer';
 
 const yearLvFilter = ['100', '200', '300', '400', '500', '600'];
-const ratingFilter = ['1', '2', '3', '4', '5', '*'];
+const ratingFilter = ['1', '2', '3', '4', '5', '-'];
 
 const courseReducer = (courseList = {}, action) => {
     if (action.type === 'DELETE_MESSAGE') {
@@ -39,6 +39,15 @@ const filterReducer = (filters = {yearLvFilter: yearLvFilter, ratingFilter: rati
     return filters;
 }
 
+const reviewReducer = (reviewList = {}, action) => {
+    if (action.type === 'FETCHED_REVIEWS') {
+  return Object.assign({}, reviewList,
+    action.data
+  );
+}
+    return reviewList;
+};
+
 const allReducers = combineReducers({
     courseList: courseReducer,
     filters: filterReducer,
@@ -46,6 +55,7 @@ const allReducers = combineReducers({
     toggleAddReviewBox: addReviewBox,
     addReviewRating: addReviewRating,
     addReviewReview: addReviewReview,
+    reviewList: reviewReducer
 });
 
 const store = createStore(allReducers, applyMiddleware(thunk))

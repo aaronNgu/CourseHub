@@ -17,7 +17,7 @@ class CourseItemList extends React.Component {
             searchString: '',
             showFilters: false,
             yearLvFilter: ['100', '200', '300', '400', '500', '600'],
-            ratingFilter: ['1', '2', '3', '4', '5', '*']
+            ratingFilter: ['1', '2', '3', '4', '5', '-']
         };
         this.onFiltersUpdate = this.onFiltersUpdate.bind(this);
     }
