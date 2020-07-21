@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "npm run build --prefix ./react_app && node ./bin/www",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+    "heroku-postbuild": "cd react_app && npm install --only=dev && npm install && npm run build"
   },
   "dependencies": {
     "connect-history-api-fallback": "^1.6.0",
