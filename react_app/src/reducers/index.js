@@ -1,12 +1,12 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import authReducer from './authReducer';
+import {addReviewBox, addReviewRating, addReviewReview} from './addReviewBoxReducer';
 
 const yearLvFilter = ['100', '200', '300', '400', '500', '600'];
-const ratingFilter = ['1', '2', '3', '4', '5', '*'];
+const ratingFilter = ['1', '2', '3', '4', '5', '-'];
 
 const courseReducer = (courseList = {}, action) => {
-    //TODO: remove irrelevant reducers
     if (action.type === 'DELETE_MESSAGE') {
         let copy = Object.assign({}, courseList);
         delete copy[action.payload];
@@ -39,10 +39,23 @@ const filterReducer = (filters = {yearLvFilter: yearLvFilter, ratingFilter: rati
     return filters;
 }
 
+const reviewReducer = (reviewList = {}, action) => {
+    if (action.type === 'FETCHED_REVIEWS') {
+  return Object.assign({}, reviewList,
+    action.data
+  );
+}
+    return reviewList;
+};
+
 const allReducers = combineReducers({
     courseList: courseReducer,
     filters: filterReducer,
     auth: authReducer,
+    toggleAddReviewBox: addReviewBox,
+    addReviewRating: addReviewRating,
+    addReviewReview: addReviewReview,
+    reviewList: reviewReducer
 });
 
 const store = createStore(allReducers, applyMiddleware(thunk))

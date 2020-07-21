@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const passport = require("passport");
-const CLIENT_HOME_PAGE_URL = "http://localhost:3000/homepage";
 
+const CLIENT_BASE_URL = process.env.CLIENT_BASE_URL;
 
 const authCheck = (req, res, next) => {
   if (!req.user) {
@@ -16,29 +16,40 @@ const authCheck = (req, res, next) => {
 };
 
 router.get("/checkStatus", authCheck, (req, res) => {
-    // passport.authenticate('google', { scope: ["profile"] }),
-    res.status(200).json({
+  res.status(200).json({
     isAuthenticated: true,
     message: "user successfully authenticated",
     user: req.user
   });
 });
 
-// When logout, redirect to client
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect(CLIENT_HOME_PAGE_URL);
+  res.status(200).json({
+    isAuthenticated: false, 
+    user: null,
+  });
 });
 
 // auth with google
-router.get("/google", passport.authenticate("google",  { scope: ["profile"] }));
+router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
 
 // redirect to home page after successfully login via google
 router.get(
   "/google/redirect",
   passport.authenticate("google", {
-    successRedirect: CLIENT_HOME_PAGE_URL,
-    failureRedirect: CLIENT_HOME_PAGE_URL
+    successRedirect: CLIENT_BASE_URL + '/homepage',
+    failureRedirect: CLIENT_BASE_URL + '/login'
+  })
+);
+
+router.get('/facebook', passport.authenticate('facebook', { scope: ['email'] }));
+
+router.get(
+  '/facebook/redirect',
+  passport.authenticate('facebook', {
+    successRedirect: CLIENT_BASE_URL + '/homepage',
+    failureRedirect: CLIENT_BASE_URL + '/login'
   })
 );
 

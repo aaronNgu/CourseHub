@@ -2,26 +2,15 @@ import React from 'react';
 import './LoginPage.css';
 import LoginPageBox from './LoginPageBox';
 import {connect} from 'react-redux';
-import {authenticated} from '../../actions';
 
 class LoginPage extends React.Component {
 
     handleFacebookLogin = () => {
-        // TODO: replace with LINK(window.open(link)) to /auth/facebook/login
-        let payload = {
-            isAuthenticated: !this.props.auth.isAuthenticated,
-            user: null
-        }
-        this.props.dispatch(authenticated(payload));
+        window.open('http://localhost:9000/auth/facebook','_self');
     }
 
     handleGoogleLogin = () => {
-        // TODO: replace with LINK(window.open(link)) to /auth/google/login
-        let payload = {
-            isAuthenticated: !this.props.auth.isAuthenticated,
-            user: null
-        }
-        this.props.dispatch(authenticated(payload));
+        window.open('http://localhost:9000/auth/google', '_self');
     }
 
     render() {
