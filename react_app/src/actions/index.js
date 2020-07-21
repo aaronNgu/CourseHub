@@ -86,7 +86,7 @@ export const addCourse = (name, desc) => {
             body: JSON.stringify({
                 description: desc,
                 _id: name,
-                overall_rating: '*'
+                overall_rating: '-'
             })
         })
             .then((responseJson) => {
@@ -133,3 +133,76 @@ export const authenticated = (payload) => {
         payload: payload,
     }
 }
+
+export const toggleAddReviewBox = (payload) => {
+    return {
+        type: 'TOGGLE',
+        payload: payload,
+    }
+}
+
+export const addReviewRating = (payload) => {
+    return {
+        type: 'CHANGE_RATING',
+        payload: payload,
+    }
+}
+
+export const addReviewReview = (payload) => {
+    return {
+        type: 'CHANGE_REVIEW',
+        payload: payload,
+    }
+}
+
+export const checkStatus = () => {
+    return function(dispatch , getState) {
+        return fetch(`http://localhost:9000/auth/checkStatus`, {credentials: 'include'})
+        .then(response => response.json())
+        .then(data => {
+            dispatch(authenticated(data));
+        })
+        .catch(err => {
+            let payload = {
+                isAuthenticated: false,
+                user: null,
+            }
+            dispatch(authenticated(payload));
+        })
+    }
+}
+
+export const logout = () => {
+    return function (dispatch, getState) {
+        return fetch(`http://localhost:9000/auth/logout`, {credentials: 'include'})
+        .then(response => response.json())
+        .then(data => {
+            dispatch(authenticated(data));
+        })
+        .catch(err => {
+            let payload = {
+                isAuthenticated: true,
+                user: null,
+            }
+            dispatch(authenticated(payload));
+        })
+    }
+}
+export const fetchReviews = (courseId) => {
+  return function(dispatch, getState) {
+    return fetch(`http://localhost:9000/reviews/course/`+courseId)
+      .then(
+				data => data.json())
+      .then(data => {
+					dispatch(fetched_reviews(data))}
+      )
+      .catch(err => console.log(err));
+  };
+};
+
+export const fetched_reviews = reviews => {
+  return {
+    type: "FETCHED_REVIEWS",
+    data: reviews
+  };
+};
