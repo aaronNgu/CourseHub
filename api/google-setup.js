@@ -3,23 +3,6 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 require('dotenv').config();
 const User = require("./models/user");
 
-// serialize the user.id to save in the cookie session
-// so the browser will remember the user when login
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-
-// deserialize the cookieUserId to user in the database
-passport.deserializeUser((id, done) => {
-  User.findById(id)
-    .then(user => {
-      done(null, user);
-    })
-    .catch(e => {
-      done(new Error("Failed to deserialize an user"));
-    });
-});
-
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT,
     clientSecret: process.env.GOOGLE_SECRET,
