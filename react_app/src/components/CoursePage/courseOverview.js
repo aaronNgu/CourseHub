@@ -13,8 +13,7 @@ class CourseOverview extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(fetchCourseInfo(this.props.id));
-        console.log(this.props.courseInfo);
+        this.props.dispatch(fetchCourseInfo(this.props.id)).then(console.log(this.props));
     };
 
     handleRateCourse = () => {
@@ -31,7 +30,7 @@ class CourseOverview extends React.Component {
 
             <Box className='courseOverviewHeader'>
                 <Typography variant='h5'>{this.props.id} </Typography>
-                <Typography variant='h5'>{'hihi'}</Typography>
+                <Typography variant='h5'>{this.props.courseInfo.description}</Typography>
                 <RateCourseButton handleRateCourse={this.handleRateCourse}/>
             </Box>
 
@@ -39,7 +38,7 @@ class CourseOverview extends React.Component {
                 <Box className='courseOverviewVerticalLeft'>
                     <Typography variant='h6'
                         style={{ whiteSpace: 'pre-line' }}>{'Overall \n Rating'}</Typography>
-                    <Rating rating='5' />
+                    <Rating rating={this.props.courseInfo.overall_rating} />
                 </Box>
 
                 <Box className='courseOverviewVerticalRight'>
@@ -53,7 +52,10 @@ class CourseOverview extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {auth: state.auth};
+    return {
+        auth: state.auth,
+        courseInfo: state.courseInfo
+    };
 }
 
 export default connect(mapStateToProps)(CourseOverview);
