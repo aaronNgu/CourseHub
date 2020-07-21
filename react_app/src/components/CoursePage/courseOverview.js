@@ -4,10 +4,19 @@ import { Typography, Box } from '@material-ui/core';
 import Rating from './Rating';
 import RateCourseButton from './RateCourseButton';
 import {connect} from 'react-redux';
-import {toggleAddReviewBox} from '../../actions';
+import {fetchCourseInfo, toggleAddReviewBox} from '../../actions';
 
 class CourseOverview extends React.Component {
-    
+
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        this.props.dispatch(fetchCourseInfo(this.props.id));
+        console.log(this.props.courseInfo);
+    };
+
     handleRateCourse = () => {
         const auth = this.props.auth.isAuthenticated;
         if (auth) {
@@ -21,8 +30,8 @@ class CourseOverview extends React.Component {
         return <Box className='courseOverview content'>
 
             <Box className='courseOverviewHeader'>
-                <Typography variant='h5'>{'CPSC110'} </Typography>
-                <Typography variant='h5'>{'Computations, Programs, and Programming'}</Typography>
+                <Typography variant='h5'>{this.props.id} </Typography>
+                <Typography variant='h5'>{'hihi'}</Typography>
                 <RateCourseButton handleRateCourse={this.handleRateCourse}/>
             </Box>
 
