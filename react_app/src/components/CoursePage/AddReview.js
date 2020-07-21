@@ -17,11 +17,10 @@ const useStyles = makeStyles({
     }
 });
 
-// TODO: hardcoded for now too
-
 const AddReview = ({review, rating, toggle, toggleAddReviewBox, addReview}) => {
 
     const classes = useStyles();
+    // TODO: hardcoded for now too
     const courseId = "CPSC110"
 
     const handlePostReview = () => {
