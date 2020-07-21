@@ -220,7 +220,8 @@ export const addReview = (review, rating, courseId) => {
             credentials: 'include'
         })
         .then((responseJson) => {
-            dispatch(fetched_reviews(responseJson.data));
+            dispatch(fetchReviews(courseId));
+            dispatch(toggleAddReviewBox(false));
             return responseJson.success;
         })
         .catch((error) => {
