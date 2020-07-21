@@ -149,6 +149,25 @@ export const logout = () => {
     }
 }
 
+export const fetchCourseInfo = (courseId) => {
+    return function(dispatch) {
+        return fetch(`http://localhost:9000/courses/`+courseId)
+            .then(
+                data => data.json())
+            .then(data => {
+                dispatch(fetched_course_info(data))}
+            )
+            .catch(err => console.log(err));
+    };
+}
+
+export const fetched_course_info = courseInfo => {
+    return {
+        type: "FETCHED_COURSE_INFO",
+        data: courseInfo
+    };
+};
+
 export const addReview = (review, rating, courseId) => {
     return function(dispatch, getState) {
         return fetch(`/reviews/`, {
