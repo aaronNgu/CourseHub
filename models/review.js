@@ -5,7 +5,7 @@ const reviewSchema = mongoose.Schema({
   User_id: String,
   Rating: Number,
   Date: {
-    type: Date,
+    type: Date, 
     default: Date.now,
   },
   Comments: String,
