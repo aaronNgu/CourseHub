@@ -51,7 +51,7 @@ router.post('/', function(req, res, next) {
   if(req.user){
     const newReview = new Review({
         _id: mongoose.Types.ObjectId(),
-        User_id: req.body.User_id,
+        User_id: req.user.id,
         Course_id: req.body.Course_id,
         Rating: req.body.Rating,
         Comments:req.body.Comments
