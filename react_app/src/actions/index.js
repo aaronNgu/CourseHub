@@ -1,4 +1,3 @@
-
 export const fetched_courses = courses => {
     return {
         type: "FETCHED_COURSES",
@@ -7,7 +6,7 @@ export const fetched_courses = courses => {
 };
 
 export const fetchCourses = () => {
-    return function (dispatch, getState) {
+    return function (dispatch) {
         return fetch(`/courses`)
             .then(
                 data => data.json())
@@ -27,7 +26,7 @@ export const added_Courses = (name, desc) => {
 };
 
 export const addCourse = (name, desc) => {
-    return function (dispatch, getState) {
+    return function (dispatch) {
         return fetch(`/courses`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -48,13 +47,13 @@ export const addCourse = (name, desc) => {
 };
 
 export const deleteCourse = courseId => {
-    return function (dispatch, getState) {
+    return function (dispatch) {
         console.log("Action: " + courseId);
-        return fetch(`/courses/`+courseId, {
+        return fetch(`/courses/` + courseId, {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({'courseId': courseId})
-    }).then((res) => {
+        }).then((res) => {
             console.log(res);
             dispatch({
                 type: 'DELETE_COURSE',
@@ -97,65 +96,67 @@ export const addReviewReview = (payload) => {
 }
 
 export const fetchReviews = (courseId) => {
-  return function(dispatch, getState) {
-    return fetch(`/reviews/course/`+courseId)
-      .then(
-				data => data.json())
-      .then(data => {
-					dispatch(fetched_reviews(data))}
-      )
-      .catch(err => console.log(err));
-  };
+    return function (dispatch) {
+        return fetch(`/reviews/course/` + courseId)
+            .then(
+                data => data.json())
+            .then(data => {
+                    dispatch(fetched_reviews(data))
+                }
+            )
+            .catch(err => console.log(err));
+    };
 };
 
 export const fetched_reviews = reviews => {
-  return {
-    type: "FETCHED_REVIEWS",
-    data: reviews
-  };
+    return {
+        type: "FETCHED_REVIEWS",
+        data: reviews
+    };
 };
 
 export const checkStatus = () => {
-    return function(dispatch , getState) {
+    return function (dispatch) {
         return fetch(`/auth/checkStatus`, {credentials: 'include'})
-        .then(response => response.json())
-        .then(data => {
-            dispatch(authenticated(data));
-        })
-        .catch(err => {
-            let payload = {
-                isAuthenticated: false,
-                user: null,
-            }
-            dispatch(authenticated(payload));
-        })
+            .then(response => response.json())
+            .then(data => {
+                dispatch(authenticated(data));
+            })
+            .catch(err => {
+                let payload = {
+                    isAuthenticated: false,
+                    user: null,
+                }
+                dispatch(authenticated(payload));
+            })
     }
 }
 
 export const logout = () => {
-    return function (dispatch, getState) {
+    return function (dispatch) {
         return fetch(`/auth/logout`, {credentials: 'include'})
-        .then(response => response.json())
-        .then(data => {
-            dispatch(authenticated(data));
-        })
-        .catch(err => {
-            let payload = {
-                isAuthenticated: true,
-                user: null,
-            }
-            dispatch(authenticated(payload));
-        })
+            .then(response => response.json())
+            .then(data => {
+                dispatch(authenticated(data));
+            })
+            .catch(err => {
+                let payload = {
+                    isAuthenticated: true,
+                    user: null,
+                }
+                dispatch(authenticated(payload));
+            })
     }
 }
 
 export const fetchCourseInfo = (courseId) => {
-    return function(dispatch) {
-        return fetch(`http://localhost:9000/courses/`+courseId)
+    return function (dispatch) {
+        return fetch(`/courses/` + courseId)
             .then(
                 data => data.json())
             .then(data => {
-                dispatch(fetched_course_info(data))}
+                    dispatch(fetched_course_info(data))
+                }
             )
             .catch(err => console.log(err));
     };
@@ -169,25 +170,25 @@ export const fetched_course_info = courseInfo => {
 };
 
 export const addReview = (review, rating, courseId) => {
-    return function(dispatch, getState) {
+    return function (dispatch) {
         return fetch(`/reviews/`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                Course_id: courseId, 
-                Rating: rating, 
+                Course_id: courseId,
+                Rating: rating,
                 Comments: review
             }),
             credentials: 'include'
         })
-        .then((responseJson) => {
-            dispatch(fetchReviews(courseId));
-            dispatch(toggleAddReviewBox(false));
-            return responseJson.success;
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+            .then((responseJson) => {
+                dispatch(fetchReviews(courseId));
+                dispatch(toggleAddReviewBox(false));
+                return responseJson.success;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 }
 
