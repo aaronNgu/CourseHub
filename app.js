@@ -1,3 +1,5 @@
+const history = require('connect-history-api-fallback')
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -33,13 +35,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, "react_app", "build")))      //updated route
-app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/courses', coursesRouter);
 app.use('/reviews', reviewsRouter);
+
+app.use(history({verbose: true}));
+
+app.use(express.static(path.join(__dirname, "react_app", "build")))
+app.use(express.static(path.join(__dirname, 'public')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

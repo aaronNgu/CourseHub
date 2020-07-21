@@ -26,7 +26,7 @@ function AddCourseFormDialog(props) {
 
     props.dispatch(addCourse(courseName, courseDescription));
     setOpen(false);
-    window.location.href="/"; 
+    window.location.reload(); 
   };
 
   return (
