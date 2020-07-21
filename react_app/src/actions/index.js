@@ -206,3 +206,25 @@ export const fetched_reviews = reviews => {
     data: reviews
   };
 };
+
+export const addReview = (review, rating, courseId) => {
+    return function(dispatch, getState) {
+        return fetch(`http://localhost:9000/reviews`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                Course_id: courseId, 
+                Rating: rating, 
+                Comments: review
+            }),
+            credentials: 'include'
+        })
+        .then((responseJson) => {
+            dispatch(fetched_reviews(responseJson.data));
+            return responseJson.success;
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+}

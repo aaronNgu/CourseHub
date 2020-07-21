@@ -3,7 +3,7 @@ import {Button, Dialog, DialogTitle, DialogContent, DialogActions, makeStyles} f
 import AddRating from './AddRating';
 import TextBox from './TextBox';
 import {connect} from 'react-redux';
-import {toggleAddReviewBox} from '../../actions';
+import {toggleAddReviewBox, addReview} from '../../actions';
 
 const useStyles = makeStyles({
     button: {
@@ -17,15 +17,15 @@ const useStyles = makeStyles({
     }
 });
 
-const AddReview = ({review, rating, toggle, toggleAddReviewBox}) => {
+// TODO: hardcoded for now too
+
+const AddReview = ({review, rating, toggle, toggleAddReviewBox, addReview}) => {
 
     const classes = useStyles();
+    const courseId = "CPSC110"
 
     const handlePostReview = () => {
-
-        console.log(review);
-        console.log(rating);
-        console.log('handlign post review');
+        addReview(review, rating, courseId);
     }
 
     const handleClose = (props) => {
@@ -48,4 +48,4 @@ const mapStateToProps = (state) => {
     return {toggle: state.toggleAddReviewBox, review: state.addReviewReview, rating: state.addReviewRating}
 }
 
-export default connect(mapStateToProps, {toggleAddReviewBox})(AddReview);
+export default connect(mapStateToProps, {toggleAddReviewBox, addReview})(AddReview);
