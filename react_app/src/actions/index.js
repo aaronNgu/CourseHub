@@ -13,44 +13,6 @@ export const deleteAllMessages = (courseList) => {
     };
 }
 
-export const editMessage = (courseNumber) => {
-    return {
-        type: 'EDIT_MESSAGE',
-        payload: courseNumber
-    };
-}
-
-export const editRating1 = (courseNumber) => {
-    return {
-        type: 'EDIT_RATING_1',
-        payload: courseNumber
-    };
-}
-export const editRating2 = (courseNumber) => {
-    return {
-        type: 'EDIT_RATING_2',
-        payload: courseNumber
-    };
-}
-export const editRating3 = (courseNumber) => {
-    return {
-        type: 'EDIT_RATING_3',
-        payload: courseNumber
-    };
-}
-export const editRating4 = (courseNumber) => {
-    return {
-        type: 'EDIT_RATING_4',
-        payload: courseNumber
-    };
-}
-export const editRating5 = (courseNumber) => {
-    return {
-        type: 'EDIT_RATING_5',
-        payload: courseNumber
-    };
-}
-
 export const fetched_courses = courses => {
     return {
         type: "FETCHED_COURSES",
