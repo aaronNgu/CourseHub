@@ -23,8 +23,18 @@ const AddReview = ({review, rating, toggle, toggleAddReviewBox, addReview}) => {
     // TODO: hardcoded for now too
     const courseId = "CPSC110"
 
+    const validateReview = (review, rating) => {
+        if (review == '' || rating == null) {
+            window.alert('Please do not leave the rating and review fields empty.')
+            return false;
+        }
+        return true;
+    }
+
     const handlePostReview = () => {
-        addReview(review, rating, courseId);
+       if (validateReview(review, rating)) {
+            addReview(review, rating, courseId);
+       }
     }
 
     const handleClose = (props) => {
