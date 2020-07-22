@@ -45,7 +45,7 @@ class CourseOverview extends React.Component {
                 <Box className='courseOverviewVerticalRight'>
                     <Typography variant='h6'>{'Most Recent Review'} </Typography>
                     <Typography variant='body2'>
-                        {(!Array.isArray(this.props.reviewList))? undefined: this.props.reviewList[this.props.reviewList.length -1].Comments}
+                        {(!Array.isArray(this.props.reviewList))? undefined: (this.props.reviewList.length > 0) ? this.props.reviewList[this.props.reviewList.length -1].Comments : 'No reviews yet!'}
                     </Typography>
                 </Box>
             </Box>
