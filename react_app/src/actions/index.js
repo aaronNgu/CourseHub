@@ -117,7 +117,7 @@ export const fetched_reviews = reviews => {
 
 export const checkStatus = () => {
     return function(dispatch , getState) {
-        return fetch(`http://localhost:9000/auth/checkStatus`, {credentials: 'include'})
+        return fetch(`/auth/checkStatus`, {credentials: 'include'})
         .then(response => response.json())
         .then(data => {
             dispatch(authenticated(data));
@@ -134,7 +134,7 @@ export const checkStatus = () => {
 
 export const logout = () => {
     return function (dispatch, getState) {
-        return fetch(`http://localhost:9000/auth/logout`, {credentials: 'include'})
+        return fetch(`/auth/logout`, {credentials: 'include'})
         .then(response => response.json())
         .then(data => {
             dispatch(authenticated(data));
