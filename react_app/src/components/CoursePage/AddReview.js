@@ -24,7 +24,7 @@ const AddReview = ({review, rating, toggle, toggleAddReviewBox, addReview}) => {
     const courseId = "CPSC110"
 
     const validateReview = (review, rating) => {
-        if (review == '' || rating == null) {
+        if (review === '' || rating === null) {
             window.alert('Please do not leave the rating and review fields empty.')
             return false;
         }
