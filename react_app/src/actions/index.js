@@ -22,7 +22,7 @@ export const fetched_courses = courses => {
 
 export const fetchCourses = () => {
     return function (dispatch, getState) {
-        return fetch(`http://localhost:9000/courses`)
+        return fetch(`/courses`)
             .then(
                 data => data.json())
             .then(data => {
@@ -42,7 +42,7 @@ export const added_Courses = (name, desc) => {
 
 export const addCourse = (name, desc) => {
     return function (dispatch, getState) {
-        return fetch(`http://localhost:9000/courses`, {
+        return fetch(`/courses`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -64,7 +64,7 @@ export const addCourse = (name, desc) => {
 export const deleteCourse = courseId => {
     return function (dispatch, getState) {
         console.log("Action: " + courseId);
-        return fetch(`http://localhost:9000/courses`, {
+        return fetch(`/courses/`+courseId, {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({'courseId': courseId})
@@ -152,7 +152,7 @@ export const logout = () => {
 }
 export const fetchReviews = (courseId) => {
   return function(dispatch, getState) {
-    return fetch(`http://localhost:9000/reviews/course/`+courseId)
+    return fetch(`/reviews/course/`+courseId)
       .then(
 				data => data.json())
       .then(data => {

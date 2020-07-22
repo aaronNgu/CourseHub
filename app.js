@@ -1,3 +1,5 @@
+const history = require('connect-history-api-fallback')
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -67,6 +69,11 @@ app.use('/courses', coursesRouter);
 app.use('/reviews', reviewsRouter);
 app.use('/auth', authRouter);
 
+app.use(history({verbose: true}));
+
+app.use(express.static(path.join(__dirname, "react_app", "build")))
+app.use(express.static(path.join(__dirname, 'public')));
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
@@ -82,5 +89,9 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.get('*', (req5,res1) =>{
+    res.sendFile(path.resolve(__dirname, "react_app", "build", "index.html"));
+})
 
 module.exports = app;
