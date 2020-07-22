@@ -50,7 +50,6 @@ const courseInfoReducer = (courseInfo = {}, action) => {
     if (action.type === 'FETCHED_COURSE_INFO') {
         return Object.assign({}, courseInfo, action.data);
     }
-    console.log(courseInfo);
     return courseInfo;
 }
 
