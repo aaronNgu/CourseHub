@@ -170,13 +170,6 @@ export const authenticated = (payload) => {
     }
 }
 
-export const fetched_reviews = reviews => {
-  return {
-    type: "FETCHED_REVIEWS",
-    data: reviews
-  };
-};
-
 export const addReview = (review, rating, courseId) => {
     return function(dispatch, getState) {
         return fetch(`/reviews/`, {
