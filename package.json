@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm run build --prefix ./react_app && node ./bin/www"
+    "start": "npm run build --prefix ./react_app && node ./bin/www",
+    "heroku-postbuild": "cd react_app && npm install --only=dev && npm install && npm run build"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
