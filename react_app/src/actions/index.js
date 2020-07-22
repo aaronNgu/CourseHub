@@ -171,7 +171,7 @@ export const fetched_reviews = reviews => {
 
 export const addReview = (review, rating, courseId) => {
     return function(dispatch, getState) {
-        return fetch(`http://localhost:9000/reviews`, {
+        return fetch(`/reviews/`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
