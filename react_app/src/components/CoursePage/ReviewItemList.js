@@ -4,23 +4,24 @@ import {connect} from 'react-redux';
 import Button from "@material-ui/core/Button";
 import {fetchReviews} from '../../actions';
 
-// hardcoded for now
-const couresId = "CPSC110"
-
 class ReviewItemList extends React.Component {
 
-  componentDidMount() {
-        this.props.dispatch(fetchReviews(couresId));
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        this.props.dispatch(fetchReviews(this.props.id));
     }
 
     render() {
         return (<div>
-                <div className="reviewListHeader content">
-                    <p>Reviews</p>
-                    <div className="button">
-                        <Button variant="outlined">Sort</Button>
+                    <div className="reviewListHeader content">
+                        <p>Reviews</p>
+                        <div className="button">
+                            <Button variant="outlined">Sort</Button>
+                        </div>
                     </div>
-                </div>
                 <div id="reviewList">
                 {Object.values(this.props.reviewList)
                   .map((item) => {

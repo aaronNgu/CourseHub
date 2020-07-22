@@ -41,9 +41,7 @@ const filterReducer = (filters = {yearLvFilter: yearLvFilter, ratingFilter: rati
 
 const reviewReducer = (reviewList = {}, action) => {
     if (action.type === 'FETCHED_REVIEWS') {
-        return Object.assign({}, reviewList,
-            action.data
-        );
+        return action.data;
     }
     return reviewList;
 };
