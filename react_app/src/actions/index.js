@@ -1,4 +1,18 @@
 
+export const deleteMessage = (courseNumber) => {
+    return {
+        type: 'DELETE_MESSAGE',
+        payload: courseNumber
+    };
+}
+
+export const deleteAllMessages = (courseList) => {
+    return {
+        type: 'DELETE_ALL_MESSAGES',
+        payload: courseList
+    };
+}
+
 export const fetched_courses = courses => {
     return {
         type: "FETCHED_COURSES",
@@ -153,5 +167,35 @@ export const authenticated = (payload) => {
     return {
         type: 'AUTH',
         payload: payload,
+    }
+}
+
+export const fetched_reviews = reviews => {
+  return {
+    type: "FETCHED_REVIEWS",
+    data: reviews
+  };
+};
+
+export const addReview = (review, rating, courseId) => {
+    return function(dispatch, getState) {
+        return fetch(`/reviews/`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                Course_id: courseId, 
+                Rating: rating, 
+                Comments: review
+            }),
+            credentials: 'include'
+        })
+        .then((responseJson) => {
+            dispatch(fetchReviews(courseId));
+            dispatch(toggleAddReviewBox(false));
+            return responseJson.success;
+        })
+        .catch((error) => {
+            console.error(error);
+        });
     }
 }
