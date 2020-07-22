@@ -13,7 +13,7 @@ class CourseOverview extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(fetchCourseInfo(this.props.id)).then(console.log(this.props));
+        this.props.dispatch(fetchCourseInfo(this.props.id));
     };
 
     handleRateCourse = () => {
