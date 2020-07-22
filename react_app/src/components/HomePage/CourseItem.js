@@ -34,7 +34,7 @@ class CourseItem extends React.Component {
                                     style={{padding: '0px 22px',
                                             border: '5px',
                                             backgroundColor: '#E5A0A0'}}
-                        >{this.props.rating || 5}</Typography>
+                        >{this.props.rating || '-'}</Typography>
                     </Paper>
                 </Box>
 
