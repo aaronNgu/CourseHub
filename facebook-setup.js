@@ -9,5 +9,5 @@ const fbcallback = (token, tokenSecret, profile, done) => {
 passport.use(new FacebookStrategy({
 	clientID: process.env.FB_CLIENT,
 	clientSecret: process.env.FB_SECRET,
-	callbackURL: '/auth/facebook/redirect',
+	callbackURL: 'https://coursehububc.herokuapp.com/auth/facebook/redirect',
 }, fbcallback));
