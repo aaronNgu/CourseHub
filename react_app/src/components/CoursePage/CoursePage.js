@@ -1,6 +1,6 @@
 import React from 'react';
 import "./CoursePage.css"
-import CourseOverview from "./courseOverview";
+import CourseOverview from "./CourseOverview";
 import ReviewItemList from "./ReviewItemList";
 import AddReview from "./AddReview";
 
