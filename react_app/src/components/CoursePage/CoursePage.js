@@ -6,10 +6,6 @@ import AddReview from "./AddReview";
 
 class CoursePage extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className="CoursePage">

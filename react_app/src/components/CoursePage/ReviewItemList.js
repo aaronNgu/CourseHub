@@ -6,10 +6,6 @@ import {fetchReviews} from '../../actions';
 
 class ReviewItemList extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         this.props.dispatch(fetchReviews(this.props.id));
     }

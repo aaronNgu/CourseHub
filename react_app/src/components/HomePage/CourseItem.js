@@ -43,9 +43,9 @@ class CourseItem extends React.Component {
                 >
                     <Link to={'/courses/' + this.props.courseNumber.toString()}
                             style={{textDecoration: 'none', color: 'black'}}>
-                        <Typography variant='h5'>{this.props.courseNumber || 'CPSC110'} </Typography>
+                        <Typography variant='h5'>{this.props.courseNumber || 'N/A'} </Typography>
                     </Link>
-                    <Typography variant='body2'>{this.props.review || 'It was an awesome course!'}</Typography>
+                    <Typography variant='body2'>{this.props.review || 'N/A'}</Typography>
                 </Box>
 
             </Box>
@@ -53,7 +53,7 @@ class CourseItem extends React.Component {
             <Box className='courseItemVerticalSides courseItemVerticalMiddle'
                  style={{paddingTop: '5px'}}
             >
-                <Typography variant='body2'>{this.props.date || '2/19/2020'}</Typography>
+                <Typography variant='body2'>{this.props.date || 'N/A'}</Typography>
             </Box>
             <div>
                 <IconButton aria-label="delete"
