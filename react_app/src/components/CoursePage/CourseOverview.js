@@ -8,10 +8,6 @@ import {fetchCourseInfo, fetchReviews, toggleAddReviewBox} from '../../actions';
 
 class CourseOverview extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         this.props.dispatch(fetchCourseInfo(this.props.id));
         this.props.dispatch(fetchReviews(this.props.id));
