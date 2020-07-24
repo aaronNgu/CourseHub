@@ -213,3 +213,10 @@ export const change_page = page => {
         data: page
     }
 }
+
+export const change_page_count = count => {
+    return {
+        type: "CHANGE_PAGE_COUNT",
+        data: count
+    }
+}

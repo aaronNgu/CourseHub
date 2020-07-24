@@ -6,5 +6,8 @@ export const currentPage = (state = 0, action) => {
 }
 
 export const countPage = (state = 10, action) => {
+    if (action.type === 'CHANGE_PAGE_COUNT') {
+        return action.data
+    }
     return state
 }
