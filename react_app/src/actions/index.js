@@ -1,56 +1,4 @@
 
-export const deleteMessage = (courseNumber) => {
-    return {
-        type: 'DELETE_MESSAGE',
-        payload: courseNumber
-    };
-}
-
-export const deleteAllMessages = (courseList) => {
-    return {
-        type: 'DELETE_ALL_MESSAGES',
-        payload: courseList
-    };
-}
-
-export const editMessage = (courseNumber) => {
-    return {
-        type: 'EDIT_MESSAGE',
-        payload: courseNumber
-    };
-}
-
-export const editRating1 = (courseNumber) => {
-    return {
-        type: 'EDIT_RATING_1',
-        payload: courseNumber
-    };
-}
-export const editRating2 = (courseNumber) => {
-    return {
-        type: 'EDIT_RATING_2',
-        payload: courseNumber
-    };
-}
-export const editRating3 = (courseNumber) => {
-    return {
-        type: 'EDIT_RATING_3',
-        payload: courseNumber
-    };
-}
-export const editRating4 = (courseNumber) => {
-    return {
-        type: 'EDIT_RATING_4',
-        payload: courseNumber
-    };
-}
-export const editRating5 = (courseNumber) => {
-    return {
-        type: 'EDIT_RATING_5',
-        payload: courseNumber
-    };
-}
-
 export const fetched_courses = courses => {
     return {
         type: "FETCHED_COURSES",
@@ -127,13 +75,6 @@ export const update_filters = (yearLvFilter, ratingFilter) => {
     };
 };
 
-export const authenticated = (payload) => {
-    return {
-        type: 'AUTH',
-        payload: payload,
-    }
-}
-
 export const toggleAddReviewBox = (payload) => {
     return {
         type: 'TOGGLE',
@@ -155,39 +96,6 @@ export const addReviewReview = (payload) => {
     }
 }
 
-export const checkStatus = () => {
-    return function(dispatch , getState) {
-        return fetch(`http://localhost:9000/auth/checkStatus`, {credentials: 'include'})
-        .then(response => response.json())
-        .then(data => {
-            dispatch(authenticated(data));
-        })
-        .catch(err => {
-            let payload = {
-                isAuthenticated: false,
-                user: null,
-            }
-            dispatch(authenticated(payload));
-        })
-    }
-}
-
-export const logout = () => {
-    return function (dispatch, getState) {
-        return fetch(`http://localhost:9000/auth/logout`, {credentials: 'include'})
-        .then(response => response.json())
-        .then(data => {
-            dispatch(authenticated(data));
-        })
-        .catch(err => {
-            let payload = {
-                isAuthenticated: true,
-                user: null,
-            }
-            dispatch(authenticated(payload));
-        })
-    }
-}
 export const fetchReviews = (courseId) => {
   return function(dispatch, getState) {
     return fetch(`/reviews/course/`+courseId)
@@ -206,3 +114,44 @@ export const fetched_reviews = reviews => {
     data: reviews
   };
 };
+
+export const checkStatus = () => {
+    return function(dispatch , getState) {
+        return fetch(`/auth/checkStatus`, {credentials: 'include'})
+        .then(response => response.json())
+        .then(data => {
+            dispatch(authenticated(data));
+        })
+        .catch(err => {
+            let payload = {
+                isAuthenticated: false,
+                user: null,
+            }
+            dispatch(authenticated(payload));
+        })
+    }
+}
+
+export const logout = () => {
+    return function (dispatch, getState) {
+        return fetch(`/auth/logout`, {credentials: 'include'})
+        .then(response => response.json())
+        .then(data => {
+            dispatch(authenticated(data));
+        })
+        .catch(err => {
+            let payload = {
+                isAuthenticated: true,
+                user: null,
+            }
+            dispatch(authenticated(payload));
+        })
+    }
+}
+
+export const authenticated = (payload) => {
+    return {
+        type: 'AUTH',
+        payload: payload,
+    }
+}
