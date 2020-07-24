@@ -1,8 +1,6 @@
 const router = require("express").Router();
 const passport = require("passport");
 
-const CLIENT_BASE_URL = process.env.CLIENT_BASE_URL;
-
 const authCheck = (req, res, next) => {
   if (!req.user) {
     res.status(200).json({
@@ -38,8 +36,8 @@ router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
 router.get(
   "/google/redirect",
   passport.authenticate("google", {
-    successRedirect: CLIENT_BASE_URL + '/homepage',
-    failureRedirect: CLIENT_BASE_URL + '/login'
+    successRedirect: '/homepage',
+    failureRedirect: '/login'
   })
 );
 
@@ -48,8 +46,8 @@ router.get('/facebook', passport.authenticate('facebook', { scope: ['email'] }))
 router.get(
   '/facebook/redirect',
   passport.authenticate('facebook', {
-    successRedirect: CLIENT_BASE_URL + '/homepage',
-    failureRedirect: CLIENT_BASE_URL + '/login'
+    successRedirect: '/homepage',
+    failureRedirect: '/login'
   })
 );
 
