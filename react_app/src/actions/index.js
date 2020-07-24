@@ -194,12 +194,6 @@ export const addReview = (review, rating, courseId) => {
         });
     }
 }
-export const fetched_reviews = reviews => {
-  return {
-    type: "FETCHED_REVIEWS",
-    data: reviews
-  };
-};
 
 export const change_page = page => {
     return {
