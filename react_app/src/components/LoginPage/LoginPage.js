@@ -6,11 +6,11 @@ import {connect} from 'react-redux';
 class LoginPage extends React.Component {
 
     handleFacebookLogin = () => {
-        window.open('http://localhost:9000/auth/facebook','_self');
+        window.open('/auth/facebook','_self');
     }
 
     handleGoogleLogin = () => {
-        window.open('http://localhost:9000/auth/google', '_self');
+        window.open('/auth/google', '_self');
     }
 
     render() {
