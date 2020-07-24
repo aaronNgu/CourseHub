@@ -18,9 +18,7 @@ const courseReducer = (courseList = {}, action) => {
         return courseList;
     }
     if (action.type === 'FETCHED_COURSES') {
-        return Object.assign({}, courseList,
-            action.data
-        );
+        return Object.assign({}, action.data);
     }
     if (action.type === 'ADDED_COURSE') {
         return Object.assign({}, courseList,
