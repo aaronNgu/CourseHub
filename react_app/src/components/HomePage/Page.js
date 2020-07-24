@@ -1,12 +1,13 @@
 import React from 'react';
 import Pagination from '@material-ui/lab/Pagination';
 import {connect} from 'react-redux';
-import {change_page} from '../../actions';
+import {change_page, fetchCourses} from '../../actions';
 
 class Page extends React.Component{
 
     handleChange = (event, value) => {
         this.props.change_page(value);
+        this.props.fetchCourses(value);
     }
 
     render() {
@@ -25,4 +26,4 @@ const mapStateToProps = (state) => {
         current: state.currentPage
     }
 }
-export default connect(mapStateToProps,{change_page})(Page);
+export default connect(mapStateToProps,{change_page, fetchCourses})(Page);
