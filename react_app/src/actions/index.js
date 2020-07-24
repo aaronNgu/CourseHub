@@ -169,6 +169,8 @@ export const addReview = (review, rating, courseId) => {
         .catch((error) => {
             console.error(error);
         });
+    }
+}
 
 export const authenticated = (payload) => {
     return {
