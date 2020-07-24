@@ -151,6 +151,29 @@ export const logout = () => {
     }
 }
 
+export const addReview = (review, rating, courseId) => {
+    return function(dispatch, getState) {
+        return fetch(`/reviews/`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                Course_id: courseId, 
+                Rating: rating, 
+                Comments: review
+            }),
+            credentials: 'include'
+        })
+        .then((responseJson) => {
+            dispatch(fetchReviews(courseId));
+            dispatch(toggleAddReviewBox(false));
+            return responseJson.success;
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+}
+
 export const authenticated = (payload) => {
     return {
         type: 'AUTH',
