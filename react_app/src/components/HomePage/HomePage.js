@@ -1,7 +1,7 @@
 import React from 'react';
 import CourseItemList from '../HomePage/CourseItemList';
 import "./HomePage.css"
-import Page from './Pagination';
+import Page from './Page';
 
 const HomePage = () => {
     return (
