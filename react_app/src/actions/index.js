@@ -206,3 +206,10 @@ export const fetched_reviews = reviews => {
     data: reviews
   };
 };
+
+export const change_page = page => {
+    return {
+        type: "CHANGE_PAGE",
+        data: page
+    }
+}
