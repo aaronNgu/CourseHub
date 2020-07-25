@@ -1,11 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-<<<<<<< HEAD
 // require('dotenv').config();
-=======
-require('dotenv').config();
 const User = require("./models/user");
->>>>>>> db-integration-with-login-spandy
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT,
