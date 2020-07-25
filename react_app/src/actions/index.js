@@ -1,18 +1,4 @@
 
-export const deleteMessage = (courseNumber) => {
-    return {
-        type: 'DELETE_MESSAGE',
-        payload: courseNumber
-    };
-}
-
-export const deleteAllMessages = (courseList) => {
-    return {
-        type: 'DELETE_ALL_MESSAGES',
-        payload: courseList
-    };
-}
-
 export const fetched_courses = courses => {
     return {
         type: "FETCHED_COURSES",
@@ -164,6 +150,25 @@ export const logout = () => {
         })
     }
 }
+
+export const fetchCourseInfo = (courseId) => {
+    return function(dispatch) {
+        return fetch(`/courses/`+courseId)
+            .then(
+                data => data.json())
+            .then(data => {
+                dispatch(fetched_course_info(data))}
+            )
+            .catch(err => console.log(err));
+    };
+}
+
+export const fetched_course_info = courseInfo => {
+    return {
+        type: "FETCHED_COURSE_INFO",
+        data: courseInfo
+    };
+};
 
 export const authenticated = (payload) => {
     return {

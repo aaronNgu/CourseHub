@@ -28,11 +28,6 @@ class Header extends React.Component {
                     </li>
                     <div className="right">
                         <li>
-                            <Link to="/coursepage" className="link right">
-                                Temp. Course Page
-                            </Link>
-                        </li>
-                        <li>
                             <Link to="/about" className="link right">
                                 About
                             </Link>
