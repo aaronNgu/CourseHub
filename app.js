@@ -19,6 +19,7 @@ var reviewsRouter = require('./routes/reviews');
 var authRouter = require('./routes/auth-routes');
 
 const config = process.env;
+const User = require("./models/user");
 
 // CITATION: used https://medium.com/free-code-camp/how-to-set-up-twitter-oauth-using-passport-js-and-reactjs-9ffa6f49ef0
 // tutorial for login oauth setup
@@ -33,13 +34,19 @@ mongoose.connect('mongodb+srv://' + config.DB_USER + ':' + config.DB_PW + '@sand
   })
   .catch((err) => console.error(err));
 
-// putting user profile into cookie
 passport.serializeUser((user, done) => {
   done(null, user);
 });
 
+// deserialize the cookieUserId to user in the database
 passport.deserializeUser((user, done) => {
-  done(null, user);
+  User.findById(user._id)
+    .then(user => {
+      done(null, user);
+    })
+    .catch(e => {
+      done(new Error("Failed to deserialize an user"));
+    });
 });
 
 // view engine setup
