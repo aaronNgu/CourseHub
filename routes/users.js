@@ -35,8 +35,8 @@ router.get('/:userId', function (req, res, next) {
 
 router.post('/', function(req, res, next) {
   const newUser = new User({
-      FirstName: req.body.FirstName,
-      _id: req.body._id
+      _id: req.body._id,
+      displayName: req.body.displayName,
   })
   newUser.save().then(result => {
     console.log(result);
