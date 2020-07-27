@@ -51,4 +51,10 @@ router.get(
   })
 );
 
+router.post(
+  '/facebook/deauthorize', (req, res) => {
+    
+  }
+);
+
 module.exports = router;
