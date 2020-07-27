@@ -5,13 +5,15 @@ export const fetched_courses = courses => {
     };
 };
 
-export const fetchCourses = () => {
-    return function (dispatch) {
-        return fetch(`/courses`)
+export const fetchCourses = (currentPage) => {
+    return function (dispatch, getState) {
+        const url = `/courses?page=` + currentPage;
+        return fetch(url)
             .then(
                 data => data.json())
             .then(data => {
-                    dispatch(fetched_courses(data))
+                    dispatch(change_page_count(data['pageCount'])) 
+                    dispatch(fetched_courses(data['data']))
                 }
             )
             .catch(err => console.log(err));
@@ -198,3 +200,18 @@ export const authenticated = (payload) => {
         payload: payload,
     }
 }
+
+export const change_page = page => {
+    return {
+        type: "CHANGE_PAGE",
+        data: page
+    }
+}
+
+export const change_page_count = count => {
+    return {
+        type: "CHANGE_PAGE_COUNT",
+        data: count
+    }
+}
+

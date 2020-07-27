@@ -5,13 +5,24 @@ const Course = require('../models/course')
 
 /* GET Courses listing. */
 router.get('/', function (req, res, next) {
+
+  const pagenumber = typeof req.query.page === 'undefined' ? 0 : (req.query.page - 1 );
+
   res.setHeader('Content-Type', 'application/json');
-  Course.find()
+  Course.find({},{}, {skip: 10 * pagenumber, limit:10})
       .populate('Course')
         .exec()
         .then(docs =>{
-          console.log(docs);
-          res.status(200).json(docs);
+          Course.countDocuments()
+            .then(count => {
+              package = { 
+                pageCount : Math.floor(count/10) + 1,
+                data: docs};
+              res.status(200).json(package);
+            })
+            .catch(err => {
+              res.status(500).json({error: err});
+            })
         })
         .catch(err => {
           console.log(err);

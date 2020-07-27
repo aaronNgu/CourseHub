@@ -2,6 +2,7 @@ import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import authReducer from './authReducer';
 import {addReviewBox, addReviewRating, addReviewReview} from './addReviewBoxReducer';
+import {countPage, currentPage} from './paginationReducer';
 
 const yearLvFilter = ['100', '200', '300', '400', '500', '600'];
 const ratingFilter = ['1', '2', '3', '4', '5', '-'];
@@ -17,9 +18,7 @@ const courseReducer = (courseList = {}, action) => {
         return courseList;
     }
     if (action.type === 'FETCHED_COURSES') {
-        return Object.assign({}, courseList,
-            action.data
-        );
+        return Object.assign({}, action.data);
     }
     if (action.type === 'ADDED_COURSE') {
         return Object.assign({}, courseList,
@@ -61,7 +60,9 @@ const allReducers = combineReducers({
     addReviewRating: addReviewRating,
     addReviewReview: addReviewReview,
     reviewList: reviewReducer,
-    courseInfo: courseInfoReducer
+    courseInfo: courseInfoReducer,
+    countPage: countPage, 
+    currentPage: currentPage,
 });
 
 const store = createStore(allReducers, applyMiddleware(thunk))
