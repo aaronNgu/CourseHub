@@ -26,4 +26,5 @@ const mapStateToProps = (state) => {
         current: state.currentPage
     }
 }
+
 export default connect(mapStateToProps,{change_page, fetchCourses})(Page);

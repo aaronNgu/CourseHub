@@ -200,6 +200,13 @@ export const addReview = (review, rating, courseId) => {
     }
 }
 
+export const authenticated = (payload) => {
+    return {
+        type: 'AUTH',
+        payload: payload,
+    }
+}
+
 export const change_page = page => {
     return {
         type: "CHANGE_PAGE",
