@@ -53,8 +53,14 @@ router.get(
 
 router.post(
   '/facebook/deauthorize', (req, res) => {
-    
+    // TODO: handle facebook deauthorize 
   }
 );
+
+router.post{
+  '/facebook/delete_data', (req, res) => {
+    // TODO: handle delete data
+  }
+};
 
 module.exports = router;
