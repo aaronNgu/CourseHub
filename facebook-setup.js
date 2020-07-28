@@ -1,6 +1,6 @@
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
-// require('dotenv').config({ silent: process.env.NODE_ENV === 'production' });
+require('dotenv').config({ silent: process.env.NODE_ENV === 'production' });
 const User = require("./models/user");
 
 passport.use(new FacebookStrategy({
