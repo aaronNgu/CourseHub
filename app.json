@@ -1,8 +1,0 @@
-{
-    "env": {
-        "BASE_URL": {
-            "description": "base url for review app",
-            "value": "https://#{HEROKU_APP_NAME}.herokuapp.com"
-        }
-    }
-}

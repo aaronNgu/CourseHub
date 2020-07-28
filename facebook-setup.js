@@ -6,7 +6,7 @@ const User = require("./models/user");
 passport.use(new FacebookStrategy({
 	clientID: process.env.FB_CLIENT,
 	clientSecret: process.env.FB_SECRET,
-	callbackURL: process.env.BASE_URL + 'auth/facebook/redirect',
+	callbackURL: process.env.BASE_URL + '/auth/facebook/redirect',
 },
 async (token, tokenSecret, profile, done) => {
 // find current user in UserModel

@@ -51,9 +51,4 @@ router.get(
   })
 );
 
-router.get('/getbaseurl'
-  , (req, res) => {
-    res.status(200).json({"env": process.env.BASE_URL + "auth/facebook/redirect"});
-  })
-
 module.exports = router;
