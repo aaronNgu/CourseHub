@@ -1,0 +1,7 @@
+{
+    "env": {
+        "BASE_URL": {
+            "value": "https://coursehub-pr-#{HEROKU_PR_NUMBER}.herokuapp.com"
+        }
+    }
+}
