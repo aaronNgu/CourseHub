@@ -2,7 +2,7 @@
     "env": {
         "BASE_URL": {
             "description": "base url for review app",
-            "value": "https://coursehub-pr-#{HEROKU_PR_NUMBER}.herokuapp.com"
+            "value": "https://#{HEROKU_APP_NAME}.herokuapp.com"
         }
     }
 }
