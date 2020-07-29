@@ -6,7 +6,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from '@material-ui/core/styles';
 import {connect} from 'react-redux';
-import {search} from '../../actions';
+import {searchUpdate} from '../../actions';
 
 const useStyles = makeStyles({
     root: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 });
 
 
-const SearchBar = ({searchString, search}) => {
+const SearchBar = ({searchString, searchUpdate}) => {
 
     const classes = useStyles();
 
@@ -35,7 +35,7 @@ const SearchBar = ({searchString, search}) => {
                 className={classes.root}
                 placeholder='ENGL112'
                 value={searchString}
-                onChange={(event, newValue) => {search(event.target.value)}}
+                onChange={(event, newValue) => {searchUpdate(event.target.value)}}
                 InputProps={{
                     className: classes.input,
                     endAdornment: (
