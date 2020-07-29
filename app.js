@@ -8,7 +8,7 @@ var logger = require('morgan');
 var cors = require('cors');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
-require('dotenv').config();
+require('dotenv').config({ silent: process.env.NODE_ENV === 'production' });
 require('./facebook-setup');
 require('./google-setup');
 
