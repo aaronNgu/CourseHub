@@ -21,7 +21,9 @@ const useStyles = makeStyles({
 });
 
 const SearchBar = () => {
+
     const classes = useStyles();
+
     return (<div className='searchBox content'>
         <div>
             <Typography variant="h5"> Find a course</ Typography>
