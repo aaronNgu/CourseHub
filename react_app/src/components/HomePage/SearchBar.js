@@ -8,9 +8,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     root: {
-        '& .Mui-focused': {
-            color: 'white',
-          }, 
         '& .MuiOutlinedInput-root': {
             '&.Mui-focused fieldset': {
                 borderColor: 'black',
@@ -18,6 +15,7 @@ const useStyles = makeStyles({
         }
     },
     input:  {
+        height: '40px',
         background: 'white',
     }
 });
