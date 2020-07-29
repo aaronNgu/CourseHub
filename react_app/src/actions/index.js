@@ -1,4 +1,4 @@
-
+/* Courses Action */
 export const fetched_courses = courses => {
     return {
         type: "FETCHED_COURSES",
@@ -70,6 +70,7 @@ export const deleteCourse = courseId => {
     };
 };
 
+/* Search and Filter Action */
 export const update_filters = (yearLvFilter, ratingFilter) => {
     return {
         type: "UPDATE_FILTERS",
@@ -77,6 +78,14 @@ export const update_filters = (yearLvFilter, ratingFilter) => {
     };
 };
 
+export const search = (searchString) => {
+    return {
+        type: "UPDATE_SEARCH",
+        payload: searchString
+    }
+}
+
+/* Reviews Action */
 export const toggleAddReviewBox = (payload) => {
     return {
         type: 'TOGGLE',
@@ -117,6 +126,30 @@ export const fetched_reviews = reviews => {
   };
 };
 
+export const addReview = (review, rating, courseId) => {
+    return function(dispatch, getState) {
+        return fetch(`/reviews/`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                Course_id: courseId, 
+                Rating: rating, 
+                Comments: review
+            }),
+            credentials: 'include'
+        })
+        .then((responseJson) => {
+            dispatch(fetchReviews(courseId));
+            dispatch(toggleAddReviewBox(false));
+            return responseJson.success;
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+}
+
+/* Authentication Action */
 export const checkStatus = () => {
     return function(dispatch , getState) {
         return fetch(`/auth/checkStatus`, {credentials: 'include'})
@@ -151,29 +184,6 @@ export const logout = () => {
     }
 }
 
-export const addReview = (review, rating, courseId) => {
-    return function(dispatch, getState) {
-        return fetch(`/reviews/`, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                Course_id: courseId, 
-                Rating: rating, 
-                Comments: review
-            }),
-            credentials: 'include'
-        })
-        .then((responseJson) => {
-            dispatch(fetchReviews(courseId));
-            dispatch(toggleAddReviewBox(false));
-            return responseJson.success;
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-    }
-}
-
 export const authenticated = (payload) => {
     return {
         type: 'AUTH',
@@ -181,6 +191,7 @@ export const authenticated = (payload) => {
     }
 }
 
+/* Pagination */
 export const change_page = page => {
     return {
         type: "CHANGE_PAGE",

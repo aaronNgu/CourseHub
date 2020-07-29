@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import authReducer from './authReducer';
 import {addReviewBox, addReviewRating, addReviewReview} from './addReviewBoxReducer';
 import {countPage, currentPage} from './paginationReducer';
+import {searchString} from './searchReducer';
 
 const yearLvFilter = ['100', '200', '300', '400', '500', '600'];
 const ratingFilter = ['1', '2', '3', '4', '5', '-'];
@@ -57,6 +58,7 @@ const allReducers = combineReducers({
     reviewList: reviewReducer,
     countPage: countPage, 
     currentPage: currentPage,
+    searchString: searchString,
 });
 
 const store = createStore(allReducers, applyMiddleware(thunk))
