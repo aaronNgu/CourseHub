@@ -1,13 +1,18 @@
 import React from 'react';
 import "./CoursePage.css"
-import { Typography, Box } from '@material-ui/core';
+import {Box, Typography} from '@material-ui/core';
 import Rating from './Rating';
 import RateCourseButton from './RateCourseButton';
 import {connect} from 'react-redux';
-import {toggleAddReviewBox} from '../../actions';
+import {fetchCourseInfo, fetchReviews, toggleAddReviewBox} from '../../actions';
 
 class CourseOverview extends React.Component {
-    
+
+    componentDidMount() {
+        this.props.dispatch(fetchCourseInfo(this.props.id));
+        this.props.dispatch(fetchReviews(this.props.id));
+    };
+
     handleRateCourse = () => {
         const auth = this.props.auth.isAuthenticated;
         if (auth) {
@@ -21,21 +26,23 @@ class CourseOverview extends React.Component {
         return <Box className='courseOverview content'>
 
             <Box className='courseOverviewHeader'>
-                <Typography variant='h5'>{'CPSC110'} </Typography>
-                <Typography variant='h5'>{'Computations, Programs, and Programming'}</Typography>
+                <Typography variant='h5'>{this.props.id} </Typography>
+                <Typography variant='h5'>{this.props.courseInfo.description}</Typography>
                 <RateCourseButton handleRateCourse={this.handleRateCourse}/>
             </Box>
 
             <Box className='courseOverviewHorizontal'>
                 <Box className='courseOverviewVerticalLeft'>
                     <Typography variant='h6'
-                        style={{ whiteSpace: 'pre-line' }}>{'Overall \n Rating'}</Typography>
-                    <Rating rating='5' />
+                                style={{whiteSpace: 'pre-line'}}>{'Overall \n Rating'}</Typography>
+                    <Rating rating={this.props.courseInfo.overall_rating}/>
                 </Box>
 
                 <Box className='courseOverviewVerticalRight'>
-                    <Typography variant='h6'>{'Top Review'} </Typography>
-                    <Typography variant='body2'>{'It was an awesome course!'}</Typography>
+                    <Typography variant='h6'>{'Most Recent Review'} </Typography>
+                    <Typography variant='body2'>
+                        {(!Array.isArray(this.props.reviewList))? undefined: (this.props.reviewList.length > 0) ? this.props.reviewList[this.props.reviewList.length -1].Comments : 'No reviews yet!'}
+                    </Typography>
                 </Box>
             </Box>
 
@@ -44,7 +51,11 @@ class CourseOverview extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {auth: state.auth};
+    return {
+        auth: state.auth,
+        courseInfo: state.courseInfo,
+        reviewList: state.reviewList
+    };
 }
 
 export default connect(mapStateToProps)(CourseOverview);

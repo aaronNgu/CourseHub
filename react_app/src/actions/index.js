@@ -13,7 +13,7 @@ export const fetchCourses = (currentPage) => {
             .then(
                 data => data.json())
             .then(data => {
-                    dispatch(change_page_count(data['pageCount'])) 
+                    dispatch(change_page_count(data['pageCount']))
                     dispatch(fetched_courses(data['data']))
                 }
             )
@@ -117,6 +117,26 @@ export const fetched_reviews = reviews => {
   };
 };
 
+export const fetchCourseInfo = (courseId) => {
+    return function (dispatch) {
+        return fetch(`/courses/` + courseId)
+            .then(
+                data => data.json())
+            .then(data => {
+                    dispatch(fetched_course_info(data))
+                }
+            )
+            .catch(err => console.log(err));
+    };
+}
+
+export const fetched_course_info = courseInfo => {
+    return {
+        type: "FETCHED_COURSE_INFO",
+        data: courseInfo
+    };
+};
+
 export const checkStatus = () => {
     return function(dispatch , getState) {
         return fetch(`/auth/checkStatus`, {credentials: 'include'})
@@ -157,8 +177,8 @@ export const addReview = (review, rating, courseId) => {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                Course_id: courseId, 
-                Rating: rating, 
+                Course_id: courseId,
+                Rating: rating,
                 Comments: review
             }),
             credentials: 'include'
@@ -194,4 +214,3 @@ export const change_page_count = count => {
         data: count
     }
 }
-
