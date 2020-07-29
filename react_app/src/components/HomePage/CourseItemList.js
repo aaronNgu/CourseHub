@@ -76,7 +76,6 @@ const mapStateToProps = (state) => {
         showFilters: state.showFilters,
         yearLvFilter: state.yearLvFilter,
         ratingFilter: state.ratingFilter,
-        searchString: state.searchString,
     };
 }
 

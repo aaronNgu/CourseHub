@@ -3,10 +3,7 @@ import thunk from 'redux-thunk';
 import authReducer from './authReducer';
 import {addReviewBox, addReviewRating, addReviewReview} from './addReviewBoxReducer';
 import {countPage, currentPage} from './paginationReducer';
-import {searchString} from './searchReducer';
-
-const yearLvFilter = ['100', '200', '300', '400', '500', '600'];
-const ratingFilter = ['1', '2', '3', '4', '5', '-'];
+import {searchString, filterReducer} from './searchFilterReducer';
 
 const courseReducer = (courseList = {}, action) => {
     if (action.type === 'DELETE_MESSAGE') {
@@ -31,13 +28,6 @@ const courseReducer = (courseList = {}, action) => {
     }
     return courseList;
 };
-
-const filterReducer = (filters = {yearLvFilter: yearLvFilter, ratingFilter: ratingFilter}, action) => {
-    if (action.type === 'UPDATE_FILTERS') {
-        return Object.assign({}, filters, action.payload);
-    }
-    return filters;
-}
 
 const reviewReducer = (reviewList = {}, action) => {
     if (action.type === 'FETCHED_REVIEWS') {
