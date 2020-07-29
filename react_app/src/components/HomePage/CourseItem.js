@@ -18,7 +18,7 @@ class CourseItem extends React.Component {
         let result = window.confirm("Are you sure you want to delete this course?");
         if (result) {
             console.log("Course: " + this.state.courseNumber + " is being deleted.");
-            this.props.deleteCourse(this.state.courseNumber);
+            this.props.deleteCourse(this.props.courseNumber);
         }
     }
 
