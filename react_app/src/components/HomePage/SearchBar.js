@@ -30,6 +30,7 @@ const SearchBar = () => {
             <TextField
                 variant='outlined'
                 className={classes.root}
+                placeholder='ENGL112'
                 InputProps={{
                     className: classes.input,
                     endAdornment: (
