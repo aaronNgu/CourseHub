@@ -25,6 +25,7 @@ const useStyles = makeStyles({
 
 const SearchBar = ({searchString, searchUpdate}) => {
 
+    // TODO: dispatch searchExecute once backend is ready
     const classes = useStyles();
 
     return (<div className='searchBox content'>
