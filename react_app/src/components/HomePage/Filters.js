@@ -49,7 +49,6 @@ class Filters extends React.Component {
 
     handleFilterUpdate = (newState) => {
         this.props.update_filters(newState.yearLvFilter, newState.ratingFilter);
-        this.props.updateFilters(newState.yearLvFilter, newState.ratingFilter);
     }
 
     render() {
