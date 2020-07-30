@@ -16,7 +16,7 @@ router.get('/', function (req, res, next) {
           Course.countDocuments()
             .then(count => {
               package = { 
-                pageCount : Math.floor(count/10) + 1,
+                pageCount : Math.floor(count/10),
                 data: docs};
               res.status(200).json(package);
             })
