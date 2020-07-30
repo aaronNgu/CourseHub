@@ -25,7 +25,7 @@ const App = () => {
                     <Route path="/homepage">
                         <HomePage/>
                     </Route>
-                    <Route path="/courses/:id"
+                    <Route path="/coursepage/:id"
                     render={(props) => <CoursePage id={props.match.params.id}/>}>
                     </Route>
                     <Route path="/contact">
