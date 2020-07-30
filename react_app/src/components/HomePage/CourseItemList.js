@@ -2,11 +2,8 @@ import React from 'react';
 import CourseItem from './CourseItem';
 import AddCourseFormDialog from './AddCourseFormDialog';
 import {connect} from 'react-redux';
-import {fetchCourses} from '../../actions';
+import {fetchCourses, change_page_count} from '../../actions';
 import Button from "@material-ui/core/Button";
-import InputBase from "@material-ui/core/InputBase";
-import IconButton from "@material-ui/core/IconButton";
-import SearchIcon from '@material-ui/icons/Search';
 import Filters from "./Filters";
 
 class CourseItemList extends React.Component {
@@ -14,7 +11,6 @@ class CourseItemList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchString: '',
             showFilters: false,
             yearLvFilter: ['100', '200', '300', '400', '500', '600'],
             ratingFilter: ['1', '2', '3', '4', '5', '-']
@@ -22,12 +18,9 @@ class CourseItemList extends React.Component {
         this.onFiltersUpdate = this.onFiltersUpdate.bind(this);
     }
 
-    handleChange = (e) => {
-        this.setState({searchString: e.target.value});
-    }
-
     componentDidMount() {
         this.props.dispatch(fetchCourses());
+        this.props.dispatch(change_page_count(0));
     };
 
     toggleFilter() {
@@ -45,15 +38,6 @@ class CourseItemList extends React.Component {
         return (<div className="reviewedCourses">
             <div className="courseListHeader content">
                 <p>Reviewed Courses</p>
-                <div className="searchBar">
-                    <InputBase
-                        placeholder="Search"
-                        onChange={this.handleChange}
-                    />
-                    <IconButton type="submit" aria-label="search">
-                        <SearchIcon/>
-                    </IconButton>
-                </div>
                 <div className="button">
                     <Button variant="outlined"
                             onClick={this.toggleFilter.bind(this)}
@@ -65,8 +49,10 @@ class CourseItemList extends React.Component {
                                                 updateFilters={this.onFiltersUpdate}/>) : null}
             <div className="courseList">
                 {
+                    Object.keys(this.props.courseList).length === 0 ? 
+                    <p> No results. :&#40;</p> :
                     Object.values(this.props.courseList)
-                        .filter(course => course._id.toString().toLowerCase().includes(this.state.searchString.toLowerCase()))
+                        .filter(course => course._id.toString().toLowerCase().includes(this.props.searchString.toLowerCase()))
                         .filter(course => this.state.yearLvFilter.includes((course._id.toString().slice(4, 5) + '00'))
                             && this.state.ratingFilter.includes(course.overall_rating.toString()))
                         .map((course, index) => {

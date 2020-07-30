@@ -1,4 +1,4 @@
-
+/* Courses Action */
 export const fetched_courses = courses => {
     return {
         type: "FETCHED_COURSES",
@@ -71,6 +71,27 @@ export const deleteCourse = courseId => {
     };
 };
 
+export const fetchCourseInfo = (courseId) => {
+    return function (dispatch) {
+        return fetch(`/courses/` + courseId)
+            .then(
+                data => data.json())
+            .then(data => {
+                    dispatch(fetched_course_info(data))
+                }
+            )
+            .catch(err => console.log(err));
+    };
+}
+
+export const fetched_course_info = courseInfo => {
+    return {
+        type: "FETCHED_COURSE_INFO",
+        data: courseInfo
+    };
+};
+
+/* Search and Filter Action */
 export const update_filters = (yearLvFilter, ratingFilter) => {
     return {
         type: "UPDATE_FILTERS",
@@ -78,6 +99,31 @@ export const update_filters = (yearLvFilter, ratingFilter) => {
     };
 };
 
+export const update_search = (searchString) => {
+    return {
+        type: "UPDATE_SEARCH",
+        payload: searchString
+    }
+}
+
+export const executeSearch = () => {
+    return function (dispatch, getState) {
+        /* TODO:  stubs for once backend is ready
+        const url = `/courses?page=` + currentPage;
+        return fetch(url)
+            .then(
+                data => data.json())
+            .then(data => {
+                    dispatch(change_page_count(data['pageCount'])) 
+                    dispatch(fetched_courses(data['data']))
+                }
+            )
+            .catch(err => console.log(err)); 
+        */
+    }
+}
+
+/* Reviews Action */
 export const toggleAddReviewBox = (payload) => {
     return {
         type: 'TOGGLE',
@@ -118,26 +164,30 @@ export const fetched_reviews = reviews => {
   };
 };
 
-export const fetchCourseInfo = (courseId) => {
-    return function (dispatch) {
-        return fetch(`/courses/` + courseId)
-            .then(
-                data => data.json())
-            .then(data => {
-                    dispatch(fetched_course_info(data))
-                }
-            )
-            .catch(err => console.log(err));
-    };
+export const addReview = (review, rating, courseId) => {
+    return function(dispatch, getState) {
+        return fetch(`/reviews/`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                Course_id: courseId, 
+                Rating: rating, 
+                Comments: review
+            }),
+            credentials: 'include'
+        })
+        .then((responseJson) => {
+            dispatch(fetchReviews(courseId));
+            dispatch(toggleAddReviewBox(false));
+            return responseJson.success;
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
 }
 
-export const fetched_course_info = courseInfo => {
-    return {
-        type: "FETCHED_COURSE_INFO",
-        data: courseInfo
-    };
-};
-
+/* Authentication Action */
 export const checkStatus = () => {
     return function(dispatch , getState) {
         return fetch(`/auth/checkStatus`, {credentials: 'include'})
@@ -172,29 +222,6 @@ export const logout = () => {
     }
 }
 
-export const addReview = (review, rating, courseId) => {
-    return function(dispatch, getState) {
-        return fetch(`/reviews/`, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                Course_id: courseId,
-                Rating: rating,
-                Comments: review
-            }),
-            credentials: 'include'
-        })
-        .then((responseJson) => {
-            dispatch(fetchReviews(courseId));
-            dispatch(toggleAddReviewBox(false));
-            return responseJson.success;
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-    }
-}
-
 export const authenticated = (payload) => {
     return {
         type: 'AUTH',
@@ -202,6 +229,7 @@ export const authenticated = (payload) => {
     }
 }
 
+/* Pagination */
 export const change_page = page => {
     return {
         type: "CHANGE_PAGE",
