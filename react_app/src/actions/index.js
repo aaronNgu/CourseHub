@@ -78,7 +78,7 @@ export const update_filters = (yearLvFilter, ratingFilter) => {
     };
 };
 
-export const searchUpdate = (searchString) => {
+export const update_search = (searchString) => {
     return {
         type: "UPDATE_SEARCH",
         payload: searchString
