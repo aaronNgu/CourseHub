@@ -48,7 +48,8 @@ router.post('/', function(req, res, next) {
   const newCourse = new Course({
       _id: req.body._id,
 overall_rating: req.body.overall_rating,
-description: req.body.description
+description: req.body.description,
+num_reviews: req.body.num_reviews
   })
   newCourse.save().then(result => {
     console.log(result);
