@@ -118,6 +118,26 @@ export const fetched_reviews = reviews => {
   };
 };
 
+export const fetchCourseInfo = (courseId) => {
+    return function (dispatch) {
+        return fetch(`/courses/` + courseId)
+            .then(
+                data => data.json())
+            .then(data => {
+                    dispatch(fetched_course_info(data))
+                }
+            )
+            .catch(err => console.log(err));
+    };
+}
+
+export const fetched_course_info = courseInfo => {
+    return {
+        type: "FETCHED_COURSE_INFO",
+        data: courseInfo
+    };
+};
+
 export const checkStatus = () => {
     return function(dispatch , getState) {
         return fetch(`/auth/checkStatus`, {credentials: 'include'})

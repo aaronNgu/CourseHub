@@ -40,12 +40,17 @@ const filterReducer = (filters = {yearLvFilter: yearLvFilter, ratingFilter: rati
 
 const reviewReducer = (reviewList = {}, action) => {
     if (action.type === 'FETCHED_REVIEWS') {
-  return Object.assign({}, reviewList,
-    action.data
-  );
-}
+      return action.data;
+    }
     return reviewList;
 };
+
+const courseInfoReducer = (courseInfo = {}, action) => {
+    if (action.type === 'FETCHED_COURSE_INFO') {
+        return Object.assign({}, courseInfo, action.data);
+    }
+    return courseInfo;
+}
 
 const allReducers = combineReducers({
     courseList: courseReducer,
@@ -55,7 +60,8 @@ const allReducers = combineReducers({
     addReviewRating: addReviewRating,
     addReviewReview: addReviewReview,
     reviewList: reviewReducer,
-    countPage: countPage, 
+    courseInfo: courseInfoReducer,
+    countPage: countPage,
     currentPage: currentPage,
 });
 

@@ -28,27 +28,22 @@ class Header extends React.Component {
                     </li>
                     <div className="right">
                         <li>
-                            <Link to="/coursepage" className="link right">
-                                Temp. Course Page
-                            </Link>
-                        </li>
-                        <li>
                             <Link to="/about" className="link right">
                                 About
                             </Link>
                         </li>
                         {
-                            auth.isAuthenticated ? 
+                            auth.isAuthenticated ?
                                 <li>
                                     <Link onClick={this.handleLogOut} to='#' className="link right">
-                                        Sign out 
+                                        Sign out
                                     </Link>
                                 </li>:
                                 <li>
                                     <Link to='/login' className="link right">
                                         Login
                                     </Link>
-                                </li>                      
+                                </li>
                         }
                         {   auth.isAuthenticated ?
                                 null:
