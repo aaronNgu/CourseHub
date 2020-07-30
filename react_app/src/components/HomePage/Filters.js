@@ -3,6 +3,7 @@ import {Box, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel} from
 import {connect} from 'react-redux'
 import "./HomePage.css"
 import {update_filters} from '../../actions';
+import UpdateButton from './UpdateButton';
 
 const yearLvList = ['100', '200', '300', '400', '500', '600'];
 const ratingList = ['1', '2', '3', '4', '5', '-'];
@@ -61,6 +62,7 @@ class Filters extends React.Component {
                             }
                         </FormGroup>
                     </FormControl>
+                    <UpdateButton/>
                 </div>
             </Box>
         );
