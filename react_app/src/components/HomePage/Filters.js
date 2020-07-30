@@ -10,35 +10,19 @@ const ratingList = ['1', '2', '3', '4', '5', '-'];
 class Filters extends React.Component {
 
     handleYearLvChange = (e) => {
-        let newState = this.props.filters;
-        if (this.props.yearFilter.includes(e.target.name)) {
-            newState = {
-                ...this.props.filters, yearLvFilter: this.props.yearFilter.filter((year) => {
-                    return year !== e.target.name
-                })
-            };
-        } else {
-            newState = {...this.props.filters, yearLvFilter: [...this.props.yearFilter, e.target.name]};
-        }
-        this.handleFilterUpdate(newState);
+        let newYearFilter = this.props.yearFilter.includes(e.target.name) ?
+                this.props.yearFilter.filter((year) => {return year !== e.target.name}) :
+                [...this.props.yearFilter, e.target.name];
+
+        this.props.update_filters(newYearFilter, this.props.ratingFilter);
     }
 
     handleRatingChange = (e) => {
-        let newState = this.props.filters;
-        if (this.props.ratingFilter.includes(e.target.name)) {
-            newState = {
-                ...this.props.filters, ratingFilter: this.props.ratingFilter.filter((rating) => {
-                    return rating !== e.target.name
-                })
-            };
-        } else {
-            newState = {...this.props.filters, ratingFilter: [...this.props.ratingFilter, e.target.name]};
-        }
-        this.handleFilterUpdate(newState);
-    }
+        let newRatingFilter = this.props.ratingFilter.includes(e.target.name) ?
+                this.props.ratingFilter.filter((rating) => {return rating !== e.target.name}) :
+                [...this.props.ratingFilter, e.target.name];
 
-    handleFilterUpdate = (newState) => {
-        this.props.update_filters(newState.yearLvFilter, newState.ratingFilter);
+        this.props.update_filters(this.props.yearFilter, newRatingFilter);
     }
 
     render() {
