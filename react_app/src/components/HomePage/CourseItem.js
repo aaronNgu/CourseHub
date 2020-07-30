@@ -41,7 +41,7 @@ class CourseItem extends React.Component {
                 <Box className='courseItemVerticalSides courseItemVerticalMiddle'
                      style={{paddingTop: '5px'}}
                 >
-                    <Link to={'/courses/' + this.props.courseNumber.toString()}
+                    <Link to={'/coursepage/' + this.props.courseNumber.toString()}
                             style={{textDecoration: 'none', color: 'black'}}>
                         <Typography variant='h5'>{this.props.courseNumber || 'N/A'} </Typography>
                     </Link>
