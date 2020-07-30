@@ -2,7 +2,7 @@ import React from 'react';
 import CourseItem from './CourseItem';
 import AddCourseFormDialog from './AddCourseFormDialog';
 import {connect} from 'react-redux';
-import {fetchCourses} from '../../actions';
+import {fetchCourses, change_page_count} from '../../actions';
 import Button from "@material-ui/core/Button";
 import Filters from "./Filters";
 
@@ -20,6 +20,7 @@ class CourseItemList extends React.Component {
 
     componentDidMount() {
         this.props.dispatch(fetchCourses());
+        this.props.dispatch(change_page_count(0));
     };
 
     toggleFilter() {
@@ -48,6 +49,8 @@ class CourseItemList extends React.Component {
                                                 updateFilters={this.onFiltersUpdate}/>) : null}
             <div className="courseList">
                 {
+                    Object.keys(this.props.courseList).length === 0 ? 
+                    <p> No results. :&#40;</p> :
                     Object.values(this.props.courseList)
                         .filter(course => course._id.toString().toLowerCase().includes(this.props.searchString.toLowerCase()))
                         .filter(course => this.state.yearLvFilter.includes((course._id.toString().slice(4, 5) + '00'))

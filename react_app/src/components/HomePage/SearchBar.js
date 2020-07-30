@@ -25,7 +25,6 @@ const useStyles = makeStyles({
 
 const SearchBar = ({searchString, searchUpdate}) => {
 
-    // TODO: dispatch searchExecute once backend is ready
     const classes = useStyles();
 
     return (<div className='searchBox content'>
@@ -41,7 +40,7 @@ const SearchBar = ({searchString, searchUpdate}) => {
                     className: classes.input,
                     endAdornment: (
                         <InputAdornment>
-                            <IconButton>
+                            <IconButton onClick={(event, newValue) => {/* TODO: dispatch action searchExecute once backend is ready*/}}>
                                 <SearchIcon />
                             </IconButton>
                         </InputAdornment>
@@ -57,4 +56,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {search})(SearchBar); 
+export default connect(mapStateToProps, {searchUpdate})(SearchBar); 
