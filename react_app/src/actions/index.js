@@ -85,7 +85,7 @@ export const update_search = (searchString) => {
     }
 }
 
-export const searchExecute = () => {
+export const executeSearch = () => {
     return function (dispatch, getState) {
         /* TODO:  stubs for once backend is ready
         const url = `/courses?page=` + currentPage;
