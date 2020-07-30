@@ -20,8 +20,6 @@ const useStyles = makeStyles({
 const AddReview = ({review, rating, toggle, toggleAddReviewBox, addReview}) => {
 
     const classes = useStyles();
-    // TODO: hardcoded for now too
-    const courseId = "CPSC110"
 
     const validateReview = (review, rating) => {
         if (review === '' || rating === null) {
@@ -33,7 +31,7 @@ const AddReview = ({review, rating, toggle, toggleAddReviewBox, addReview}) => {
 
     const handlePostReview = () => {
        if (validateReview(review, rating)) {
-            addReview(review, rating, courseId);
+            addReview(review, rating, this.props.id);
        }
     }
 
