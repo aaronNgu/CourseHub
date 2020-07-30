@@ -40,7 +40,7 @@ const SearchBar = ({searchString, update_search}) => {
                     className: classes.input,
                     endAdornment: (
                         <InputAdornment>
-                            <IconButton onClick={(event, newValue) => {/* TODO: dispatch action searchExecute once backend is ready*/}}>
+                            <IconButton onClick={(event, newValue) => {/* TODO: dispatch action executeSearch once backend is ready*/}}>
                                 <SearchIcon />
                             </IconButton>
                         </InputAdornment>
