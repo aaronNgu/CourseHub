@@ -13,7 +13,7 @@ export const fetchCourses = (currentPage) => {
             .then(
                 data => data.json())
             .then(data => {
-                    dispatch(change_page_count(data['pageCount'])) 
+                    dispatch(change_page_count(data['pageCount']))
                     dispatch(fetched_courses(data['data']))
                 }
             )
@@ -36,7 +36,8 @@ export const addCourse = (name, desc) => {
             body: JSON.stringify({
                 description: desc,
                 _id: name,
-                overall_rating: '-'
+                overall_rating: '-',
+                num_reviews: 0
             })
         })
             .then((responseJson) => {
@@ -67,6 +68,26 @@ export const deleteCourse = courseId => {
             .catch((error) => {
                 console.error(error);
             });
+    };
+};
+
+export const fetchCourseInfo = (courseId) => {
+    return function (dispatch) {
+        return fetch(`/courses/` + courseId)
+            .then(
+                data => data.json())
+            .then(data => {
+                    dispatch(fetched_course_info(data))
+                }
+            )
+            .catch(err => console.log(err));
+    };
+}
+
+export const fetched_course_info = courseInfo => {
+    return {
+        type: "FETCHED_COURSE_INFO",
+        data: courseInfo
     };
 };
 
@@ -222,4 +243,3 @@ export const change_page_count = count => {
         data: count
     }
 }
-

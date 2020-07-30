@@ -15,8 +15,9 @@ router.get('/', function (req, res, next) {
         .then(docs =>{
           Course.countDocuments()
             .then(count => {
+              let pageCount = count % 10 === 0 ? Math.floor(count/10):  Math.floor(count/10) + 1;
               package = { 
-                pageCount : Math.floor(count/10) + 1,
+                pageCount : pageCount,
                 data: docs};
               res.status(200).json(package);
             })
@@ -48,7 +49,8 @@ router.post('/', function(req, res, next) {
   const newCourse = new Course({
       _id: req.body._id,
 overall_rating: req.body.overall_rating,
-description: req.body.description
+description: req.body.description,
+num_reviews: req.body.num_reviews
   })
   newCourse.save().then(result => {
     console.log(result);

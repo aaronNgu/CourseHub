@@ -4,7 +4,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import "./HomePage.css"
 import { deleteCourse } from "../../actions";
 import {connect} from 'react-redux'
-
+import { Link } from 'react-router-dom'
 class CourseItem extends React.Component {
 
     constructor(props) {
@@ -18,7 +18,7 @@ class CourseItem extends React.Component {
         let result = window.confirm("Are you sure you want to delete this course?");
         if (result) {
             console.log("Course: " + this.state.courseNumber + " is being deleted.");
-            this.props.deleteCourse(this.state.courseNumber);
+            this.props.deleteCourse(this.props.courseNumber);
         }
     }
 
@@ -34,15 +34,18 @@ class CourseItem extends React.Component {
                                     style={{padding: '0px 22px',
                                             border: '5px',
                                             backgroundColor: '#E5A0A0'}}
-                        >{this.props.rating || 5}</Typography>
+                        >{this.props.rating || '-'}</Typography>
                     </Paper>
                 </Box>
 
                 <Box className='courseItemVerticalSides courseItemVerticalMiddle'
                      style={{paddingTop: '5px'}}
                 >
-                    <Typography variant='h5'>{this.props.courseNumber || 'CPSC110'} </Typography>
-                    <Typography variant='body2'>{this.props.review || 'It was an awesome course!'}</Typography>
+                    <Link to={'/coursepage/' + this.props.courseNumber.toString()}
+                            style={{textDecoration: 'none', color: 'black'}}>
+                        <Typography variant='h5'>{this.props.courseNumber || 'N/A'} </Typography>
+                    </Link>
+                    <Typography variant='body2'>{this.props.review || 'N/A'}</Typography>
                 </Box>
 
             </Box>
@@ -50,7 +53,7 @@ class CourseItem extends React.Component {
             <Box className='courseItemVerticalSides courseItemVerticalMiddle'
                  style={{paddingTop: '5px'}}
             >
-                <Typography variant='body2'>{this.props.date || '2/19/2020'}</Typography>
+                <Typography variant='body2'>{this.props.date || 'N/A'}</Typography>
             </Box>
             <div>
                 <IconButton aria-label="delete"
