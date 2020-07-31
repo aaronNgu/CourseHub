@@ -23,16 +23,22 @@ function AddCourseFormDialog(props) {
     setOpen(false);
   };
 
-  const handleAdminSubmit = (courseName, courseDescription) => {
+  const handleSubmit = (courseName, courseDescription) => {
 
+      props.dispatch(addCourse(courseName, courseDescription));
+      setOpen(false);
+      window.location.reload();
+    };
+
+
+  const handleAdminSubmit = (courseName, courseDescription) => {
     props.dispatch(addCourse(courseName, courseDescription));
-    props.dispatch(checkStatus());
     setOpen(false);
     window.location.reload();
   };
 
   const handleCustomerSubmit = (courseName, courseDescription) => {
-    props.dispatch(checkStatus());
+    // props.dispatch(checkStatus());
     setOpen(false);
     window.alert('This is a customer submission TODO: send email with Add-course info to admins.')
   };
@@ -47,7 +53,7 @@ if (userRole === 'Admin') {
         <DialogTitle id="form-dialog-title">Add Course</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To add course, please enter details below:
+            ADMIN: To add course, please enter details below:
           </DialogContentText>
           <TextField
             autoFocus
@@ -71,7 +77,7 @@ if (userRole === 'Admin') {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={() => handleAdminSubmit(courseName, courseDesc)} color="primary">
+          <Button onClick={() => handleSubmit(courseName, courseDesc)} color="primary">
             Submit
           </Button>
         </DialogActions>
@@ -88,7 +94,7 @@ if (userRole === 'Admin') {
         <DialogTitle id="form-dialog-title">Add Course</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            CUSTOMER: To add course, please enter details below:
+            Don't see the course you're looking for? Send us the course details and we'll add it for you!
           </DialogContentText>
           <TextField
             autoFocus
@@ -113,7 +119,7 @@ if (userRole === 'Admin') {
             Cancel
           </Button>
           <Button onClick={() => handleCustomerSubmit(courseName, courseDesc)} color="primary">
-            Submit
+            Send to Admins
           </Button>
         </DialogActions>
       </Dialog>
