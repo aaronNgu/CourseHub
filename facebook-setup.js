@@ -17,7 +17,8 @@ const currentUser = await User.findOne({
 if (!currentUser) {
 	const newUser = await new User({
 		_id: profile.id,
-		displayName: profile.displayName
+		displayName: profile.displayName,
+		role: 'Customer'
 	}).save();
 	if (newUser) {
 		done(null, newUser);

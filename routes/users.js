@@ -37,6 +37,7 @@ router.post('/', function(req, res, next) {
   const newUser = new User({
       _id: req.body._id,
       displayName: req.body.displayName,
+      role: 'Customer'
   })
   newUser.save().then(result => {
     console.log(result);

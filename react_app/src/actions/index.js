@@ -114,11 +114,11 @@ export const executeSearch = () => {
             .then(
                 data => data.json())
             .then(data => {
-                    dispatch(change_page_count(data['pageCount'])) 
+                    dispatch(change_page_count(data['pageCount']))
                     dispatch(fetched_courses(data['data']))
                 }
             )
-            .catch(err => console.log(err)); 
+            .catch(err => console.log(err));
         */
     }
 }
@@ -170,8 +170,8 @@ export const addReview = (review, rating, courseId) => {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                Course_id: courseId, 
-                Rating: rating, 
+                Course_id: courseId,
+                Rating: rating,
                 Comments: review
             }),
             credentials: 'include'
@@ -198,7 +198,7 @@ export const checkStatus = () => {
         .catch(err => {
             let payload = {
                 isAuthenticated: false,
-                user: null,
+                user: null
             }
             dispatch(authenticated(payload));
         })

@@ -7,12 +7,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {connect} from 'react-redux';
-import {addCourse} from '../../actions';
+import {addCourse, checkStatus, authenticated} from '../../actions';
 
 function AddCourseFormDialog(props) {
   const [open, setOpen] = React.useState(false);
   let courseName = '';
   let courseDesc = '';
+  let userRole = props.auth.user.role;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -22,13 +23,21 @@ function AddCourseFormDialog(props) {
     setOpen(false);
   };
 
-  const handleSubmit = (courseName, courseDescription) => {
+  const handleAdminSubmit = (courseName, courseDescription) => {
 
     props.dispatch(addCourse(courseName, courseDescription));
+    props.dispatch(checkStatus());
     setOpen(false);
     window.location.reload();
   };
 
+  const handleCustomerSubmit = (courseName, courseDescription) => {
+    props.dispatch(checkStatus());
+    setOpen(false);
+    window.alert('This is a customer submission TODO: send email with Add-course info to admins.')
+  };
+
+if (userRole === 'Admin') {
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
@@ -62,7 +71,48 @@ function AddCourseFormDialog(props) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={() => handleSubmit(courseName, courseDesc)} color="primary">
+          <Button onClick={() => handleAdminSubmit(courseName, courseDesc)} color="primary">
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+} else {
+  return (
+    <div>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Add a Course
+      </Button>
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Add Course</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            CUSTOMER: To add course, please enter details below:
+          </DialogContentText>
+          <TextField
+            autoFocus
+            required
+            margin="dense"
+            id="course_id"
+            label="CourseName"
+            onInput={ e=>courseName = e.target.value}
+            fullWidth
+          />
+          <TextField
+            required
+            margin="dense"
+            id="course_description"
+            label="Description"
+            onInput={ e=>courseDesc = e.target.value}
+            fullWidth
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={() => handleCustomerSubmit(courseName, courseDesc)} color="primary">
             Submit
           </Button>
         </DialogActions>
@@ -70,9 +120,13 @@ function AddCourseFormDialog(props) {
     </div>
   );
 }
-
-const mapStateToProps = (state) => {
-    return {courseList: state.courseList};
 }
 
-export default connect(mapStateToProps)(AddCourseFormDialog);
+const mapStateToProps = (state) => {
+    return {
+      courseList: state.courseList,
+      auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps, {checkStatus})(AddCourseFormDialog);
