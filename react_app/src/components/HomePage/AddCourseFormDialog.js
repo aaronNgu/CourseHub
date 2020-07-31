@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {connect} from 'react-redux';
-import {addCourse, checkStatus} from '../../actions';
+import {addCourse} from '../../actions';
 
 function AddCourseFormDialog(props) {
   const [open, setOpen] = React.useState(false);
@@ -23,24 +23,15 @@ function AddCourseFormDialog(props) {
     setOpen(false);
   };
 
-  const handleSubmit = (courseName, courseDescription) => {
-
+  const handleAdminSubmit = (courseName, courseDescription) => {
       props.dispatch(addCourse(courseName, courseDescription));
       setOpen(false);
       window.location.reload();
     };
 
-
-  const handleAdminSubmit = (courseName, courseDescription) => {
-    props.dispatch(addCourse(courseName, courseDescription));
-    setOpen(false);
-    window.location.reload();
-  };
-
   const handleCustomerSubmit = (courseName, courseDescription) => {
-    // props.dispatch(checkStatus());
     setOpen(false);
-    window.alert('This is a customer submission TODO: send email with Add-course info to admins.')
+    window.alert('TODO: send email with Add-course info to admins.')
   };
 
 if (userRole === 'Admin') {
@@ -53,7 +44,7 @@ if (userRole === 'Admin') {
         <DialogTitle id="form-dialog-title">Add Course</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            ADMIN: To add course, please enter details below:
+            For Admins: To add course, please enter details below:
           </DialogContentText>
           <TextField
             autoFocus
@@ -74,13 +65,13 @@ if (userRole === 'Admin') {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={() => handleSubmit(courseName, courseDesc)} color="primary">
-            Submit
-          </Button>
-        </DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={() => handleAdminSubmit(courseName, courseDesc)} color="primary">
+              Submit
+            </Button>
+          </DialogActions>
       </Dialog>
     </div>
   );
@@ -135,4 +126,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {checkStatus})(AddCourseFormDialog);
+export default connect(mapStateToProps)(AddCourseFormDialog);
