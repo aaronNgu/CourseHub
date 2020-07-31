@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     }
 });
 
-const AddReview = ({review, rating, toggle, toggleAddReviewBox, addReview}) => {
+const AddReview = ({review, rating, toggle, toggleAddReviewBox, addReview, id}) => {
 
     const classes = useStyles();
 
@@ -31,7 +31,7 @@ const AddReview = ({review, rating, toggle, toggleAddReviewBox, addReview}) => {
 
     const handlePostReview = () => {
        if (validateReview(review, rating)) {
-            addReview(review, rating, this.props.id);
+            addReview(review, rating, id);
        }
     }
 
