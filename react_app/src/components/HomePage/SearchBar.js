@@ -6,7 +6,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from '@material-ui/core/styles';
 import {connect} from 'react-redux';
-import {update_search} from '../../actions';
+import {update_search, executeSearch} from '../../actions';
 
 const useStyles = makeStyles({
     root: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 });
 
 
-const SearchBar = ({searchString, update_search}) => {
+const SearchBar = ({searchString, update_search, executeSearch, yearFilter, ratingFilter}) => {
 
     const classes = useStyles();
 
@@ -40,7 +40,7 @@ const SearchBar = ({searchString, update_search}) => {
                     className: classes.input,
                     endAdornment: (
                         <InputAdornment>
-                            <IconButton onClick={(event, newValue) => {/* TODO: dispatch action executeSearch once backend is ready*/}}>
+                            <IconButton onClick={(event, newValue) => {executeSearch(searchString, yearFilter, ratingFilter)}}>
                                 <SearchIcon />
                             </IconButton>
                         </InputAdornment>
@@ -53,7 +53,9 @@ const SearchBar = ({searchString, update_search}) => {
 const mapStateToProps = (state) => {
     return {
         searchString : state.searchString,
+        yearFilter: state.filters.yearLvFilter,
+        ratingFilter: state.filters.ratingFilter,
     }
 }
 
-export default connect(mapStateToProps, {update_search})(SearchBar); 
+export default connect(mapStateToProps, {update_search, executeSearch})(SearchBar); 
