@@ -13,7 +13,7 @@ function AddCourseFormDialog(props) {
   const [open, setOpen] = React.useState(false);
   let courseName = '';
   let courseDesc = '';
-  let userRole = props.auth.user.role;
+  let userRole = props.auth.userRole;
 
   const handleClickOpen = () => {
     setOpen(true);
