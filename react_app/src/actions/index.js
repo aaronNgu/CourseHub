@@ -109,7 +109,7 @@ export const update_search = (searchString) => {
 const formURL = (searchString, yearLvFilter, ratingFilter) => {
     let url =`/search?`
     if(searchString !== '' ) {
-        url += `string=`;
+        url += `searchString=`;
         url += encodeURIComponent(JSON.stringify(searchString));
     }
     if (yearLvFilter.length !== 0) {
