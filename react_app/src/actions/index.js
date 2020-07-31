@@ -106,20 +106,37 @@ export const update_search = (searchString) => {
     }
 }
 
-export const executeSearch = () => {
+const formURL = (searchString, yearLvFilter, ratingFilter) => {
+    let url =`/search?`
+    if(searchString !== '' ) {
+        url += `string=`;
+        url += encodeURIComponent(JSON.stringify(searchString));
+    }
+    if (yearLvFilter.length !== 0) {
+        url += url.charAt(url.length - 1) === '?' ? `years=` : `&years=`;
+        url += encodeURIComponent(JSON.stringify(yearLvFilter));
+    }
+    if (ratingFilter.length !== 0) {
+        url += url.charAt(url.length - 1) === '?' ? `ratings=` : `&ratings=`;
+        url += encodeURIComponent(JSON.stringify(ratingFilter));
+    }
+    return url;
+}
+
+export const executeSearch = (searchString, yearLvFilter, ratingFilter) => {
+
     return function (dispatch, getState) {
-        /* TODO:  stubs for once backend is ready
-        const url = `/courses?page=` + currentPage;
+        const url = formURL(searchString, yearLvFilter, ratingFilter)
         return fetch(url)
             .then(
                 data => data.json())
             .then(data => {
-                    dispatch(change_page_count(data['pageCount'])) 
-                    dispatch(fetched_courses(data['data']))
+                    console.log(data);
+                    // dispatch(change_page_count(data['pageCount'])) 
+                    // dispatch(fetched_courses(data['data']))
                 }
             )
             .catch(err => console.log(err)); 
-        */
     }
 }
 
