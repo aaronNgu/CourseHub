@@ -17,6 +17,7 @@ var usersRouter = require('./routes/users');
 var coursesRouter = require('./routes/courses');
 var reviewsRouter = require('./routes/reviews');
 var authRouter = require('./routes/auth-routes');
+var searchRouter = require('./routes/search');
 
 const config = process.env;
 const User = require("./models/user");
@@ -75,6 +76,7 @@ app.use('/users', usersRouter);
 app.use('/courses', coursesRouter);
 app.use('/reviews', reviewsRouter);
 app.use('/auth', authRouter);
+app.use('/search', searchRouter);
 
 app.use(history({verbose: true}));
 
