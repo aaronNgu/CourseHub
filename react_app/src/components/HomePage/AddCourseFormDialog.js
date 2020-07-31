@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {connect} from 'react-redux';
-import {addCourse, checkStatus, authenticated} from '../../actions';
+import {addCourse, checkStatus} from '../../actions';
 
 function AddCourseFormDialog(props) {
   const [open, setOpen] = React.useState(false);
