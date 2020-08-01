@@ -10,7 +10,8 @@ class CourseItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            courseNumber: this.props.courseNumber
+            courseNumber: this.props.courseNumber,
+            userRole: this.props.auth.userRole
         };
     }
 
@@ -49,27 +50,37 @@ class CourseItem extends React.Component {
                 </Box>
 
             </Box>
+
             <div className='courseItemVerticalSides'>
+
             <Box className='courseItemVerticalSides courseItemVerticalMiddle'
                  style={{paddingTop: '5px'}}
             >
                 <Typography variant='body2'>{this.props.date || 'N/A'}</Typography>
             </Box>
-            <div>
-                <IconButton aria-label="delete"
-                            className='courseItemVerticalSides courseItemVerticalMiddle'
-                            onClick={this.handleRemove.bind(this)}
-                >
-                    <DeleteIcon fontSize="small" />
-                </IconButton>
-            </div>
+
+            { this.props.auth.userRole === 'Admin' ?
+              <IconButton aria-label="delete"
+                          className='courseItemVerticalSides courseItemVerticalMiddle'
+                          onClick={this.handleRemove.bind(this)}>
+                  <DeleteIcon fontSize="small" />
+              </IconButton>
+              : null
+            }
+
             </div>
 
         </Box>;
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+      auth: state.auth
+    }
+}
+
 export default connect(
-    null,
+    (mapStateToProps),
     { deleteCourse }
 )(CourseItem)
