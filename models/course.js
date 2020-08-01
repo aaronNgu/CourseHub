@@ -8,4 +8,5 @@ const courseSchema = mongoose.Schema({
   num_reviews: Int32
 })
 
+courseSchema.index({ _id: 'text', overall_rating: 'text'});
 module.exports = mongoose.model('Course', courseSchema, 'Courses')
