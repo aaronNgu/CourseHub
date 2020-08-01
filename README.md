@@ -60,8 +60,8 @@ We are using Heroku to host our web app and our CD pipeline. Every time a pull r
 * **Pages**
 Because the list of courses that we have on the homepage may get too long for a user-friendly experience, we decided to implement pages of 10 courses per page. The courses on each page is fetched from the back end to reduce the time spent grabbing the entire list of courses from the database.
 
-* **Role-Based Routing**
-We also added in role-based routing. Because some actions should not be exposed to regular users (students) browsing the site, such as deleting or adding courses, we decided to add separate roles for administrators and generic users. Based on the role a user logs in with, they will be limited to only the necessary actions for their use case.
+* **Role-Based Access Control**
+We also added in role-based access control. Because some actions should not be exposed to regular users (students) browsing the site, such as deleting or adding courses, we decided to add separate roles for administrators and generic users. Based on the role a user logs in with, our front end rendering and back end routing will be different.
 
 ---
 **Next Steps:**
@@ -102,11 +102,12 @@ Illean:
 * Implemented 'Delete Course' functionality
 
 Spandana:
-* Set up Google login and linked authentication to back end
+* Set up Google login and database integration with passport authentication
 * Implemented 'Delete All Courses' functionality (removed later)
 * Created Header and Button component
 * Final code cleanup
 * Investigated and implemented role-based user routing
+* Handled user signup 
 ---
 **Relevant Links:**
 *  Trello:  https://trello.com/b/rjTfDo1R/coursehub
