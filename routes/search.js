@@ -1,44 +1,26 @@
 var express = require('express');
+const mongoose = require('mongoose')
+const Course = require('../models/course')
 const { body, validationResult, trim } = require('express-validator');
+const helper = require('./searchHelper');
 
 var router = express.Router();
 
-/* removes non aplhanumerics and spaces */
-const processSearchString = (string) => {
-    // remove non alphanumeric 
-    string = string.replace(/[^a-z0-9+]+/gi, '');
-    string = string.toUpperCase();
-    // remove space 
-    string = string.replace(/\s/g, '')
-    return string;
-};
+const searchHelper = (input) => {
+    let result = helper.generateMatch(input);
+    Course
+    .aggregate([
+        result
+    ]
+    )
+    .exec()
+    .then(docs => {
+        console.log(docs)
 
-const processArray = (arrayString) => {
-    try {
-        let result = JSON.parse(arrayString);
-        return Array.isArray(result) ? result : [];
-    } catch (err) {
-        return [];
-    }
-};
-
-const processInput = (req) => {
-    let result = {};
-    if (req.query.searchString) {
-        let string = processSearchString(req.query.searchString);
-        if (string.length > 0) {
-            result['searchString'] = string;
-        }
-    }
-    if (req.query.years) {
-        let years = processArray(req.query.years);
-        result['years'] = years;
-    }
-    if (req.query.ratings) {
-        let ratings = processArray(req.query.ratings);
-        result['ratings'] = ratings;
-    }
-    return result;
+    })
+    .catch(err => {
+        console.log(err);
+    });
 }
 
 const executeSearch = (req, res, next) => {
@@ -47,8 +29,9 @@ const executeSearch = (req, res, next) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    const input = processInput(req);
+    const input = helper.processInput(req);
     //  input - {searchString: <course name all caps>, years: ["100", "200", "300"], ratings: ["1", "2"]}
+    searchHelper(input);
     res.status(200).json('inside search');
 }
 
