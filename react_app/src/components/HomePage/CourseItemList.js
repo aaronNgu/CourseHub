@@ -45,7 +45,6 @@ class CourseItemList extends React.Component {
                     Object.keys(this.props.courseList).length === 0 ? 
                     <p> No results. :&#40;</p> :
                     Object.values(this.props.courseList)
-                        .filter(course => course._id.toString().toLowerCase().includes(this.props.searchString.toLowerCase()))
                         .map((course, index) => {
                             return <CourseItem
                                 key={index}
