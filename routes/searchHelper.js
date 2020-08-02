@@ -109,8 +109,25 @@ const generateCourseProjections = () => {
     return {'$project': {'overall_rating': 1, 'description': 1, 'num_reviews': 1}};
 };
 
+/* Helper to generate searchString conditions */
+const generateSearchQuery = (input) => {
+    let result = {};
+    if ('searchString' in input) {
+        result['_id'] = input ['searchString'];
+    }
+    return result; 
+};
+
+const generateSearchStringMatch = (input) => {
+    let result = {};
+    result['$match'] = generateSearchQuery(input);
+    return result;
+};
+
 module.exports = {generateMatch, 
     processInput, 
     getNumberOfPages, 
     get10NthFromStart,
-    generateCourseProjections,};
+    generateCourseProjections,
+    generateSearchStringMatch,
+};

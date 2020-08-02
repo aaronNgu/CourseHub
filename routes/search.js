@@ -3,20 +3,20 @@ const mongoose = require('mongoose')
 const Course = require('../models/course')
 const { body, validationResult, trim } = require('express-validator');
 const helper = require('./searchHelper');
-const { getNumberOfPages, get10NthFromStart } = require('./searchHelper');
 
 var router = express.Router();
 
 const searchHelper = (input, res) => {
-    let result = helper.generateMatch(input);
+    const searchString = helper.generateSearchStringMatch(input);
+    const yearAndRating = helper.generateMatch(input);
     const projections = helper.generateCourseProjections();
     Course
-    .aggregate([result, projections])
+    .aggregate([searchString, yearAndRating, projections])
     .exec()
     .then(docs => {
         const pagenumber = ('page' in input && input['page'] !== '0') ? (input['page'] - 1 ) : 0 ;
-        let pageCount = getNumberOfPages(docs);
-        let courses = get10NthFromStart(docs, pagenumber);
+        let pageCount = helper.getNumberOfPages(docs);
+        let courses = helper.get10NthFromStart(docs, pagenumber);
         const response = {
             pageCount: pageCount, 
             data: courses,
