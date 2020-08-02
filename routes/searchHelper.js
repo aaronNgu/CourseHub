@@ -61,7 +61,6 @@ const generateMatch = (input) => {
     let result =  { $match :  {}}
     if ('ratings' in input) {
         result['$match'] = generateRatingAndYearQuery(input);
-//        result['$match'] = generateRatingQueryArray(input);
         return result;
     }
     return result;
