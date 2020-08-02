@@ -3,19 +3,24 @@ const mongoose = require('mongoose')
 const Course = require('../models/course')
 const { body, validationResult, trim } = require('express-validator');
 const helper = require('./searchHelper');
+const { getNumberOfPages, get10NthFromStart } = require('./searchHelper');
 
 var router = express.Router();
 
 const searchHelper = (input, req, res) => {
     let result = helper.generateMatch(input);
     Course
-    .aggregate([
-        result
-    ]
-    )
+    .aggregate([result])
     .exec()
     .then(docs => {
-        res.status(200).json(docs);
+        const pagenumber = typeof req.query.page === 'undefined' ? 0 : (req.query.page - 1 );
+        let pageCount = getNumberOfPages(docs);
+        let courses = get10NthFromStart(docs, pagenumber);
+        const response = {
+            pageCount: pageCount, 
+            data: courses,
+        }
+        res.status(200).json(response);
     })
     .catch(err => {
         console.log(err);

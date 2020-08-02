@@ -1,5 +1,4 @@
 /* Helper to process inputs */
-// removes non aplhanumerics and spaces 
 const processSearchString = (string) => {
     // remove non alphanumeric 
     string = string.replace(/[^a-z0-9+]+/gi, '');
@@ -89,4 +88,17 @@ const generateMatch = (input) => {
     return result;
 }; 
 
-module.exports = {generateMatch, processInput};
+/* Helper to handle pagination */
+const getNumberOfPages = (array) => {
+    let count = array.length;
+    return count % 10 === 0 ?  Math.floor(count/10):  Math.floor(count/10) + 1;
+};
+
+/* returns 10 elements that are 'page'*10 away from the start of array*/
+const get10NthFromStart = (array , page) => {
+    // return the first tenth element if page is more then length 
+    if (array.length / 10 < page) {return array.splice(0, 10)};
+    return array.splice(page * 10, 10);
+};
+
+module.exports = {generateMatch, processInput, getNumberOfPages, get10NthFromStart};
