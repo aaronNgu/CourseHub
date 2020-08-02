@@ -11,12 +11,12 @@ const useStyles = makeStyles({
     }
 });
 
-const UpdateButton = ({executeSearch, searchString, yearFilter, ratingFilter}) => {
+const UpdateButton = ({executeSearch, searchString, yearFilter, ratingFilter, change_page}) => {
     const classes = useStyles();
 
     const handleSearch = () => {
+        change_page(1);
         executeSearch(0, searchString, yearFilter, ratingFilter);
-        change_page(0);
     }
     
     return <Button 
