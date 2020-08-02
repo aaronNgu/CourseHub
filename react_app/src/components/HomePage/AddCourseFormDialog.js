@@ -23,10 +23,14 @@ function AddCourseFormDialog(props) {
   };
 
   const handleSubmit = (courseName, courseDescription) => {
-
-    props.dispatch(addCourse(courseName, courseDescription));
-    setOpen(false);
-    window.location.reload();
+    if (courseName === "" || courseDescription === "") {
+      window.alert('Please do not leave the CourseName and Description fields empty.');
+      return;
+    } else {
+      props.dispatch(addCourse(courseName, courseDescription));
+      setOpen(false);
+      window.location.reload();
+    }
   };
 
   return (
