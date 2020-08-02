@@ -123,7 +123,7 @@ const formURL = (searchString, yearLvFilter, ratingFilter) => {
     return url;
 }
 
-export const executeSearch = (searchString, yearLvFilter, ratingFilter) => {
+export const executeSearch = (searchString, yearLvFilter, ratingFilter, page) => {
 
     return function (dispatch, getState) {
         const url = formURL(searchString, yearLvFilter, ratingFilter)

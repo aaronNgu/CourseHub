@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import {makeStyles} from '@material-ui/core/';
-import {executeSearch} from '../../actions';
+import {executeSearch, change_page} from '../../actions';
 import {connect} from 'react-redux';
 
 const useStyles = makeStyles({
@@ -15,7 +15,8 @@ const UpdateButton = ({executeSearch, searchString, yearFilter, ratingFilter}) =
     const classes = useStyles();
 
     const handleSearch = () => {
-        executeSearch(searchString, yearFilter, ratingFilter)
+        executeSearch(searchString, yearFilter, ratingFilter, 0)
+        change_page(0);
     }
     
     return <Button 
@@ -32,4 +33,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {executeSearch})(UpdateButton);
+export default connect(mapStateToProps, {executeSearch, change_page})(UpdateButton);
