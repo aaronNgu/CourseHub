@@ -13,6 +13,7 @@ function AddCourseFormDialog(props) {
   const [open, setOpen] = React.useState(false);
   let courseName = '';
   let courseDesc = '';
+  let userRole = props.auth.userRole;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -22,11 +23,15 @@ function AddCourseFormDialog(props) {
     setOpen(false);
   };
 
-  const handleSubmit = (courseName, courseDescription) => {
+  const handleAdminSubmit = (courseName, courseDescription) => {
+      props.dispatch(addCourse(courseName, courseDescription));
+      setOpen(false);
+      window.location.reload();
+    };
 
-    props.dispatch(addCourse(courseName, courseDescription));
+  const handleCustomerSubmit = (courseName, courseDescription) => {
     setOpen(false);
-    window.location.reload();
+    window.alert('TODO: send email with Add-course info to admins.')
   };
 
   return (
@@ -37,42 +42,62 @@ function AddCourseFormDialog(props) {
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Add Course</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To add course, please enter details below:
-          </DialogContentText>
-          <TextField
-            autoFocus
-            required
-            margin="dense"
-            id="course_id"
-            label="CourseName"
-            onInput={ e=>courseName = e.target.value}
-            fullWidth
-          />
-          <TextField
-            required
-            margin="dense"
-            id="course_description"
-            label="Description"
-            onInput={ e=>courseDesc = e.target.value}
-            fullWidth
-          />
+
+            {userRole === 'Admin' ?
+            <DialogContentText>
+                For Admins: To add course, please enter details below
+            </DialogContentText> :
+            <DialogContentText>
+                Don't see the course you're looking for? Send us the course details and we'll add it for you!
+            </DialogContentText>}
+
+            <TextField
+              autoFocus
+              required
+              margin="dense"
+              id="course_id"
+              label="CourseName"
+              onInput={ e=>courseName = e.target.value}
+              fullWidth
+            />
+            <TextField
+              required
+              margin="dense"
+              id="course_description"
+              label="Description"
+              onInput={ e=>courseDesc = e.target.value}
+              fullWidth
+            />
+
         </DialogContent>
         <DialogActions>
+
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={() => handleSubmit(courseName, courseDesc)} color="primary">
-            Submit
-          </Button>
+
+          {userRole === 'Admin' ?
+          <Button
+            onClick={() => handleAdminSubmit(courseName, courseDesc)} color="primary">
+              Submit
+          </Button> :
+          <Button
+            onClick={() => handleCustomerSubmit(courseName, courseDesc)} color="primary">
+              Send to Admins
+          </Button>}
+
         </DialogActions>
       </Dialog>
     </div>
   );
 }
 
+
 const mapStateToProps = (state) => {
-    return {courseList: state.courseList};
+    return {
+      courseList: state.courseList,
+      auth: state.auth
+    }
 }
 
 export default connect(mapStateToProps)(AddCourseFormDialog);
