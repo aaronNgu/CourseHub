@@ -46,8 +46,6 @@ class CourseItemList extends React.Component {
                     <p> No results. :&#40;</p> :
                     Object.values(this.props.courseList)
                         .filter(course => course._id.toString().toLowerCase().includes(this.props.searchString.toLowerCase()))
-                        .filter(course => this.props.yearFilter.includes((course._id.toString().slice(4, 5) + '00'))
-                            && this.props.ratingFilter.includes(course.overall_rating.toString()))
                         .map((course, index) => {
                             return <CourseItem
                                 key={index}

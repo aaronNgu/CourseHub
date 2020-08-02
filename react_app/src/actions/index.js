@@ -131,9 +131,8 @@ export const executeSearch = (searchString, yearLvFilter, ratingFilter) => {
             .then(
                 data => data.json())
             .then(data => {
-                    console.log(data);
-                    // dispatch(change_page_count(data['pageCount'])) 
-                    // dispatch(fetched_courses(data['data']))
+                    dispatch(change_page_count(data['pageCount'])) 
+                    dispatch(fetched_courses(data['data']))
                 }
             )
             .catch(err => console.log(err)); 
