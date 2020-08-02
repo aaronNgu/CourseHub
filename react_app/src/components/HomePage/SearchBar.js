@@ -6,7 +6,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from '@material-ui/core/styles';
 import {connect} from 'react-redux';
-import {update_search, executeSearch} from '../../actions';
+import {update_search, executeSearch, change_page} from '../../actions';
 
 const useStyles = makeStyles({
     root: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 });
 
 
-const SearchBar = ({searchString, update_search, executeSearch, yearFilter, ratingFilter}) => {
+const SearchBar = ({searchString, update_search, executeSearch, yearFilter, ratingFilter, change_page}) => {
 
     const classes = useStyles();
 
@@ -40,7 +40,9 @@ const SearchBar = ({searchString, update_search, executeSearch, yearFilter, rati
                     className: classes.input,
                     endAdornment: (
                         <InputAdornment>
-                            <IconButton onClick={(event, newValue) => {executeSearch(1, searchString, yearFilter, ratingFilter)}}>
+                            <IconButton onClick={(event, newValue) => {
+                                executeSearch(1, searchString, yearFilter, ratingFilter);
+                                change_page(1);}}>
                                 <SearchIcon />
                             </IconButton>
                         </InputAdornment>
@@ -58,4 +60,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {update_search, executeSearch})(SearchBar); 
+export default connect(mapStateToProps, {update_search, executeSearch, change_page})(SearchBar); 
