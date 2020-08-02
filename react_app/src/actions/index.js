@@ -121,13 +121,13 @@ const formURL = (searchString, yearLvFilter, ratingFilter, page) => {
         url += encodeURIComponent(JSON.stringify(ratingFilter));
     }
     if (page !== undefined) {
-        url += `page=`;
+        url += url.charAt(url.length - 1) === '?' ? `page=` : `&page=`;
         url += page;
     }
     return url;
 }
 
-export const executeSearch = (searchString, yearLvFilter, ratingFilter, page) => {
+export const executeSearch = (page, searchString, yearLvFilter, ratingFilter) => {
 
     return function (dispatch, getState) {
         const url = formURL(searchString, yearLvFilter, ratingFilter, page)
