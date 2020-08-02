@@ -113,7 +113,9 @@ const generateCourseProjections = () => {
 const generateSearchQuery = (input) => {
     let result = {};
     if ('searchString' in input) {
-        result['_id'] = input ['searchString'];
+        let regexToMatch = '^' + input['searchString'];
+        let temp = {'$regex': regexToMatch, '$options': 'i'};
+        result['_id'] = temp;
     }
     return result; 
 };
