@@ -36,8 +36,6 @@ export const addCourse = (name, desc) => {
             body: JSON.stringify({
                 description: desc,
                 _id: name,
-                overall_rating: '-',
-                num_reviews: 0
             })
         })
             .then((responseJson) => {

@@ -5,7 +5,8 @@ const courseSchema = mongoose.Schema({
   _id: String,
   overall_rating: String,
   description: String,
-  num_reviews: Int32
+  num_reviews: Int32,
+  year: String,
 })
 
 courseSchema.index({ _id: 'text', overall_rating: 'text'});

@@ -24,10 +24,15 @@ function AddCourseFormDialog(props) {
   };
 
   const handleAdminSubmit = (courseName, courseDescription) => {
+    if (courseName === "" || courseDescription === "") {
+      window.alert('Please do not leave the CourseName and Description fields empty.');
+      return;
+    } else {
       props.dispatch(addCourse(courseName, courseDescription));
       setOpen(false);
       window.location.reload();
-    };
+    }
+  };
 
   const handleCustomerSubmit = (courseName, courseDescription) => {
     setOpen(false);
@@ -98,6 +103,6 @@ const mapStateToProps = (state) => {
       courseList: state.courseList,
       auth: state.auth
     }
-}
+};
 
 export default connect(mapStateToProps)(AddCourseFormDialog);
