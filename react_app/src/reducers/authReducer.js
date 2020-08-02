@@ -2,6 +2,7 @@
 const initialState = {
     isAuthenticated: false,
     user: null,
+    userRole: null
 }
 
 const authReducer = (state = initialState, action) => {

@@ -17,14 +17,15 @@ router.get("/checkStatus", authCheck, (req, res) => {
   res.status(200).json({
     isAuthenticated: true,
     message: "user successfully authenticated",
-    user: req.user
+    user: req.user,
+    userRole: req.user.role
   });
 });
 
 router.get("/logout", (req, res) => {
   req.logout();
   res.status(200).json({
-    isAuthenticated: false, 
+    isAuthenticated: false,
     user: null,
   });
 });
