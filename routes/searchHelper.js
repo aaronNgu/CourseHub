@@ -40,29 +40,52 @@ const processInput = (req) => {
 /* Helper to generate aggregation conditions */
 const generateRatingQueryArray = (input) => {
     let arrayOfRatingFilters = [];
-    for (rating of input['ratings']) {
-        let currentRating = {};
-        currentRating['overall_rating'] = rating; 
-        arrayOfRatingFilters.push(currentRating);
+    if ('ratings' in input) {
+        for (rating of input['ratings']) {
+            let currentRating = {};
+            currentRating['overall_rating'] = rating; 
+            arrayOfRatingFilters.push(currentRating);
+        }
     }
     return arrayOfRatingFilters;
+};
+
+const generateYearQueryArray = (input) => {
+    let arrayOfYearFilters = [];
+    if ('years' in input) {
+        for(year of input['years']) {
+            let currentYear = {};
+            currentYear['year'] = year;
+            arrayOfYearFilters.push(currentYear);
+        }
+    }
+    return arrayOfYearFilters;
 };
 
 const generateRatingAndYearQuery = (input) => {
     let result = {};
     let ratingsArray = generateRatingQueryArray(input);
+    let yearsArray = generateYearQueryArray(input);
+    let ratingsQuery = {};
     if (ratingsArray.length !==  0) {
-        result['$or'] = ratingsArray; 
+        ratingsQuery['$or'] = ratingsArray; 
     }
-    return result;
+
+    let yearsQuery = {};
+    if (yearsArray.length !== 0) {
+        yearsQuery['$or'] = yearsArray;
+    }
+
+    if (yearsArray.length !== 0 && ratingsArray.length !== 0) {
+        result['$and'] = [yearsQuery, ratingsQuery];
+        return result;
+    }
+    return yearsArray.length !== 0 ? yearsQuery : ratingsQuery;
 };
 
 const generateMatch = (input) => {
     let result =  { $match :  {}}
-    if ('ratings' in input) {
-        result['$match'] = generateRatingAndYearQuery(input);
-        return result;
-    }
+    result['$match'] = generateRatingAndYearQuery(input);
     return result;
 }; 
 
