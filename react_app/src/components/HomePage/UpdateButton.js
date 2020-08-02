@@ -15,8 +15,8 @@ const UpdateButton = ({executeSearch, searchString, yearFilter, ratingFilter, ch
     const classes = useStyles();
 
     const handleSearch = () => {
+        executeSearch(1, searchString, yearFilter, ratingFilter);
         change_page(1);
-        executeSearch(0, searchString, yearFilter, ratingFilter);
     }
     
     return <Button 
