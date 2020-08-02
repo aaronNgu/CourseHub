@@ -1,9 +1,9 @@
 import React from 'react';
-import './LoginPage.css';
-import LoginPageBox from './LoginPageBox';
+import './LoginAndSignUpPage.css';
+import SignUpPageBox from './SignUpPageBox';
 import {connect} from 'react-redux';
 
-class LoginPage extends React.Component {
+class SignUpPage extends React.Component {
 
     handleFacebookLogin = () => {
         window.open('/auth/facebook','_self');
@@ -14,8 +14,8 @@ class LoginPage extends React.Component {
     }
 
     render() {
-        return (<div className="LoginPageMain">
-            <LoginPageBox handleFacebookLogin={this.handleFacebookLogin} handleGoogleLogin={this.handleGoogleLogin} />
+        return (<div className="SignUpPageMain">
+            <SignUpPageBox handleFacebookLogin={this.handleFacebookLogin} handleGoogleLogin={this.handleGoogleLogin} />
         </div>)
     }
 }
@@ -24,4 +24,4 @@ const mapStateToProps = (state) => {
     return {auth: state.auth};
 }
 
-export default connect(mapStateToProps)(LoginPage);
+export default connect(mapStateToProps)(SignUpPage);
