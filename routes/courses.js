@@ -46,13 +46,16 @@ router.get('/:courseId', function (req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+  const year = req.body._id.match(/\d/) + "00";
   const newCourse = new Course({
       _id: req.body._id,
 overall_rating: req.body.overall_rating,
 description: req.body.description,
-num_reviews: req.body.num_reviews
+num_reviews: req.body.num_reviews,
+year: year,
   })
   newCourse.save().then(result => {
+    res.status(200).json(result);
     console.log(result);
   })
   .catch(err => console.log(err));
