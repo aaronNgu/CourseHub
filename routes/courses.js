@@ -49,9 +49,9 @@ router.post('/', function(req, res, next) {
   const year = req.body._id.match(/\d/) + "00";
   const newCourse = new Course({
       _id: req.body._id,
-overall_rating: req.body.overall_rating,
+overall_rating: "-",
 description: req.body.description,
-num_reviews: req.body.num_reviews,
+num_reviews: 0,
 year: year,
   })
   newCourse.save().then(result => {
