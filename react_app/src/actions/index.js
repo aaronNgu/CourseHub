@@ -106,7 +106,7 @@ export const update_search = (searchString) => {
     }
 }
 
-const formURL = (searchString, yearLvFilter, ratingFilter) => {
+const formURL = (searchString, yearLvFilter, ratingFilter, page) => {
     let url =`/search?`
     if(searchString !== '' ) {
         url += `searchString=`;
@@ -120,13 +120,17 @@ const formURL = (searchString, yearLvFilter, ratingFilter) => {
         url += url.charAt(url.length - 1) === '?' ? `ratings=` : `&ratings=`;
         url += encodeURIComponent(JSON.stringify(ratingFilter));
     }
+    if (page !== undefined) {
+        url += `page=`;
+        url += page;
+    }
     return url;
 }
 
 export const executeSearch = (searchString, yearLvFilter, ratingFilter, page) => {
 
     return function (dispatch, getState) {
-        const url = formURL(searchString, yearLvFilter, ratingFilter)
+        const url = formURL(searchString, yearLvFilter, ratingFilter, page)
         return fetch(url)
             .then(
                 data => data.json())
