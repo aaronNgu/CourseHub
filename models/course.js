@@ -9,5 +9,4 @@ const courseSchema = mongoose.Schema({
   year: String,
 })
 
-courseSchema.index({ _id: 'text', overall_rating: 'text'});
 module.exports = mongoose.model('Course', courseSchema, 'Courses')
