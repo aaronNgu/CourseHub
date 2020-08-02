@@ -40,7 +40,7 @@ const SearchBar = ({searchString, update_search, executeSearch, yearFilter, rati
                     className: classes.input,
                     endAdornment: (
                         <InputAdornment>
-                            <IconButton onClick={(event, newValue) => {executeSearch(searchString, yearFilter, ratingFilter)}}>
+                            <IconButton onClick={(event, newValue) => {executeSearch(1, searchString, yearFilter, ratingFilter)}}>
                                 <SearchIcon />
                             </IconButton>
                         </InputAdornment>
