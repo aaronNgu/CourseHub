@@ -7,7 +7,7 @@ const { getNumberOfPages, get10NthFromStart } = require('./searchHelper');
 
 var router = express.Router();
 
-const searchHelper = (input, req, res) => {
+const searchHelper = (input) => {
     let result = helper.generateMatch(input);
     Course
     .aggregate([result])
@@ -20,10 +20,11 @@ const searchHelper = (input, req, res) => {
             pageCount: pageCount, 
             data: courses,
         }
-        res.status(200).json(response);
+        return response;
     })
     .catch(err => {
         console.log(err);
+        return err;
     });
 }
 
@@ -35,9 +36,8 @@ const executeSearch = (req, res, next) => {
             return res.status(400).json({ errors: errors.array() });
         }
         const input = helper.processInput(req);
-        //  input - {searchString: <course name all caps>, years: ["100", "200", "300"], ratings: ["1", "2"]}
-        searchHelper(input, req, res);
-        //res.status(200).json('inside search');
+        const response = searchHelper(input, req, res);
+        res.status(200).json(response);
     }catch {err => 
         res.status(500);
     }
