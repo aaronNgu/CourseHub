@@ -6,7 +6,7 @@ const helper = require('./searchHelper');
 
 var router = express.Router();
 
-const searchHelper = (input) => {
+const searchHelper = (input, req, res) => {
     let result = helper.generateMatch(input);
     Course
     .aggregate([
@@ -15,8 +15,7 @@ const searchHelper = (input) => {
     )
     .exec()
     .then(docs => {
-        console.log(docs)
-
+        res.status(200).json(docs);
     })
     .catch(err => {
         console.log(err);
@@ -31,8 +30,8 @@ const executeSearch = (req, res, next) => {
     }
     const input = helper.processInput(req);
     //  input - {searchString: <course name all caps>, years: ["100", "200", "300"], ratings: ["1", "2"]}
-    searchHelper(input);
-    res.status(200).json('inside search');
+    searchHelper(input, req, res);
+    //res.status(200).json('inside search');
 }
 
 router.get('/', [
