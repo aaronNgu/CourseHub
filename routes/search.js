@@ -28,15 +28,19 @@ const searchHelper = (input, req, res) => {
 }
 
 const executeSearch = (req, res, next) => {
-    const errors = validationResult(req);
+    try {
+        const errors = validationResult(req);
 
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        const input = helper.processInput(req);
+        //  input - {searchString: <course name all caps>, years: ["100", "200", "300"], ratings: ["1", "2"]}
+        searchHelper(input, req, res);
+        //res.status(200).json('inside search');
+    }catch {err => 
+        res.status(500);
     }
-    const input = helper.processInput(req);
-    //  input - {searchString: <course name all caps>, years: ["100", "200", "300"], ratings: ["1", "2"]}
-    searchHelper(input, req, res);
-    //res.status(200).json('inside search');
 }
 
 router.get('/', [
