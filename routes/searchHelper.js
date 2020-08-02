@@ -33,6 +33,9 @@ const processInput = (req) => {
         let ratings = processArray(req.query.ratings);
         result['ratings'] = ratings;
     }
+    if(req.query.page) {
+        result['page'] = req.query.page;
+    }
     return result;
 };
 

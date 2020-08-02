@@ -13,7 +13,7 @@ const searchHelper = (input, req, res) => {
     .aggregate([result])
     .exec()
     .then(docs => {
-        const pagenumber = typeof req.query.page === 'undefined' ? 0 : (req.query.page - 1 );
+        const pagenumber = 'page' in input ? 0 : (req.query.page - 1 );
         let pageCount = getNumberOfPages(docs);
         let courses = get10NthFromStart(docs, pagenumber);
         const response = {
