@@ -32,6 +32,7 @@ function AddCourseFormDialog(props) {
       setOpen(false);
       window.location.reload();
     }
+  };
 
   const handleCustomerSubmit = (courseName, courseDescription) => {
     setOpen(false);
@@ -128,6 +129,6 @@ const mapStateToProps = (state) => {
       courseList: state.courseList,
       auth: state.auth
     }
-}
+};
 
 export default connect(mapStateToProps)(AddCourseFormDialog);
