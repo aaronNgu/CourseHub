@@ -9,8 +9,9 @@ var router = express.Router();
 
 const searchHelper = (input, res) => {
     let result = helper.generateMatch(input);
+    const projections = helper.generateCourseProjections();
     Course
-    .aggregate([result])
+    .aggregate([result, projections])
     .exec()
     .then(docs => {
         const pagenumber = ('page' in input && input['page'] !== '0') ? (input['page'] - 1 ) : 0 ;

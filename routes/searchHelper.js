@@ -104,4 +104,13 @@ const get10NthFromStart = (array , page) => {
     return array.splice(page * 10, 10);
 };
 
-module.exports = {generateMatch, processInput, getNumberOfPages, get10NthFromStart};
+/* Helper to generate projection */
+const generateCourseProjections = () => {
+    return {'$project': {'overall_rating': 1, 'description': 1, 'num_reviews': 1}};
+};
+
+module.exports = {generateMatch, 
+    processInput, 
+    getNumberOfPages, 
+    get10NthFromStart,
+    generateCourseProjections,};
