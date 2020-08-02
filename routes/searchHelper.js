@@ -35,28 +35,36 @@ const processInput = (req) => {
         result['ratings'] = ratings;
     }
     return result;
-}
+};
 
 /* Helper to generate aggregation conditions */
 const generateRatingQueryArray = (input) => {
-    let result = {};
     let arrayOfRatingFilters = [];
     for (rating of input['ratings']) {
         let currentRating = {};
         currentRating['overall_rating'] = rating; 
         arrayOfRatingFilters.push(currentRating);
     }
-    result['$or'] = arrayOfRatingFilters;
-    return arrayOfRatingFilters.length === 0 ? {} : result;
-}
+    return arrayOfRatingFilters;
+};
+
+const generateRatingAndYearQuery = (input) => {
+    let result = {};
+    let ratingsArray = generateRatingQueryArray(input);
+    if (ratingsArray.length !==  0) {
+        result['$or'] = ratingsArray; 
+    }
+    return result;
+};
 
 const generateMatch = (input) => {
     let result =  { $match :  {}}
     if ('ratings' in input) {
-        result['$match'] = generateRatingQueryArray(input);
+        result['$match'] = generateRatingAndYearQuery(input);
+//        result['$match'] = generateRatingQueryArray(input);
         return result;
     }
     return result;
-} 
+}; 
 
 module.exports = {generateMatch, processInput};
