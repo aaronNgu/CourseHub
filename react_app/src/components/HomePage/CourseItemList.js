@@ -12,10 +12,7 @@ class CourseItemList extends React.Component {
         super(props);
         this.state = {
             showFilters: false,
-            yearLvFilter: ['100', '200', '300', '400', '500', '600'],
-            ratingFilter: ['1', '2', '3', '4', '5', '-']
         };
-        this.onFiltersUpdate = this.onFiltersUpdate.bind(this);
     }
 
     componentDidMount() {
@@ -29,10 +26,6 @@ class CourseItemList extends React.Component {
         });
     }
 
-    onFiltersUpdate(yearLvFilter, ratingFilter) {
-        this.setState({...this.state, yearLvFilter, ratingFilter});
-    }
-
     render() {
 
         return (<div className="reviewedCourses">
@@ -44,8 +37,8 @@ class CourseItemList extends React.Component {
                     >Filter</Button>
                 </div>
             </div>
-            {this.state.showFilters ? (<Filters yearLvFilter={this.state.yearLvFilter}
-                                                ratingFilter={this.state.ratingFilter}
+            {this.state.showFilters ? (<Filters yearLvFilter={this.props.yearFilter}
+                                                ratingFilter={this.props.ratingFilter}
                                                 updateFilters={this.onFiltersUpdate}/>) : null}
             <div className="courseList">
                 {
@@ -53,8 +46,8 @@ class CourseItemList extends React.Component {
                     <p> No results. :&#40;</p> :
                     Object.values(this.props.courseList)
                         .filter(course => course._id.toString().toLowerCase().includes(this.props.searchString.toLowerCase()))
-                        .filter(course => this.state.yearLvFilter.includes((course._id.toString().slice(4, 5) + '00'))
-                            && this.state.ratingFilter.includes(course.overall_rating.toString()))
+                        .filter(course => this.props.yearFilter.includes((course._id.toString().slice(4, 5) + '00'))
+                            && this.props.ratingFilter.includes(course.overall_rating.toString()))
                         .map((course, index) => {
                             return <CourseItem
                                 key={index}
@@ -76,9 +69,8 @@ const mapStateToProps = (state) => {
     return {
         courseList: state.courseList,
         searchString: state.searchString,
-        showFilters: state.showFilters,
-        yearLvFilter: state.yearLvFilter,
-        ratingFilter: state.ratingFilter,
+        yearFilter: state.filters.yearLvFilter,
+        ratingFilter: state.filters.ratingFilter,
     };
 }
 
