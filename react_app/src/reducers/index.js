@@ -38,7 +38,7 @@ const reviewReducer = (reviewList = {}, action) => {
 
 const courseInfoReducer = (courseInfo = {}, action) => {
     if (action.type === 'FETCHED_COURSE_INFO') {
-        return Object.assign({}, courseInfo, action.data);
+        return Object.assign({}, action.data);
     }
     return courseInfo;
 }
