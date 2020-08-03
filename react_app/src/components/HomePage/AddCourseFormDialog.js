@@ -39,7 +39,6 @@ function AddCourseFormDialog(props) {
     window.alert('TODO: send email with Add-course info to admins.')
   };
 
-if (userRole === 'Admin') {
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
@@ -48,81 +47,56 @@ if (userRole === 'Admin') {
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Add Course</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            For Admins: To add course, please enter details below:
-          </DialogContentText>
-          <TextField
-            autoFocus
-            required
-            margin="dense"
-            id="course_id"
-            label="CourseName"
-            onInput={ e=>courseName = e.target.value}
-            fullWidth
-          />
-          <TextField
-            required
-            margin="dense"
-            id="course_description"
-            label="Description"
-            onInput={ e=>courseDesc = e.target.value}
-            fullWidth
-          />
+
+            {userRole === 'Admin' ?
+            <DialogContentText>
+                For Admins: To add course, please enter details below
+            </DialogContentText> :
+            <DialogContentText>
+                Don't see the course you're looking for? Send us the course details and we'll add it for you!
+            </DialogContentText>}
+
+            <TextField
+              autoFocus
+              required
+              margin="dense"
+              id="course_id"
+              label="CourseName"
+              onInput={ e=>courseName = e.target.value}
+              fullWidth
+            />
+            <TextField
+              required
+              margin="dense"
+              id="course_description"
+              label="Description"
+              onInput={ e=>courseDesc = e.target.value}
+              fullWidth
+            />
+
         </DialogContent>
         <DialogActions>
-            <Button onClick={handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={() => handleAdminSubmit(courseName, courseDesc)} color="primary">
-              Submit
-            </Button>
-          </DialogActions>
-      </Dialog>
-    </div>
-  );
-} else {
-  return (
-    <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Add a Course
-      </Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Add Course</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Don't see the course you're looking for? Send us the course details and we'll add it for you!
-          </DialogContentText>
-          <TextField
-            autoFocus
-            required
-            margin="dense"
-            id="course_id"
-            label="CourseName"
-            onInput={ e=>courseName = e.target.value}
-            fullWidth
-          />
-          <TextField
-            required
-            margin="dense"
-            id="course_description"
-            label="Description"
-            onInput={ e=>courseDesc = e.target.value}
-            fullWidth
-          />
-        </DialogContent>
-        <DialogActions>
+
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={() => handleCustomerSubmit(courseName, courseDesc)} color="primary">
-            Send to Admins
-          </Button>
+
+          {userRole === 'Admin' ?
+          <Button
+            onClick={() => handleAdminSubmit(courseName, courseDesc)} color="primary">
+              Submit
+          </Button> :
+          <Button
+            onClick={() => handleCustomerSubmit(courseName, courseDesc)} color="primary">
+              Send to Admins
+          </Button>}
+
         </DialogActions>
       </Dialog>
     </div>
   );
 }
-}
+
 
 const mapStateToProps = (state) => {
     return {

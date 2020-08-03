@@ -3,53 +3,27 @@ import {Box, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel} from
 import {connect} from 'react-redux'
 import "./HomePage.css"
 import {update_filters} from '../../actions';
+import UpdateButton from './UpdateButton';
 
 const yearLvList = ['100', '200', '300', '400', '500', '600'];
 const ratingList = ['1', '2', '3', '4', '5', '-'];
 
 class Filters extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            yearLvFilter: this.props.yearLvFilter,
-            ratingFilter: this.props.ratingFilter,
-        };
-    }
-
     handleYearLvChange = (e) => {
-        let newState = this.state;
-        if (this.state.yearLvFilter.includes(e.target.name)) {
-            newState = {
-                ...this.state, yearLvFilter: this.state.yearLvFilter.filter((year) => {
-                    return year !== e.target.name
-                })
-            };
-        } else {
-            newState = {...this.state, yearLvFilter: [...this.state.yearLvFilter, e.target.name]};
-        }
-        this.setState(newState);
-        this.handleFilterUpdate(newState);
+        let newYearFilter = this.props.yearFilter.includes(e.target.name) ?
+                this.props.yearFilter.filter((year) => {return year !== e.target.name}) :
+                [...this.props.yearFilter, e.target.name];
+
+        this.props.update_filters(newYearFilter, this.props.ratingFilter);
     }
 
     handleRatingChange = (e) => {
-        let newState = this.state;
-        if (this.state.ratingFilter.includes(e.target.name)) {
-            newState = {
-                ...this.state, ratingFilter: this.state.ratingFilter.filter((rating) => {
-                    return rating !== e.target.name
-                })
-            };
-        } else {
-            newState = {...this.state, ratingFilter: [...this.state.ratingFilter, e.target.name]};
-        }
-        this.setState(newState);
-        this.handleFilterUpdate(newState);
-    }
+        let newRatingFilter = this.props.ratingFilter.includes(e.target.name) ?
+                this.props.ratingFilter.filter((rating) => {return rating !== e.target.name}) :
+                [...this.props.ratingFilter, e.target.name];
 
-    handleFilterUpdate = (newState) => {
-        this.props.update_filters(newState.yearLvFilter, newState.ratingFilter);
-        this.props.updateFilters(newState.yearLvFilter, newState.ratingFilter);
+        this.props.update_filters(this.props.yearFilter, newRatingFilter);
     }
 
     render() {
@@ -88,13 +62,19 @@ class Filters extends React.Component {
                             }
                         </FormGroup>
                     </FormControl>
+                    <UpdateButton/>
                 </div>
             </Box>
         );
     }
 }
 
-export default connect(
-    null,
-    {update_filters}
-)(Filters);
+const mapStateTopProps = (state) => {
+    return {
+        filters: state.filters,
+        yearFilter: state.filters.yearLvFilter,
+        ratingFilter: state.filters.ratingFilter,
+    }
+}
+
+export default connect(mapStateTopProps, {update_filters})(Filters);

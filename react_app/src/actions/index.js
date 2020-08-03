@@ -177,6 +177,8 @@ export const addReview = (review, rating, courseId) => {
         .then((responseJson) => {
             dispatch(fetchReviews(courseId));
             dispatch(toggleAddReviewBox(false));
+            dispatch(addReviewRating(null));
+            dispatch(addReviewReview(''));
             return responseJson.success;
         })
         .catch((error) => {
