@@ -36,6 +36,7 @@ const SearchBar = ({searchString, update_search, executeSearch, yearFilter, rati
                 placeholder='ENGL112'
                 value={searchString}
                 onChange={(event, newValue) => {update_search(event.target.value)}}
+                onKeyPress={(event) => {if(event.key==='Enter'){executeSearch(1, searchString, yearFilter, ratingFilter);}}}
                 InputProps={{
                     className: classes.input,
                     endAdornment: (
