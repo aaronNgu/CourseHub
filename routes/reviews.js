@@ -11,10 +11,10 @@ router.get('/', function (req, res, next) {
       .populate('Review')
         .exec()
         .then(docs =>{
-          console.log(docs);
           res.status(200).json(docs);
         })
         .catch(err => {
+          console.log('Failed to get reviews listing.');
           console.log(err);
           res.status(500).json({
           error: err});
@@ -27,10 +27,12 @@ router.get('/:reviewId', function (req, res, next) {
   Review.findById(id)
     .exec()
     .then(doc => {
-      console.log(doc);
       res.status(200).json(doc);
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      console.log("Fail to retrieve specific review");
+      console.log(err);
+    })
 });
 
 router.get('/course/:courseId', function (req, res, next) {
@@ -38,10 +40,10 @@ router.get('/course/:courseId', function (req, res, next) {
   Review.find({Course_id:req.params.courseId})
   .exec()
   .then(docs =>{
-    console.log(docs);
     res.status(200).json(docs);
   })
   .catch(err => {
+    console.log('Failed to retrieve reviews for course.');
     console.log(err);
     res.status(500).json({
     error: err});
@@ -69,9 +71,7 @@ const updateCourseInformation = (courseId, newRating) => {
     .findByIdAndUpdate(courseId, 
       {$inc : {'num_reviews' : 1}, 'overall_rating': newAverage},
       {new: 1})
-    .then(updatedCourse => {
-      // console.log(updatedCourse);
-    })
+    .then(updatedCourse => {})
     .catch(err => {
       console.log('Failed to update Course Info.');
       console.log(err);
@@ -94,6 +94,7 @@ router.post('/', function(req, res, next) {
       updateCourseInformation(req.body.Course_id, req.body.Rating);
       res.status(200).json(result);})
     .catch(err => {
+      console.log('Fail to add review');
       console.log(err);
       res.status(500).json({
         message: 'Server error. Unable to add review'
@@ -109,6 +110,7 @@ router.delete('/:reviewId', function(req, res, next) {
   const reviewId = req.params.reviewId
   Review.deleteOne({'_id': reviewId}, function(err) {
             if (err) {
+                console.log('Fail to delete review');
                 console.log(err)
             } else {
                 res.send('deleted review with id :  ' + reviewId);
