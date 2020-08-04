@@ -1,3 +1,5 @@
+import * as emailjs from "emailjs-com";
+
 /* Courses Action */
 export const fetched_courses = courses => {
     return {
@@ -244,4 +246,27 @@ export const change_page_count = count => {
         type: "CHANGE_PAGE_COUNT",
         data: count
     }
+}
+
+export const sendMessage = payload => {
+    let template_params = {
+        "user_email": payload.email,
+        "subject": payload.subject,
+        "message": payload.message
+    }
+    return function (dispatch, getState) {
+        return emailjs
+            .send("gmail", "contact_form", template_params, 'user_SdXfng2qQntNIQxhaHBg6')
+            .then((res) => {
+                console.log(res);
+                return {
+                    type: 'SEND_CONTACT_FORM',
+                    payload: 'Thank you for contacting us!'
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
 }

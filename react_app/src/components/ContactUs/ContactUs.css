@@ -10,7 +10,11 @@
     justify-content: left;
 }
 
-.subject  {
+.subject{
+    align-self: flex-start;
+}
+
+.email{
     align-self: flex-start;
 }
 
