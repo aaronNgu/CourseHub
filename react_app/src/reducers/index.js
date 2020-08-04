@@ -43,6 +43,13 @@ const courseInfoReducer = (courseInfo = {}, action) => {
     return courseInfo;
 }
 
+const contactFormReducer = (message = '', action) => {
+    if (action.type === 'SEND_CONTACT_FORM') {
+        return action.payload;
+    }
+    return message;
+}
+
 const allReducers = combineReducers({
     courseList: courseReducer,
     filters: filterReducer,
