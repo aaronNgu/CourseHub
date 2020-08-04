@@ -36,8 +36,6 @@ export const addCourse = (name, desc) => {
             body: JSON.stringify({
                 description: desc,
                 _id: name,
-                overall_rating: '-',
-                num_reviews: 0
             })
         })
             .then((responseJson) => {
@@ -52,13 +50,11 @@ export const addCourse = (name, desc) => {
 
 export const deleteCourse = courseId => {
     return function (dispatch, getState) {
-        console.log("Action: " + courseId);
         return fetch(`/courses/`+courseId, {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({'courseId': courseId})
     }).then((res) => {
-            console.log(res);
             dispatch({
                 type: 'DELETE_COURSE',
                 payload: courseId
@@ -197,6 +193,7 @@ export const addReview = (review, rating, courseId) => {
             credentials: 'include'
         })
         .then((responseJson) => {
+            dispatch(fetchCourseInfo(courseId));
             dispatch(fetchReviews(courseId));
             dispatch(toggleAddReviewBox(false));
             dispatch(addReviewRating(null));

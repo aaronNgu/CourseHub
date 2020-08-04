@@ -46,12 +46,14 @@ router.get('/:courseId', function (req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+  const year = req.body._id.match(/\d/) + "00";
   if(req.user.role === 'Admin'){
     const newCourse = new Course({
         _id: req.body._id,
-        overall_rating: req.body.overall_rating,
+        overall_rating: "-",
         description: req.body.description,
-        num_reviews: req.body.num_reviews
+        num_reviews: 0,
+        year: year,
     });
 
     newCourse.save()
