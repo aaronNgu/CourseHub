@@ -41,6 +41,7 @@ class Filters extends React.Component {
                                                            onChange={this.handleYearLvChange}
                                                            name={year}/>}
                                         label={year}
+                                        key={year}
                                     />
                                 })
                             }
@@ -57,6 +58,7 @@ class Filters extends React.Component {
                                                            onChange={this.handleRatingChange}
                                                            name={rating}/>}
                                         label={rating}
+                                        key={rating}
                                     />
                                 })
                             }

@@ -1,13 +1,16 @@
 import React from 'react';
 import Pagination from '@material-ui/lab/Pagination';
 import {connect} from 'react-redux';
-import {change_page, fetchCourses} from '../../actions';
+import {change_page, executeSearch} from '../../actions';
 
 class Page extends React.Component{
 
     handleChange = (event, value) => {
         this.props.change_page(value);
-        this.props.fetchCourses(value);
+        this.props.executeSearch(value, 
+            this.props.searchString, 
+            this.props.yearFilter, 
+            this.props.ratingFilter);
     }
 
     render() {
@@ -23,8 +26,11 @@ class Page extends React.Component{
 const mapStateToProps = (state) => {
     return  {
         count: state.countPage,
-        current: state.currentPage
+        current: state.currentPage,
+        searchString: state.searchString, 
+        yearFilter: state.filters.yearLvFilter, 
+        ratingFilter: state.filters.ratingFilter, 
     }
 }
 
-export default connect(mapStateToProps,{change_page, fetchCourses})(Page);
+export default connect(mapStateToProps,{change_page, executeSearch})(Page);
