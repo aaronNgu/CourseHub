@@ -53,12 +53,6 @@ class CourseItem extends React.Component {
 
             <div className='courseItemVerticalSides'>
 
-            <Box className='courseItemVerticalSides courseItemVerticalMiddle'
-                 style={{paddingTop: '5px'}}
-            >
-                <Typography variant='body2'>{this.props.date || 'N/A'}</Typography>
-            </Box>
-
             { this.props.auth.userRole === 'Admin' ?
               <IconButton aria-label="delete"
                           className='courseItemVerticalSides courseItemVerticalMiddle'
