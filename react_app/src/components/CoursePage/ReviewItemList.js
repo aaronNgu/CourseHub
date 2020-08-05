@@ -11,8 +11,8 @@ class ReviewItemList extends React.Component {
     }
 
     render() {
-        return (<div>
-                    <div className="reviewListHeader content">
+        return (<div className="content">
+                    <div className="reviewListHeader">
                         <p>Reviews</p>
                     </div>
                 <div id="reviewList">

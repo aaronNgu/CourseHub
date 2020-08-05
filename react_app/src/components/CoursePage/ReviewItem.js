@@ -14,7 +14,7 @@ const useStyles = makeStyles({
 function ReviewItem(props) {
     const classes = useStyles();
 
-    return <Box className='reviewItemHorizontal reviewItemMain content'>
+    return <Box className='reviewItemHorizontal reviewItemMain'>
 
         <Box className='reviewItemHorizontal'>
 
