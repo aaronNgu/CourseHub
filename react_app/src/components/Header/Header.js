@@ -36,20 +36,12 @@ class Header extends React.Component {
                             auth.isAuthenticated ?
                                 <li>
                                     <Link onClick={this.handleLogOut} to='#' className="link right">
-                                        Sign out
+                                        Log out
                                     </Link>
                                 </li>:
                                 <li>
                                     <Link to='/login' className="link right">
                                         Login
-                                    </Link>
-                                </li>
-                        }
-                        {   auth.isAuthenticated ?
-                                null:
-                                <li>
-                                    <Link to='#' className="link right">
-                                        Sign Up
                                     </Link>
                                 </li>
                         }
@@ -63,7 +55,6 @@ class Header extends React.Component {
             </header>
         );
     }
-
 }
 
 const mapStateToProps = (state) => {
