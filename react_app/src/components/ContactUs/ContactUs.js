@@ -1,11 +1,9 @@
-//TODO: make the button work....
 import React from 'react';
 import "./ContactUs.css"
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
-import {connect} from 'react-redux'
-import { sendMessage } from "../../actions";
+import * as emailjs from "emailjs-com";
 
 class ContactPage extends React.Component {
 
@@ -14,7 +12,9 @@ class ContactPage extends React.Component {
         this.state = {
             email: '',
             subject: '',
-            message: ''
+            message: '',
+            thank_you: false,
+            error_msg: 0
         }
     }
 
@@ -28,16 +28,25 @@ class ContactPage extends React.Component {
 
     handleSendMessage = () => {
         if (this.state.email !== '' && this.state.subject !== '' && this.state.message !== '') {
-            this.props.sendMessage({
-                email: this.state.email,
-                subject: this.state.subject,
-                message: this.state.message
-            })
-            this.setState({
-                email: '',
-                subject: '',
-                message: ''
-            })
+            let template_params = {
+                "user_email": this.state.email,
+                "subject": this.state.subject,
+                "message": this.state.message
+            }
+            emailjs
+                .send("gmail", "contact_form", template_params, 'user_SdXfng2qQntNIQxhaHBg6')
+                .then((res) => {
+                    console.log(res);
+                    this.setState({
+                        email: '',
+                        subject: '',
+                        message: '',
+                        thank_you: true
+                    });
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
         }
     }
 
@@ -51,6 +60,7 @@ class ContactPage extends React.Component {
                     className="email"
                     name="email"
                     margin="normal"
+                    value={this.state.email}
                     onChange={this.handleInputChange.bind(this)}
                 />
                 <TextField
@@ -59,6 +69,7 @@ class ContactPage extends React.Component {
                     className="subject"
                     margin="normal"
                     name="subject"
+                    value={this.state.subject}
                     onChange={this.handleInputChange.bind(this)}
                 />
                 <TextField
@@ -69,11 +80,11 @@ class ContactPage extends React.Component {
                     className="message"
                     margin="normal"
                     name="message"
+                    value={this.state.message}
                     onChange={this.handleInputChange.bind(this)}
                 />
                 <Button
                     variant="contained"
-                    color="#A17070"
                     id="sendButton"
                     style={{
                         padding: '5px 10px',
@@ -87,11 +98,9 @@ class ContactPage extends React.Component {
                     <Icon>send</Icon>
                 </Button>
             </div>
+            {this.state.thank_you ? <h2>Thank you for contacting us!</h2> : null}
         </div>);
     }
 }
 
-export default connect(
-    null,
-    { sendMessage }
-)(ContactPage);
+export default ContactPage;
