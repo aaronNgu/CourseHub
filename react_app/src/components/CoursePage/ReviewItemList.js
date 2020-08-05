@@ -14,9 +14,6 @@ class ReviewItemList extends React.Component {
         return (<div>
                     <div className="reviewListHeader content">
                         <p>Reviews</p>
-                        <div className="button">
-                            <Button variant="outlined">Sort</Button>
-                        </div>
                     </div>
                 <div id="reviewList">
                 {Object.values(this.props.reviewList)
