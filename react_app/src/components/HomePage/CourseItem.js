@@ -24,7 +24,7 @@ class CourseItem extends React.Component {
     }
 
     render() {
-        return <Box className='courseItemHorizontal courseItemMain content'>
+        return <Box className='courseItemHorizontal courseItemMain'>
 
             <Box className='courseItemHorizontal'>
 
