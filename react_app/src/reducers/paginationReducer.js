@@ -1,4 +1,4 @@
-export const currentPage = (state = 0, action) => {
+export const currentPage = (state = 1, action) => {
     if (action.type === 'CHANGE_PAGE') {
         return action.data
     }

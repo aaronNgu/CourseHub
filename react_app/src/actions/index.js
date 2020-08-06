@@ -102,10 +102,31 @@ export const update_search = (searchString) => {
     }
 }
 
-export const executeSearch = () => {
+const formURL = (searchString, yearLvFilter, ratingFilter, page) => {
+    let url =`/search?`
+    if(searchString !== '' ) {
+        url += `searchString=`;
+        url += encodeURIComponent(JSON.stringify(searchString));
+    }
+    if (yearLvFilter.length !== 0) {
+        url += url.charAt(url.length - 1) === '?' ? `years=` : `&years=`;
+        url += encodeURIComponent(JSON.stringify(yearLvFilter));
+    }
+    if (ratingFilter.length !== 0) {
+        url += url.charAt(url.length - 1) === '?' ? `ratings=` : `&ratings=`;
+        url += encodeURIComponent(JSON.stringify(ratingFilter));
+    }
+    if (page !== undefined) {
+        url += url.charAt(url.length - 1) === '?' ? `page=` : `&page=`;
+        url += page;
+    }
+    return url;
+}
+
+export const executeSearch = (page, searchString, yearLvFilter, ratingFilter) => {
+
     return function (dispatch, getState) {
-        /* TODO:  stubs for once backend is ready
-        const url = `/courses?page=` + currentPage;
+        const url = formURL(searchString, yearLvFilter, ratingFilter, page)
         return fetch(url)
             .then(
                 data => data.json())
@@ -115,7 +136,6 @@ export const executeSearch = () => {
                 }
             )
             .catch(err => console.log(err));
-        */
     }
 }
 
@@ -183,6 +203,13 @@ export const addReview = (review, rating, courseId) => {
         .catch((error) => {
             console.error(error);
         });
+    }
+}
+
+export const fetchCourseOverview = (courseId) => {
+    return function(dispatch, getState) {
+        dispatch(fetchCourseInfo(courseId));
+        dispatch(fetchReviews(courseId));
     }
 }
 

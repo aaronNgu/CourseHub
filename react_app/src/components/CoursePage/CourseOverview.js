@@ -4,13 +4,12 @@ import {Box, Typography} from '@material-ui/core';
 import Rating from './Rating';
 import RateCourseButton from './RateCourseButton';
 import {connect} from 'react-redux';
-import {fetchCourseInfo, fetchReviews, toggleAddReviewBox} from '../../actions';
+import {fetchCourseOverview, toggleAddReviewBox} from '../../actions';
 
 class CourseOverview extends React.Component {
 
     componentDidMount() {
-        this.props.dispatch(fetchCourseInfo(this.props.id));
-        this.props.dispatch(fetchReviews(this.props.id));
+        this.props.dispatch(fetchCourseOverview(this.props.id));
     };
 
     handleRateCourse = () => {
@@ -41,7 +40,7 @@ class CourseOverview extends React.Component {
                 <Box className='courseOverviewVerticalRight'>
                     <Typography variant='h6'>{'Most Recent Review:'} </Typography>
                     <Typography variant='body2'>
-                        {(!Array.isArray(this.props.reviewList))? undefined: (this.props.reviewList.length > 0) ? this.props.reviewList[this.props.reviewList.length -1].Comments : 'No reviews yet!'}
+                        {this.props.reviewList.length > 0 ? this.props.reviewList[this.props.reviewList.length -1].Comments : 'No reviews yet!'}
                     </Typography>
                 </Box>
             </Box>

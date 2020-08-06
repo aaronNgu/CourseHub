@@ -6,7 +6,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from '@material-ui/core/styles';
 import {connect} from 'react-redux';
-import {update_search} from '../../actions';
+import {update_search, executeSearch, change_page} from '../../actions';
 
 const useStyles = makeStyles({
     root: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 });
 
 
-const SearchBar = ({searchString, update_search}) => {
+const SearchBar = ({searchString, update_search, executeSearch, yearFilter, ratingFilter, change_page}) => {
 
     const classes = useStyles();
 
@@ -36,11 +36,14 @@ const SearchBar = ({searchString, update_search}) => {
                 placeholder='ENGL112'
                 value={searchString}
                 onChange={(event, newValue) => {update_search(event.target.value)}}
+                onKeyPress={(event) => {if(event.key==='Enter'){executeSearch(1, searchString, yearFilter, ratingFilter);}}}
                 InputProps={{
                     className: classes.input,
                     endAdornment: (
                         <InputAdornment>
-                            <IconButton onClick={(event, newValue) => {/* TODO: dispatch action executeSearch once backend is ready*/}}>
+                            <IconButton onClick={(event, newValue) => {
+                                executeSearch(1, searchString, yearFilter, ratingFilter);
+                                change_page(1);}}>
                                 <SearchIcon />
                             </IconButton>
                         </InputAdornment>
@@ -53,7 +56,9 @@ const SearchBar = ({searchString, update_search}) => {
 const mapStateToProps = (state) => {
     return {
         searchString : state.searchString,
+        yearFilter: state.filters.yearLvFilter,
+        ratingFilter: state.filters.ratingFilter,
     }
 }
 
-export default connect(mapStateToProps, {update_search})(SearchBar); 
+export default connect(mapStateToProps, {update_search, executeSearch, change_page})(SearchBar); 
