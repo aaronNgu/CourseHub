@@ -13,10 +13,9 @@ export const fetchCourses = (currentPage) => {
             .then(
                 data => data.json())
             .then(data => {
-                    dispatch(change_page_count(data['pageCount']))
-                    dispatch(fetched_courses(data['data']))
-                }
-            )
+                dispatch(change_page_count(data['pageCount']))
+                dispatch(fetched_courses(data['data']))
+            })
             .catch(err => console.log(err));
     };
 };
@@ -24,7 +23,7 @@ export const fetchCourses = (currentPage) => {
 export const added_Courses = (name, desc) => {
     return {
         type: 'ADDED_COURSE',
-        payload: {desc: desc, _id: name}
+        payload: { desc: desc, _id: name }
     };
 };
 
@@ -32,7 +31,7 @@ export const addCourse = (name, desc) => {
     return function (dispatch, getState) {
         return fetch(`/courses`, {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 description: desc,
                 _id: name,
@@ -50,17 +49,18 @@ export const addCourse = (name, desc) => {
 
 export const deleteCourse = courseId => {
     return function (dispatch, getState) {
-        return fetch(`/courses/`+courseId, {
+        return fetch(`/courses/` + courseId, {
             method: 'DELETE',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({'courseId': courseId})
-    }).then((res) => {
-            dispatch({
-                type: 'DELETE_COURSE',
-                payload: courseId
-            })
-            return res.status;
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 'courseId': courseId })
         })
+            .then((res) => {
+                dispatch({
+                    type: 'DELETE_COURSE',
+                    payload: courseId
+                })
+                return res.status;
+            })
             .catch((error) => {
                 console.error(error);
             });
@@ -73,8 +73,8 @@ export const fetchCourseInfo = (courseId) => {
             .then(
                 data => data.json())
             .then(data => {
-                    dispatch(fetched_course_info(data))
-                }
+                dispatch(fetched_course_info(data))
+            }
             )
             .catch(err => console.log(err));
     };
@@ -87,11 +87,12 @@ export const fetched_course_info = courseInfo => {
     };
 };
 
+
 /* Search and Filter Action */
 export const update_filters = (yearLvFilter, ratingFilter) => {
     return {
         type: "UPDATE_FILTERS",
-        payload: {yearLvFilter, ratingFilter}
+        payload: { yearLvFilter, ratingFilter }
     };
 };
 
@@ -103,8 +104,8 @@ export const update_search = (searchString) => {
 }
 
 const formURL = (searchString, yearLvFilter, ratingFilter, page) => {
-    let url =`/search?`
-    if(searchString !== '' ) {
+    let url = `/search?`
+    if (searchString !== '') {
         url += `searchString=`;
         url += encodeURIComponent(JSON.stringify(searchString));
     }
@@ -124,20 +125,20 @@ const formURL = (searchString, yearLvFilter, ratingFilter, page) => {
 }
 
 export const executeSearch = (page, searchString, yearLvFilter, ratingFilter) => {
-
     return function (dispatch, getState) {
         const url = formURL(searchString, yearLvFilter, ratingFilter, page)
         return fetch(url)
             .then(
                 data => data.json())
             .then(data => {
-                    dispatch(change_page_count(data['pageCount']))
-                    dispatch(fetched_courses(data['data']))
-                }
+                dispatch(change_page_count(data['pageCount']))
+                dispatch(fetched_courses(data['data']))
+            }
             )
             .catch(err => console.log(err));
     }
 }
+
 
 /* Reviews Action */
 export const toggleAddReviewBox = (payload) => {
@@ -162,29 +163,30 @@ export const addReviewReview = (payload) => {
 }
 
 export const fetchReviews = (courseId) => {
-  return function(dispatch, getState) {
-    return fetch(`/reviews/course/`+courseId)
-      .then(
-				data => data.json())
-      .then(data => {
-					dispatch(fetched_reviews(data))}
-      )
-      .catch(err => console.log(err));
-  };
+    return function (dispatch, getState) {
+        return fetch(`/reviews/course/` + courseId)
+            .then(
+                data => data.json())
+            .then(data => {
+                dispatch(fetched_reviews(data))
+            }
+            )
+            .catch(err => console.log(err));
+    };
 };
 
 export const fetched_reviews = reviews => {
-  return {
-    type: "FETCHED_REVIEWS",
-    data: reviews
-  };
+    return {
+        type: "FETCHED_REVIEWS",
+        data: reviews
+    };
 };
 
 export const addReview = (review, rating, courseId) => {
-    return function(dispatch, getState) {
+    return function (dispatch, getState) {
         return fetch(`/reviews/`, {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 Course_id: courseId,
                 Rating: rating,
@@ -192,59 +194,60 @@ export const addReview = (review, rating, courseId) => {
             }),
             credentials: 'include'
         })
-        .then((responseJson) => {
-            dispatch(fetchCourseInfo(courseId));
-            dispatch(fetchReviews(courseId));
-            dispatch(toggleAddReviewBox(false));
-            dispatch(addReviewRating(null));
-            dispatch(addReviewReview(''));
-            return responseJson.success;
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+            .then((responseJson) => {
+                dispatch(fetchCourseInfo(courseId));
+                dispatch(fetchReviews(courseId));
+                dispatch(toggleAddReviewBox(false));
+                dispatch(addReviewRating(null));
+                dispatch(addReviewReview(''));
+                return responseJson.success;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 }
 
 export const fetchCourseOverview = (courseId) => {
-    return function(dispatch, getState) {
+    return function (dispatch, getState) {
         dispatch(fetchCourseInfo(courseId));
         dispatch(fetchReviews(courseId));
     }
 }
 
+
 /* Authentication Action */
 export const checkStatus = () => {
-    return function(dispatch , getState) {
-        return fetch(`/auth/checkStatus`, {credentials: 'include'})
-        .then(response => response.json())
-        .then(data => {
-            dispatch(authenticated(data));
-        })
-        .catch(err => {
-            let payload = {
-                isAuthenticated: false,
-                user: null
-            }
-            dispatch(authenticated(payload));
-        })
+    return function (dispatch, getState) {
+        return fetch(`/auth/checkStatus`, { credentials: 'include' })
+            .then(response => response.json())
+            .then(data => {
+                dispatch(authenticated(data));
+            })
+            .catch(err => {
+                let payload = {
+                    isAuthenticated: false,
+                    user: null
+                }
+                dispatch(authenticated(payload));
+            })
     }
 }
 
 export const logout = () => {
     return function (dispatch, getState) {
-        return fetch(`/auth/logout`, {credentials: 'include'})
-        .then(response => response.json())
-        .then(data => {
-            dispatch(authenticated(data));
-        })
-        .catch(err => {
-            let payload = {
-                isAuthenticated: true,
-                user: null,
-            }
-            dispatch(authenticated(payload));
-        })
+        return fetch(`/auth/logout`, { credentials: 'include' })
+            .then(response => response.json())
+            .then(data => {
+                dispatch(authenticated(data));
+            })
+            .catch(err => {
+                let payload = {
+                    isAuthenticated: true,
+                    user: null,
+                }
+                dispatch(authenticated(payload));
+            })
     }
 }
 
@@ -254,6 +257,7 @@ export const authenticated = (payload) => {
         payload: payload,
     }
 }
+
 
 /* Pagination */
 export const change_page = page => {
