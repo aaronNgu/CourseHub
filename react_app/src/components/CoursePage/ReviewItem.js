@@ -1,7 +1,7 @@
 import React from 'react';
 import "./CoursePage.css"
-import {makeStyles} from "@material-ui/core/styles";
-import {Box, Paper, Typography} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Box, Paper, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles({
     rating: {
@@ -14,7 +14,7 @@ const useStyles = makeStyles({
 function ReviewItem(props) {
     const classes = useStyles();
 
-    return <Box className='reviewItemHorizontal reviewItemMain content'>
+    return <Box className='reviewItemHorizontal reviewItemMain'>
 
         <Box className='reviewItemHorizontal'>
 

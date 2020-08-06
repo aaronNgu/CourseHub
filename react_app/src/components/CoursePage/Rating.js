@@ -1,5 +1,5 @@
 import React from 'react';
-import {Typography, Paper, makeStyles} from '@material-ui/core';
+import { Typography, Paper, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
     rating: {
@@ -12,7 +12,7 @@ const useStyles = makeStyles({
 const Rating = (props) => {
     const classes = useStyles();
 
-    return <Paper className={classes.rating}> 
+    return <Paper className={classes.rating}>
         <Typography variant='h3'>{props.rating}</Typography>
     </Paper>
 }

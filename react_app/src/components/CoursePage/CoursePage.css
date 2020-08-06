@@ -83,24 +83,28 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-left: 30px;
     padding-bottom: 10px;
 }
 
 .courseOverviewHorizontal {
     display: flex;
-    justify-content: left;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 
 .courseOverviewVerticalLeft {
     display: flex;
     flex-direction: column;
-    margin: 5px 20px;
+    margin: 5px 30px;
     justify-content: center;
 }
 
 .courseOverviewVerticalRight {
-    margin: 5px 20px;
-    padding-left: 7px;
+    margin: 5px 30px;
+    padding: 20px;
     align-items: flex-start;
+    background-color: #FFECEC;
+    flex-grow: 2;
+    border-radius: 10px;
 }

@@ -1,10 +1,10 @@
-import {applyMiddleware, combineReducers, createStore} from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import authReducer from './authReducer';
-import {addReviewBox, addReviewRating, addReviewReview} from './addReviewBoxReducer';
-import {countPage, currentPage} from './paginationReducer';
-import {searchString, filterReducer} from './searchFilterReducer';
-import {homepageLoadingReducer, coursepageLoadingReducer} from './loadingReducer';
+import { homepageLoadingReducer, coursepageLoadingReducer } from './loadingReducer';
+import { addReviewBox, addReviewRating, addReviewReview } from './addReviewBoxReducer';
+import { countPage, currentPage } from './paginationReducer';
+import { searchString, filterReducer } from './searchFilterReducer';
 
 const courseReducer = (courseList = {}, action) => {
     if (action.type === 'DELETE_MESSAGE') {
@@ -20,9 +20,7 @@ const courseReducer = (courseList = {}, action) => {
         return Object.assign({}, action.data);
     }
     if (action.type === 'ADDED_COURSE') {
-        return Object.assign({}, courseList,
-            action.data
-        );
+        return Object.assign({}, courseList, action.data);
     }
     if (action.type === 'DELETE_COURSE') {
         return Object.values(courseList).filter((course) => course._id !== action.payload);
@@ -32,7 +30,7 @@ const courseReducer = (courseList = {}, action) => {
 
 const reviewReducer = (reviewList = {}, action) => {
     if (action.type === 'FETCHED_REVIEWS') {
-      return action.data;
+        return action.data;
     }
     return reviewList;
 };

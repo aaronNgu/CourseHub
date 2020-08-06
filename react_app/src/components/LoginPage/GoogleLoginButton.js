@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 
 const GoogleLoginButton = (props) => {
     const classes = useStyles();
-    return <Button onClick={props.onclick} className={classes.root} variant='outlined'> ICON&nbsp;&nbsp;Continue with Google</Button>;
+    return <Button onClick={props.onclick} className={classes.root} variant='outlined'>Continue with Google</Button>;
 }
 
 export default GoogleLoginButton;

@@ -1,9 +1,9 @@
 import React from 'react';
-import {Button, Dialog, DialogTitle, DialogContent, DialogActions, makeStyles} from '@material-ui/core';
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions, makeStyles } from '@material-ui/core';
 import AddRating from './AddRating';
 import TextBox from './TextBox';
-import {connect} from 'react-redux';
-import {toggleAddReviewBox, addReview} from '../../actions';
+import { connect } from 'react-redux';
+import { toggleAddReviewBox, addReview } from '../../actions';
 
 const useStyles = makeStyles({
     button: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     }
 });
 
-const AddReview = ({review, rating, toggle, toggleAddReviewBox, addReview, id}) => {
+const AddReview = ({ review, rating, toggle, toggleAddReviewBox, addReview, id }) => {
 
     const classes = useStyles();
 
@@ -30,9 +30,9 @@ const AddReview = ({review, rating, toggle, toggleAddReviewBox, addReview, id}) 
     }
 
     const handlePostReview = () => {
-       if (validateReview(review, rating)) {
+        if (validateReview(review, rating)) {
             addReview(review, rating, id);
-       }
+        }
     }
 
     const handleClose = (props) => {
@@ -41,18 +41,18 @@ const AddReview = ({review, rating, toggle, toggleAddReviewBox, addReview, id}) 
 
     return <Dialog open={toggle} onClose={handleClose}>
         <DialogTitle>Add your review</DialogTitle>
-        <DialogContent> 
-            <AddRating/>
-            <TextBox/>
+        <DialogContent>
+            <AddRating />
+            <TextBox />
         </DialogContent>
         <DialogActions>
             <Button className={classes.button} onClick={handlePostReview}> Post Review </Button>
         </DialogActions>
-        </Dialog>;
+    </Dialog>;
 }
 
 const mapStateToProps = (state) => {
-    return {toggle: state.toggleAddReviewBox, review: state.addReviewReview, rating: state.addReviewRating}
+    return { toggle: state.toggleAddReviewBox, review: state.addReviewReview, rating: state.addReviewRating }
 }
 
-export default connect(mapStateToProps, {toggleAddReviewBox, addReview})(AddReview);
+export default connect(mapStateToProps, { toggleAddReviewBox, addReview })(AddReview);
