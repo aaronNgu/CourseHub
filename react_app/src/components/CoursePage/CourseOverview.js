@@ -26,7 +26,7 @@ class CourseOverview extends React.Component {
         return <Box className='courseOverview content'>
 
             <Box className='courseOverviewHeader'>
-                <Typography variant='h5'>{this.props.id} </Typography>
+                <Typography variant='h4'>{this.props.id} </Typography>
                 <Typography variant='h5'>{this.props.courseInfo.description}</Typography>
                 <RateCourseButton handleRateCourse={this.handleRateCourse}/>
             </Box>
@@ -39,7 +39,7 @@ class CourseOverview extends React.Component {
                 </Box>
 
                 <Box className='courseOverviewVerticalRight'>
-                    <Typography variant='h6'>{'Most Recent Review'} </Typography>
+                    <Typography variant='h6'>{'Most Recent Review:'} </Typography>
                     <Typography variant='body2'>
                         {(!Array.isArray(this.props.reviewList))? undefined: (this.props.reviewList.length > 0) ? this.props.reviewList[this.props.reviewList.length -1].Comments : 'No reviews yet!'}
                     </Typography>
