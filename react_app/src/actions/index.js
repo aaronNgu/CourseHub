@@ -170,6 +170,7 @@ export const fetchReviews = (courseId) => {
             .then(
                 data => data.json())
             .then(data => {
+                dispatch(coursepage_is_loading(false))
                 dispatch(fetched_reviews(data))
             }
             )
