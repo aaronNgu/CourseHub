@@ -11,3 +11,10 @@ export const coursepageLoadingReducer = (state = true, action) => {
     }
     return state;
 }
+
+export const courseoverviewLoadingReducer = (state = true,  action) => {
+    if (action.type === 'COURSEOVERVIEW_ISLOADING') {
+        return action.data;
+    }
+    return state;
+}

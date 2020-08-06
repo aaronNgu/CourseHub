@@ -292,3 +292,10 @@ export const coursepage_is_loading = isLoading => {
         data: isLoading
     }
 }
+
+export const courseoverview_is_loading = isLoading => {
+    return {
+        type: 'COURSEOVERVIEW_ISLOADING',
+        data: isLoading,
+    }
+}
