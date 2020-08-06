@@ -45,7 +45,7 @@ class CourseItemList extends React.Component {
             }
             <div className="courseList">
                 {
-                    this.props.isLoading ? <p> loading </p> : (
+                    this.props.isLoading ? <p> Loading ... </p> : (
                         Object.keys(this.props.courseList).length === 0 ?
                             <p> No results. :&#40;</p> :
                             Object.values(this.props.courseList)
