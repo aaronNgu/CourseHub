@@ -41,7 +41,7 @@ We are looking to build a website where students are able to view and/or provide
 
 **Required Tech Stack:**
 * **HTML, CSS, JS**  
-	We used in various parts of our project to create divs and sometimes paragraph tags for formatting. CSS is used for all of our components for styling, formatting, and controlling our website appearance. Javascript is used across all or most of our project components to add functionality to the front end such as mapping and filtering.
+	We used in various parts of our project to create divs and sometimes paragraph tags for formatting. CSS is used for all of our components for styling, formatting, and controlling our website appearance. Javascript is used across all or most of our project components to add functionality to the front end such as mapping and filtering. To maintain responsiveness, we used flexboxes to format some components.
 
 * **React & Redux**  
 	We used React for our front end. Every piece of our website is made using React components, with Material UI for styling. Redux is used in our project to manage the states of our application through actions and reducers.
@@ -50,10 +50,10 @@ We are looking to build a website where students are able to view and/or provide
 	We used MongoDB Atlas for our database to store our data on courses, reviews, and users. Whenever our web app needs data, it will get the relevant data from our collection in MongoDB to display.
 
 * **NodeJS & Express**  
-	We used NodeJS for our server functionalities and Express framework to for our REST API endpoints. We implemented multiple routes to perform CRUD operations to the back end.
+	We used NodeJS for our server functionalities and Express framework with fetch API to for our REST API endpoints. We implemented multiple routes to perform CRUD operations to the back end.
 
 * **Heroku**  
-We are using Heroku to host our web app and our CD pipeline. Every time a pull request is made, it will be automatically deployed to Heroku.
+We are using Heroku to host our web app and our CI/CD pipeline. Every time a pull request is made, it will be automatically deployed to Heroku for testing. 
 
 ---
 **Special Features:**
