@@ -56,7 +56,7 @@ class ContactPage extends React.Component {
             <div className="contactForm">
                 <TextField
                     required
-                    label="Email"
+                    label="Your Email"
                     className="email"
                     name="email"
                     margin="normal"
