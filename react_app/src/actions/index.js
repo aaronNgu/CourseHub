@@ -206,6 +206,13 @@ export const addReview = (review, rating, courseId) => {
     }
 }
 
+export const fetchCourseOverview = (courseId) => {
+    return function(dispatch, getState) {
+        dispatch(fetchCourseInfo(courseId));
+        dispatch(fetchReviews(courseId));
+    }
+}
+
 /* Authentication Action */
 export const checkStatus = () => {
     return function(dispatch , getState) {
