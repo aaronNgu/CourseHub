@@ -1,8 +1,8 @@
 import React from 'react';
 import CourseItem from './CourseItem';
 import AddCourseFormDialog from './AddCourseFormDialog';
-import {connect} from 'react-redux';
-import {fetchCourses, change_page_count} from '../../actions';
+import { connect } from 'react-redux';
+import { fetchCourses, change_page_count, homepage_is_loading} from '../../actions';
 import Button from "@material-ui/core/Button";
 import Filters from "./Filters";
 
@@ -16,6 +16,7 @@ class CourseItemList extends React.Component {
     }
 
     componentDidMount() {
+        this.props.dispatch(homepage_is_loading(true));
         this.props.dispatch(fetchCourses());
         this.props.dispatch(change_page_count(0));
     };
@@ -33,30 +34,34 @@ class CourseItemList extends React.Component {
                 <p>Reviewed Courses</p>
                 <div className="button">
                     <Button variant="outlined"
-                            onClick={this.toggleFilter.bind(this)}
+                        onClick={this.toggleFilter.bind(this)}
                     >Filter</Button>
                 </div>
             </div>
-            {this.state.showFilters ? (<Filters yearLvFilter={this.props.yearFilter}
-                                                ratingFilter={this.props.ratingFilter}
-                                                updateFilters={this.onFiltersUpdate}/>) : null}
+            {
+                this.state.showFilters ? (<Filters yearLvFilter={this.props.yearFilter}
+                    ratingFilter={this.props.ratingFilter}
+                    updateFilters={this.onFiltersUpdate} />) : null
+            }
             <div className="courseList">
                 {
-                    Object.keys(this.props.courseList).length === 0 ? 
-                    <p> No results. :&#40;</p> :
-                    Object.values(this.props.courseList)
-                        .map((course, index) => {
-                            return <CourseItem
-                                key={index}
-                                courseNumber={course._id}
-                                rating={course.overall_rating}
-                                review={course.description}
-                            />;
-                        })
+                    this.props.isLoading ? <p> loading </p> : (
+                        Object.keys(this.props.courseList).length === 0 ?
+                            <p> No results. :&#40;</p> :
+                            Object.values(this.props.courseList)
+                                .map((course, index) => {
+                                    return <CourseItem
+                                        key={index}
+                                        courseNumber={course._id}
+                                        rating={course.overall_rating}
+                                        review={course.description}
+                                    />;
+                                })
+                    )
                 }
             </div>
             <div>
-                <AddCourseFormDialog/>
+                <AddCourseFormDialog />
             </div>
         </div>);
     }
@@ -68,6 +73,7 @@ const mapStateToProps = (state) => {
         searchString: state.searchString,
         yearFilter: state.filters.yearLvFilter,
         ratingFilter: state.filters.ratingFilter,
+        isLoading: state.homeLoading,
     };
 }
 
