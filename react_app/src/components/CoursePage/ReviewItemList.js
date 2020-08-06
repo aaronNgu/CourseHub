@@ -1,7 +1,6 @@
 import React from 'react';
 import ReviewItem from "./ReviewItem";
 import {connect} from 'react-redux';
-import Button from "@material-ui/core/Button";
 import {fetchReviews} from '../../actions';
 
 class ReviewItemList extends React.Component {
