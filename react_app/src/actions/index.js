@@ -74,7 +74,8 @@ export const fetchCourseInfo = (courseId) => {
             .then(
                 data => data.json())
             .then(data => {
-                dispatch(fetched_course_info(data))
+                dispatch(courseoverview_is_loading(false));
+                dispatch(fetched_course_info(data));
             }
             )
             .catch(err => console.log(err));
