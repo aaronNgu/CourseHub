@@ -42,6 +42,7 @@ const SearchBar = ({searchString, update_search, executeSearch, yearFilter, rati
                     endAdornment: (
                         <InputAdornment>
                             <IconButton onClick={(event, newValue) => {
+                                homepage_is_loading(true);
                                 executeSearch(1, searchString, yearFilter, ratingFilter);
                                 change_page(1);}}>
                                 <SearchIcon />

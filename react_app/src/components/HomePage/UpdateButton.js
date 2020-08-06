@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     }
 });
 
-const UpdateButton = ({executeSearch, searchString, yearFilter, ratingFilter, change_page}) => {
+const UpdateButton = ({executeSearch, searchString, yearFilter, ratingFilter, change_page, homepage_is_loading}) => {
     const classes = useStyles();
 
     const handleSearch = () => {
