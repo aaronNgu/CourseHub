@@ -12,7 +12,7 @@ const useStyles = makeStyles({
 
 const FacebookLoginButton = (props) => {
     const classes = useStyles();
-    return <Button onClick={props.onclick} className={classes.root} variant='outlined'> <FacebookIcon/>&nbsp;&nbsp;Continue with Facebook</Button>;
+    return <Button onClick={props.onclick} className={classes.root} variant='outlined'>Continue with Facebook</Button>;
 }
 
 export default FacebookLoginButton;
