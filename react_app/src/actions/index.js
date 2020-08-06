@@ -13,6 +13,7 @@ export const fetchCourses = (currentPage) => {
             .then(
                 data => data.json())
             .then(data => {
+                    dispatch(homepage_is_loading(false))
                     dispatch(change_page_count(data['pageCount']))
                     dispatch(fetched_courses(data['data']))
                 }
@@ -131,6 +132,7 @@ export const executeSearch = (page, searchString, yearLvFilter, ratingFilter) =>
             .then(
                 data => data.json())
             .then(data => {
+                    dispatch(homepage_is_loading(false))
                     dispatch(change_page_count(data['pageCount']))
                     dispatch(fetched_courses(data['data']))
                 }
