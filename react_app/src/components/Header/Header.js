@@ -36,7 +36,7 @@ class Header extends React.Component {
                             auth.isAuthenticated ?
                                 <li>
                                     <Link onClick={this.handleLogOut} to='#' className="link right">
-                                        Log out
+                                        Logout
                                     </Link>
                                 </li>:
                                 <li>
