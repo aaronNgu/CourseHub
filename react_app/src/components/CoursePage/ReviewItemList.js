@@ -17,7 +17,8 @@ class ReviewItemList extends React.Component {
             </div>
             <div id="reviewList">
                 {
-                    this.props.isLoading ? <p>Loading</p> :
+                    this.props.isLoading ? 
+                        <ReviewItem rating='&nbsp;'/> :
                         Object.values(this.props.reviewList)
                             .map((item) => {
                                 return <ReviewItem key={item._id}
