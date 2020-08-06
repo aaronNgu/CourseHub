@@ -4,6 +4,7 @@ import authReducer from './authReducer';
 import {addReviewBox, addReviewRating, addReviewReview} from './addReviewBoxReducer';
 import {countPage, currentPage} from './paginationReducer';
 import {searchString, filterReducer} from './searchFilterReducer';
+import {homepageLoadingReducer, coursepageLoadingReducer} from './loadingReducer';
 
 const courseReducer = (courseList = {}, action) => {
     if (action.type === 'DELETE_MESSAGE') {
@@ -55,6 +56,8 @@ const allReducers = combineReducers({
     countPage: countPage,
     currentPage: currentPage,
     searchString: searchString,
+    homeLoading: homepageLoadingReducer,
+    courseLoading: coursepageLoadingReducer,
 });
 
 const store = createStore(allReducers, applyMiddleware(thunk))

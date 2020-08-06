@@ -269,3 +269,19 @@ export const change_page_count = count => {
         data: count
     }
 }
+
+
+/* Loading */
+export const homepage_is_loading = isLoading => {
+    return {
+        type: "HOMEPAGE_ISLOADING",
+        data: isLoading
+    }
+}
+
+export const coursepage_is_loading = isLoading => {
+    return {
+        type: 'COURSEPAGE_ISLOADING',
+        data: isLoading
+    }
+}
