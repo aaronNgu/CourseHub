@@ -1,7 +1,7 @@
 import React from 'react';
 import "./CoursePage.css"
-import {makeStyles} from "@material-ui/core/styles";
-import {Box, Paper, Typography} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Box, Paper, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles({
     rating: {

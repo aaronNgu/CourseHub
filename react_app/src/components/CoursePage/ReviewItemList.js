@@ -1,7 +1,7 @@
 import React from 'react';
 import ReviewItem from "./ReviewItem";
-import {connect} from 'react-redux';
-import {fetchReviews} from '../../actions';
+import { connect } from 'react-redux';
+import { fetchReviews } from '../../actions';
 
 class ReviewItemList extends React.Component {
 
@@ -11,28 +11,28 @@ class ReviewItemList extends React.Component {
 
     render() {
         return (<div className="content">
-                    <div className="reviewListHeader">
-                        <p>Reviews</p>
-                    </div>
-                <div id="reviewList">
-                {Object.values(this.props.reviewList)
-                  .map((item) => {
-                    return <ReviewItem key={item._id}
-                                       date={item.Date.substring(0,10)}
-                                       rating={item.Rating}
-                                       text={item.Comments}
-        					                     id={item.id}
-                                />;
-                   })
-                 }
-                </div>
+            <div className="reviewListHeader">
+                <p>Reviews</p>
             </div>
+            <div id="reviewList">
+                {
+                    Object.values(this.props.reviewList)
+                        .map((item) => {
+                            return <ReviewItem key={item._id}
+                                date={item.Date.substring(0, 10)}
+                                rating={item.Rating}
+                                text={item.Comments}
+                                id={item.id} />;
+                        })
+                }
+            </div>
+        </div>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-  return {reviewList: state.reviewList};
+    return { reviewList: state.reviewList };
 }
 
 export default connect(mapStateToProps)(ReviewItemList);

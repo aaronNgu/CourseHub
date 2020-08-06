@@ -3,7 +3,7 @@ import { Typography, Paper, Box, IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import "./HomePage.css"
 import { deleteCourse } from "../../actions";
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 class CourseItem extends React.Component {
 
@@ -32,18 +32,19 @@ class CourseItem extends React.Component {
                     <Typography variant='h6'>&nbsp;Rating</Typography>
                     <Paper >
                         <Typography variant='h3'
-                                    style={{padding: '0px 22px',
-                                            border: '5px',
-                                            backgroundColor: '#E5A0A0'}}
+                            style={{
+                                padding: '0px 22px',
+                                border: '5px',
+                                backgroundColor: '#E5A0A0'
+                            }}
                         >{this.props.rating || '-'}</Typography>
                     </Paper>
                 </Box>
 
                 <Box className='courseItemVerticalSides courseItemVerticalMiddle'
-                     style={{paddingTop: '5px'}}
-                >
+                    style={{ paddingTop: '5px' }}>
                     <Link to={'/coursepage/' + this.props.courseNumber.toString()}
-                            style={{textDecoration: 'none', color: 'black'}}>
+                        style={{ textDecoration: 'none', color: 'black' }}>
                         <Typography variant='h5'>{this.props.courseNumber || 'N/A'} </Typography>
                     </Link>
                     <Typography variant='body2'>{this.props.review || 'N/A'}</Typography>
@@ -52,16 +53,15 @@ class CourseItem extends React.Component {
             </Box>
 
             <div className='courseItemVerticalSides'>
-
-            { this.props.auth.userRole === 'Admin' ?
-              <IconButton aria-label="delete"
-                          className='courseItemVerticalSides courseItemVerticalMiddle'
-                          onClick={this.handleRemove.bind(this)}>
-                  <DeleteIcon fontSize="small" />
-              </IconButton>
-              : null
-            }
-
+                {
+                    this.props.auth.userRole === 'Admin' ?
+                        <IconButton aria-label="delete"
+                            className='courseItemVerticalSides courseItemVerticalMiddle'
+                            onClick={this.handleRemove.bind(this)}>
+                            <DeleteIcon fontSize="small" />
+                        </IconButton>
+                        : null
+                }
             </div>
 
         </Box>;
@@ -70,7 +70,7 @@ class CourseItem extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-      auth: state.auth
+        auth: state.auth
     }
 }
 
