@@ -22,7 +22,7 @@ const UpdateButton = ({executeSearch, searchString, yearFilter, ratingFilter, ch
     return <Button 
             className={classes.root} 
             variant='contained'
-            onClick={handleSearch}>Update Search</Button>
+            onClick={handleSearch}>Update</Button>
 };
 
 const mapStateToProps = (state) => {
