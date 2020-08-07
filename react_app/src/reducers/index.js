@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import authReducer from './authReducer';
+import { homepageLoadingReducer, coursepageLoadingReducer , courseoverviewLoadingReducer} from './loadingReducer';
 import { addReviewBox, addReviewRating, addReviewReview } from './addReviewBoxReducer';
 import { countPage, currentPage } from './paginationReducer';
 import { searchString, filterReducer } from './searchFilterReducer';
@@ -53,6 +54,9 @@ const allReducers = combineReducers({
     countPage: countPage,
     currentPage: currentPage,
     searchString: searchString,
+    homeLoading: homepageLoadingReducer,
+    courseLoading: coursepageLoadingReducer,
+    overviewLoading: courseoverviewLoadingReducer,
 });
 
 const store = createStore(allReducers, applyMiddleware(thunk))

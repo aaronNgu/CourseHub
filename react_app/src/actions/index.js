@@ -13,6 +13,7 @@ export const fetchCourses = (currentPage) => {
             .then(
                 data => data.json())
             .then(data => {
+                dispatch(homepage_is_loading(false))
                 dispatch(change_page_count(data['pageCount']))
                 dispatch(fetched_courses(data['data']))
             })
@@ -73,7 +74,8 @@ export const fetchCourseInfo = (courseId) => {
             .then(
                 data => data.json())
             .then(data => {
-                dispatch(fetched_course_info(data))
+                dispatch(courseoverview_is_loading(false));
+                dispatch(fetched_course_info(data));
             }
             )
             .catch(err => console.log(err));
@@ -131,6 +133,7 @@ export const executeSearch = (page, searchString, yearLvFilter, ratingFilter) =>
             .then(
                 data => data.json())
             .then(data => {
+                dispatch(homepage_is_loading(false))
                 dispatch(change_page_count(data['pageCount']))
                 dispatch(fetched_courses(data['data']))
             }
@@ -168,6 +171,7 @@ export const fetchReviews = (courseId) => {
             .then(
                 data => data.json())
             .then(data => {
+                dispatch(coursepage_is_loading(false))
                 dispatch(fetched_reviews(data))
             }
             )
@@ -271,5 +275,28 @@ export const change_page_count = count => {
     return {
         type: "CHANGE_PAGE_COUNT",
         data: count
+    }
+}
+
+
+/* Loading */
+export const homepage_is_loading = isLoading => {
+    return {
+        type: "HOMEPAGE_ISLOADING",
+        data: isLoading
+    }
+}
+
+export const coursepage_is_loading = isLoading => {
+    return {
+        type: 'COURSEPAGE_ISLOADING',
+        data: isLoading
+    }
+}
+
+export const courseoverview_is_loading = isLoading => {
+    return {
+        type: 'COURSEOVERVIEW_ISLOADING',
+        data: isLoading,
     }
 }

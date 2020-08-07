@@ -1,11 +1,12 @@
 import React from 'react';
 import ReviewItem from "./ReviewItem";
 import { connect } from 'react-redux';
-import { fetchReviews } from '../../actions';
+import { fetchReviews, coursepage_is_loading } from '../../actions';
 
 class ReviewItemList extends React.Component {
 
     componentDidMount() {
+        this.props.dispatch(coursepage_is_loading(true))
         this.props.dispatch(fetchReviews(this.props.id));
     }
 
@@ -16,14 +17,16 @@ class ReviewItemList extends React.Component {
             </div>
             <div id="reviewList">
                 {
-                    Object.values(this.props.reviewList)
-                        .map((item) => {
-                            return <ReviewItem key={item._id}
-                                date={item.Date.substring(0, 10)}
-                                rating={item.Rating}
-                                text={item.Comments}
-                                id={item.id} />;
-                        })
+                    this.props.isLoading ? 
+                        <ReviewItem rating='&nbsp;'/> :
+                        Object.values(this.props.reviewList)
+                            .map((item) => {
+                                return <ReviewItem key={item._id}
+                                    date={item.Date.substring(0, 10)}
+                                    rating={item.Rating}
+                                    text={item.Comments}
+                                    id={item.id} />;
+                            })
                 }
             </div>
         </div>
@@ -32,7 +35,10 @@ class ReviewItemList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { reviewList: state.reviewList };
+    return {
+        reviewList: state.reviewList,
+        isLoading: state.courseLoading,
+    };
 }
 
 export default connect(mapStateToProps)(ReviewItemList);
