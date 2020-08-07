@@ -109,6 +109,12 @@ Spandana:
 * Investigated and implemented role-based user routing
 * Handled user signup 
 ---
+**Additional Tools**
+
+We've also developed a Python tool to scrap and upload course information.
+Link to repository for the tool [here](https://github.com/aaronNgu/CourseLoader)
+
+---
 **Relevant Links:**
 *  Trello:  https://trello.com/b/rjTfDo1R/coursehub
 *  Figma:  https://www.figma.com/file/UXh5AIRYjv4AdfHV2p88wG/CourseHub---version-2
