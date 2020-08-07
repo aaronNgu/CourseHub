@@ -66,7 +66,7 @@ We also added in role-based access control. Because some actions should not be e
 ---
 **Next Steps:**
 
-Our next steps are to add User Profile pages to CourseHub, enabling users to edit their profile to provide their education statuses and keep track of their comment histories. This way, users can also edit and view their comments on the site. We would also like to add additional features such as giving users the ability to up and down vote reviews, and being able to display a summary for each course of frequently-mentioned words in user reviews.
+Our next steps are to add User Profile pages to CourseHub, enabling users to edit their profile to provide their education statuses and keep track of their comment histories. This way, users can also edit and view their comments on the site. We would also like to add additional features such as giving users the ability to up and down vote reviews, and being able to display a summary for each course of frequently-mentioned words in user reviews. In addition, we would also like to include more information about courses, such as the years during which they were run, professor information, and past grade distribution to name a few, so that CourseHub can evolve to become even more helpful to students.
 
 ---
 **Team Contributions:**
