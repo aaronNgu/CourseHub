@@ -1,64 +1,62 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import "./Header.css"
-import {connect} from 'react-redux';
-import {checkStatus, logout} from '../../actions';
+import './Header.css';
+import { connect } from 'react-redux';
+import { checkStatus, logout } from '../../actions';
 
 class Header extends React.Component {
+	componentDidMount() {
+		this.props.dispatch(checkStatus());
+	}
 
-    componentDidMount() {
-        this.props.dispatch(checkStatus());
-    }
+	handleLogOut = () => {
+		this.props.dispatch(logout());
+	};
 
-    handleLogOut = () => {
-        this.props.dispatch(logout());
-    }
+	render() {
+		const auth = this.props.auth;
 
-    render() {
-
-        const auth = this.props.auth;
-
-        return (
-            <header>
-                <ul className="navBar">
-                    <li>
-                        <Link to="/homepage" className="link home">
-                            CourseHub
-                        </Link>
-                    </li>
-                    <div className="right">
-                        <li>
-                            <Link to="/about" className="link right">
-                                About
-                            </Link>
-                        </li>
-                        {
-                            auth.isAuthenticated ?
-                                <li>
-                                    <Link onClick={this.handleLogOut} to='#' className="link right">
-                                        Logout
-                                    </Link>
-                                </li>:
-                                <li>
-                                    <Link to='/login' className="link right">
-                                        Login
-                                    </Link>
-                                </li>
-                        }
-                        <li>
-                            <Link to="/contact" className="link right">
-                                Contact
-                            </Link>
-                        </li>
-                    </div>
-                </ul>
-            </header>
-        );
-    }
+		return (
+			<header>
+				<ul className='navBar'>
+					<li>
+						<Link to='/homepage' className='link home'>
+							CourseHub
+						</Link>
+					</li>
+					<div className='right'>
+						<li>
+							<Link to='/about' className='link right'>
+								About
+							</Link>
+						</li>
+						{auth.isAuthenticated ? (
+							<li>
+								<Link onClick={this.handleLogOut} to='#' className='link right'>
+									Logout
+								</Link>
+							</li>
+						) : (
+							<li>
+								<Link to='/login' className='link right'>
+									Login
+								</Link>
+							</li>
+						)}
+						<li>
+							<Link to='/contact' className='link right'>
+								Contact
+							</Link>
+						</li>
+					</div>
+				</ul>
+			</header>
+		);
+	}
 }
 
 const mapStateToProps = (state) => {
-    return {auth: state.auth};
-}
+	return { auth: state.auth };
+};
 
 export default connect(mapStateToProps)(Header);
