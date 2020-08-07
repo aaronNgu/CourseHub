@@ -41,19 +41,19 @@ We are looking to build a website where students are able to view and/or provide
 
 **Required Tech Stack:**
 * **HTML, CSS, JS**  
-	We used in various parts of our project to create divs and sometimes paragraph tags for formatting. CSS is used for all of our components for styling, formatting, and controlling our website appearance. Javascript is used across all or most of our project components to add functionality to the front end such as mapping and filtering. To maintain responsiveness, we used flexboxes to format some components.
+	We used in various parts of our project to create divs and sometimes paragraph tags for formatting. CSS is used for all of our components for styling, formatting, and controlling our website appearance. Javascript is used across all or most of our project components to add functionality to the front end such as mapping and filtering. To maintain responsiveness and easily position elements, we used flexboxes to format some components.
 
 * **React & Redux**  
-	We used React for our front end. Every piece of our website is made using React components, with Material UI for styling. Redux is used in our project to manage the states of our application through actions and reducers.
+	Every piece of our website is made using React components, with Material UI for styling, which has helped us to make our code cleaner, more understandable, and more modularized compared to using vanilla HTML and javascript. Redux is used in our project to manage the states of our application through actions and reducers, and helps to manage UI re-rendering and optimization.
 
 * **MongoDB**  
-	We used MongoDB Atlas for our database to store our data on courses, reviews, and users. Whenever our web app needs data, it will get the relevant data from our collection in MongoDB to display.
+	We used MongoDB Atlas for our database to store our data on courses, reviews, and users. Whenever our web app needs data, it will get the relevant data from our collection in MongoDB to display. MongoDB is schema-less, which means that it is fast in processing document requests and more lenient with the structure of each document, and will allow easy scaling in the future. 
 
 * **NodeJS & Express**  
 	We used NodeJS for our server functionalities and Express framework with fetch API to for our REST API endpoints. We implemented multiple routes to perform CRUD operations to the back end.
 
 * **Heroku**  
-We are using Heroku to host our web app and our CI/CD pipeline. Every time a pull request is made, it will be automatically deployed to Heroku for testing. 
+We are using Heroku to host our web app and our CI/CD pipeline. Every time a pull request is made, it will be automatically deployed to Heroku for testing. Deploying and CI/CD was easy to set up and free. 
 
 ---
 **Special Features:**
@@ -66,7 +66,7 @@ We also added in role-based access control. Because some actions should not be e
 ---
 **Next Steps:**
 
-Our next steps are to add User Profile pages to CourseHub, enabling users to edit their profile to provide their education statuses and keep track of their comment histories. This way, users can also edit and view their comments on the site. We would also like to add additional features such as giving users the ability to up and down vote reviews, and being able to display a summary for each course of frequently-mentioned words in user reviews.
+Our next steps are to add User Profile pages to CourseHub, enabling users to edit their profile to provide their education statuses and keep track of their comment histories. This way, users can also edit and view their comments on the site. We would also like to add additional features such as giving users the ability to up and down vote reviews, and being able to display a summary for each course of frequently-mentioned words in user reviews. In addition, we would also like to include more information about courses, such as the years during which they were run, professor information, and past grade distribution to name a few, so that CourseHub can evolve to become even more helpful to students.
 
 ---
 **Team Contributions:**
